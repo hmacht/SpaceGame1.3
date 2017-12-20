@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		21C8E0CB1FEB13AB00B3CC6C /* explotionWhite.sks in Resources */ = {isa = PBXBuildFile; fileRef = 21C8E0CA1FEB13AB00B3CC6C /* explotionWhite.sks */; };
 		D12171711FE770880056DDE3 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12171701FE770880056DDE3 /* HomeVC.swift */; };
 		D12171801FE84ADD0056DDE3 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = D121717E1FE84ADD0056DDE3 /* MyParticle.sks */; };
 		D12171811FE84ADD0056DDE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D121717F1FE84ADD0056DDE3 /* Assets.xcassets */; };
 		D12171831FE84B090056DDE3 /* Explotion.sks in Resources */ = {isa = PBXBuildFile; fileRef = D12171821FE84B090056DDE3 /* Explotion.sks */; };
-		D12171851FE85FD50056DDE3 /* explotionWhite.sks in Resources */ = {isa = PBXBuildFile; fileRef = D12171841FE85B5B0056DDE3 /* explotionWhite.sks */; };
 		D19B63581FE6D9D400577B0B /* RocketThrust.wav in Resources */ = {isa = PBXBuildFile; fileRef = D19B63561FE6D8E600577B0B /* RocketThrust.wav */; };
 		D1BA75811FE32A8800AA6A64 /* Smoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = D1BA75801FE32A8800AA6A64 /* Smoke.sks */; };
 		D1EAB1591FDB620300CDC186 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EAB1581FDB620300CDC186 /* AppDelegate.swift */; };
@@ -24,11 +24,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		21C8E0CA1FEB13AB00B3CC6C /* explotionWhite.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = explotionWhite.sks; sourceTree = "<group>"; };
 		D12171701FE770880056DDE3 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		D121717E1FE84ADD0056DDE3 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
 		D121717F1FE84ADD0056DDE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D12171821FE84B090056DDE3 /* Explotion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explotion.sks; sourceTree = "<group>"; };
-		D12171841FE85B5B0056DDE3 /* explotionWhite.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = explotionWhite.sks; sourceTree = "<group>"; };
 		D19B63561FE6D8E600577B0B /* RocketThrust.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RocketThrust.wav; sourceTree = "<group>"; };
 		D1BA75801FE32A8800AA6A64 /* Smoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Smoke.sks; sourceTree = "<group>"; };
 		D1EAB1551FDB620300CDC186 /* Orbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Orbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,10 +83,10 @@
 				D19B63561FE6D8E600577B0B /* RocketThrust.wav */,
 				D1BA75801FE32A8800AA6A64 /* Smoke.sks */,
 				D12171821FE84B090056DDE3 /* Explotion.sks */,
-				D12171841FE85B5B0056DDE3 /* explotionWhite.sks */,
 				D12171701FE770880056DDE3 /* HomeVC.swift */,
 				D121717E1FE84ADD0056DDE3 /* MyParticle.sks */,
 				D121717F1FE84ADD0056DDE3 /* Assets.xcassets */,
+				21C8E0CA1FEB13AB00B3CC6C /* explotionWhite.sks */,
 			);
 			path = Orbit;
 			sourceTree = "<group>";
@@ -150,13 +150,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D12171851FE85FD50056DDE3 /* explotionWhite.sks in Resources */,
 				D19B63581FE6D9D400577B0B /* RocketThrust.wav in Resources */,
 				D12171831FE84B090056DDE3 /* Explotion.sks in Resources */,
 				D1EAB1641FDB620300CDC186 /* Main.storyboard in Resources */,
 				D1BA75811FE32A8800AA6A64 /* Smoke.sks in Resources */,
 				D1EAB15B1FDB620300CDC186 /* GameScene.sks in Resources */,
 				D12171801FE84ADD0056DDE3 /* MyParticle.sks in Resources */,
+				21C8E0CB1FEB13AB00B3CC6C /* explotionWhite.sks in Resources */,
 				D1EAB1691FDB620300CDC186 /* LaunchScreen.storyboard in Resources */,
 				D12171811FE84ADD0056DDE3 /* Assets.xcassets in Resources */,
 				D1EAB15D1FDB620300CDC186 /* Actions.sks in Resources */,
@@ -311,7 +311,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 38ZEQFSP28;
+				DEVELOPMENT_TEAM = SWYGWFGR5M;
 				INFOPLIST_FILE = Orbit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = projects.henry.Orbit;
@@ -326,7 +326,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 38ZEQFSP28;
+				DEVELOPMENT_TEAM = SWYGWFGR5M;
 				INFOPLIST_FILE = Orbit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = projects.henry.Orbit;

@@ -113,8 +113,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var endOGameDelayIsDone = false
     // For spawing asteroids
-    let timeInBetweenSpawns: CGFloat = 6
+    let timeInBetweenSpawns: CGFloat = 4.5
     var timeSinceLastSpawn: CGFloat = 0
+    let alertAsteroid = SKSpriteNode(imageNamed: "alert")
+    
+    // For fuel
+    let fuelBar = SKShapeNode(rectOf: CGSize(width: 200, height: 20))
+    var fuel: CGFloat = 100
+    var fuelReductionRate: CGFloat = 3
+    let initialFuel: CGFloat = 100
+    let fuelMask = SKSpriteNode(texture: nil, color: UIColor(red: 255/255, green: 194/255, blue: 0, alpha: 1), size: CGSize(width: 195, height: 15))
     
     func shakeCamera(layer:SKSpriteNode, duration:Float) {
         
@@ -196,32 +204,43 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Set start point to either left or right side
         // send end point to the opposite
         if posX > self.scene!.size.width / 2 {
-            posX = self.scene!.size.width / 2 + 20
+            posX = self.scene!.size.width / 2 + 32
         } else {
-            posX = -self.scene!.size.width / 2 - 20
+            posX = -self.scene!.size.width / 2 - 32
         }
         
-        var endPosY = -posY
+        var endPosY = CGFloat(GKRandomDistribution(lowestValue: -Int(self.scene!.size.height / 2) - 10, highestValue: Int(self.scene!.size.height / 2) - 10).nextInt())
         var endPosX = -posX
         
         let asteroidRadius: CGFloat = 20
-        let asteroid = SKShapeNode(circleOfRadius: asteroidRadius)
-        asteroid.fillColor = UIColor.red
+        let asteroid = SKSpriteNode(imageNamed: "asteroid")
         asteroid.position = CGPoint(x: posX, y: posY)
+        asteroid.xScale = 1.5
+        asteroid.yScale = 1.5
         asteroid.zPosition = 86
         asteroid.physicsBody = SKPhysicsBody(circleOfRadius: asteroidRadius)
         asteroid.physicsBody?.categoryBitMask = physicsCatagory.asteroid
-        asteroid.physicsBody?.collisionBitMask = physicsCatagory.asteroid | physicsCatagory.usersShip
-        asteroid.physicsBody?.contactTestBitMask = physicsCatagory.asteroid | physicsCatagory.usersShip
+        asteroid.physicsBody?.collisionBitMask = physicsCatagory.asteroid | physicsCatagory.usersShip | physicsCatagory.planet
+        asteroid.physicsBody?.contactTestBitMask = physicsCatagory.asteroid | physicsCatagory.usersShip | physicsCatagory.planet
         asteroid.physicsBody?.affectedByGravity = true
-        asteroid.physicsBody?.isDynamic = false
+        asteroid.physicsBody?.isDynamic = true
         self.addChild(asteroid)
+        asteroid.physicsBody?.applyTorque(0.1)
         
-        //asteroid.physicsBody?.velocity = CGVector(dx: endPosX - posX, dy: endPosY - posY)
-        //asteroid.physicsBody?.applyImpulse(CGVector(dx: endPosX - posX, dy: endPosY - posY))
+        if posX < 0 {
+            self.alertAsteroid.position = CGPoint(x: posX + 62, y: posY)
+        } else {
+            self.alertAsteroid.position = CGPoint(x: posX - 62, y: posY)
+        }
+        
+        let grow = SKAction.scale(to: 2, duration: 1.1)
+        let shrink = SKAction.scale(to: 0, duration: 0.3)
+        self.alertAsteroid.run(SKAction.sequence([grow, shrink]))
+        
         let speed: TimeInterval = 6
         let moveAction = SKAction.move(to: CGPoint(x: endPosX, y: endPosY), duration: speed)
-        asteroid.run(moveAction) {
+        let wait = SKAction.wait(forDuration: 1.5)
+        asteroid.run(SKAction.sequence([wait, moveAction])) {
             asteroid.removeFromParent()
         }
     }
@@ -233,9 +252,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         planetPath.position = CGPoint(x: 0, y: 0)
         self.addChild(planetPath)
         planetPath.zPosition = 15
-        
-        print("testing source control")
-        print("Please work !!!")
         
     }
     func createdots() {
@@ -267,8 +283,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         sun.zPosition = 80
         sun.physicsBody = SKPhysicsBody(circleOfRadius: sun.size.width / 2.0)
         sun.physicsBody?.categoryBitMask = physicsCatagory.sun
-        sun.physicsBody?.collisionBitMask = physicsCatagory.sun | physicsCatagory.usersShip
-        sun.physicsBody?.contactTestBitMask = physicsCatagory.sun | physicsCatagory.usersShip
+        sun.physicsBody?.collisionBitMask = physicsCatagory.sun | physicsCatagory.usersShip | physicsCatagory.asteroid
+        sun.physicsBody?.contactTestBitMask = physicsCatagory.sun | physicsCatagory.usersShip | physicsCatagory.asteroid
         sun.physicsBody?.affectedByGravity = false
         sun.physicsBody?.isDynamic = false
         
@@ -417,6 +433,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         usersShip.zRotation = 0
         self.addChild(usersShip)
         endOnce = 1
+        self.fuel = self.initialFuel
         self.restartBtn.removeFromParent()
         self.addChild(gemScore)
         self.theGem.run(SKAction.fadeAlpha(to: 1, duration: 0.5))
@@ -469,7 +486,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createRing()
         
         
+        self.addChild(self.alertAsteroid)
         
+        fuelBar.strokeColor = UIColor.black
+        fuelBar.lineWidth = 5
+        fuelBar.zPosition = 100
+        fuelBar.position = CGPoint(x: -self.size.width/2 + fuelBar.frame.size.width/2 + 10, y: -self.size.height/2 + 50)
+        self.addChild(fuelBar)
+        fuelMask.name = "mask"
+        fuelMask.position = CGPoint(x: 0, y: 0)
+        fuelBar.addChild(fuelMask)
         
         
         /*
@@ -637,14 +663,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         if firstbody.categoryBitMask == physicsCatagory.usersShip && secondbody.categoryBitMask == physicsCatagory.asteroid || secondbody.categoryBitMask == physicsCatagory.usersShip && firstbody.categoryBitMask == physicsCatagory.asteroid {
             
-            //dieShipAnimation()
+            dieShipAnimation()
             endofGameNoDelay()
         }
         if firstbody.categoryBitMask == physicsCatagory.usersShip && secondbody.categoryBitMask == physicsCatagory.sun || secondbody.categoryBitMask == physicsCatagory.usersShip && firstbody.categoryBitMask == physicsCatagory.sun {
             
+            self.fuel = self.initialFuel
+            self.updateFuelBar(amountLeft: self.fuel)
             
             
-            
+        }
+        
+        if firstbody.categoryBitMask == physicsCatagory.asteroid && secondbody.categoryBitMask == physicsCatagory.sun || firstbody.categoryBitMask == physicsCatagory.sun && secondbody.categoryBitMask == physicsCatagory.asteroid {
+            if firstbody.categoryBitMask == physicsCatagory.asteroid {
+                firstbody.node?.removeFromParent()
+            } else {
+                secondbody.node?.removeFromParent()
+            }
         }
         
         
@@ -807,15 +842,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         
-        /*
+        
         if timeSinceLastSpawn > self.timeInBetweenSpawns {
             self.createAsteroid()
             self.timeSinceLastSpawn = 0
         }
- */
         
-        
-        
+        // Update fuel
+        if touchingScreen {
+            var fuelDecreaseRate = self.fuelReductionRate
+            if countTouch[countTouch.count - 1] == 2 {
+                fuelDecreaseRate *= 2
+            }
+            self.fuel -= fuelDecreaseRate * CGFloat(deltaTime)
+            if fuel < 0 {
+                fuel = 0
+                self.endofGameNoDelay()
+                self.dieShipAnimation()
+            }
+            self.updateFuelBar(amountLeft: self.fuel)
+        }
         
         
         // Update gravity of moon
@@ -825,6 +871,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let dampningValue = CGFloat(0.01 * distancePlayerToMoon / (self.scene!.frame.height * 2))
             usersShip.physicsBody?.applyForce(CGVector(dx: (sun.position.x - usersShip.position.x) * dampningValue, dy: (sun.position.y - usersShip.position.y) * dampningValue))
         }
+    }
+    
+    func updateFuelBar(amountLeft: CGFloat) {
+        self.fuelMask.size = CGSize(width: (amountLeft / self.initialFuel) * 195, height: 15)
+        // ADDED
+        self.fuelMask.position = CGPoint(x: (-195/2) + self.fuelMask.size.width/2, y: self.fuelMask.position.y)
     }
     
     // ADDED
