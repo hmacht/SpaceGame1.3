@@ -235,6 +235,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         planetPath.zPosition = 15
         
         print("testing source control")
+        print("Please work !!!")
         
     }
     func createdots() {
