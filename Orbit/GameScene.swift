@@ -116,8 +116,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let timeInBetweenSpawns: CGFloat = 4.5
     var timeSinceLastSpawn: CGFloat = 0
     let alertAsteroid = SKSpriteNode(imageNamed: "alert")
-    let startGemsForAsteroid = 1
-    let asteroidExplosion = SKEmitterNode(fileNamed: "MyParticle")!
+    let startGemsForAsteroid = 0
+    var asteroidExplosion = SKEmitterNode(fileNamed: "RockExplosion")!
     
     // For fuel
     let fuelBar = SKShapeNode(rectOf: CGSize(width: 200, height: 20))
@@ -500,9 +500,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         fuelMask.position = CGPoint(x: 0, y: 0)
         fuelBar.addChild(fuelMask)
         
-        self.asteroidExplosion.zPosition = 99
-        self.asteroidExplosion.xScale = 0.35
-        self.asteroidExplosion.yScale = 0.35
+        self.asteroidExplosion.zPosition = 100
+        self.asteroidExplosion.alpha = 0
+        self.addChild(self.asteroidExplosion)
+
         /*
         
         let delayInSeconds = 0.9
@@ -690,21 +691,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if firstbody.categoryBitMask == physicsCatagory.asteroid && secondbody.categoryBitMask == physicsCatagory.sun || firstbody.categoryBitMask == physicsCatagory.sun && secondbody.categoryBitMask == physicsCatagory.asteroid {
             if firstbody.categoryBitMask == physicsCatagory.asteroid {
-                self.asteroidExplosion.position = firstbody.node!.position
+                self.addAsteroidExplosion(point: firstbody.node!.position)
                 firstbody.node?.removeFromParent()
             } else {
-                self.asteroidExplosion.position = secondbody.node!.position
+                self.addAsteroidExplosion(point: secondbody.node!.position)
                 secondbody.node?.removeFromParent()
             }
-            self.addChild(self.asteroidExplosion)
-            self.asteroidExplosion.run(SKAction.sequence([SKAction.wait(forDuration: 1), SKAction.fadeAlpha(to: 0, duration: 0.5)]), completion: {
-                self.asteroidExplosion.removeFromParent()
-                self.asteroidExplosion.alpha = 1
-            })
+    
+        } else if firstbody.categoryBitMask == physicsCatagory.asteroid || secondbody.categoryBitMask == physicsCatagory.asteroid {
+            
+            if firstbody.categoryBitMask == physicsCatagory.asteroid {
+                self.addAsteroidExplosion(point: firstbody.node!.position)
+                firstbody.node?.removeFromParent()
+            }
+            if secondbody.categoryBitMask == physicsCatagory.asteroid {
+                self.addAsteroidExplosion(point: secondbody.node!.position)
+                secondbody.node?.removeFromParent()
+            }
         }
         
         
         
+        
+    }
+    
+    func addAsteroidExplosion(point: CGPoint) {
+        self.asteroidExplosion = SKEmitterNode(fileNamed: "RockExplosion")!
+        self.asteroidExplosion.zPosition = 100
+        self.asteroidExplosion.xScale = 0.5
+        self.asteroidExplosion.yScale = 0.5
+        self.addChild(self.asteroidExplosion)
+        self.asteroidExplosion.position = point
+        self.asteroidExplosion.alpha = 1
+        self.asteroidExplosion.run(SKAction.sequence([SKAction.wait(forDuration: 1), SKAction.fadeAlpha(to: 0, duration: 0.5)]))
     }
     
     var countTouch:[Int] = []
