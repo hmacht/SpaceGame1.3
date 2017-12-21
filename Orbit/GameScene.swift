@@ -119,13 +119,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let timeInBetweenSpawns: CGFloat = 4.5
     var timeSinceLastSpawn: CGFloat = 0
     let alertAsteroid = SKSpriteNode(imageNamed: "alert")
+    let startGemsForAsteroid = 0
+    var asteroidExplosion = SKEmitterNode(fileNamed: "RockExplosion")!
     
     
     // For fuel
     let fuelBar = SKShapeNode(rectOf: CGSize(width: 200, height: 20))
     var fuel: CGFloat = 100
     var fuelReductionRate: CGFloat = 3
-    let initialFuel: CGFloat = 100
+    let initialFuel: CGFloat = 75
     let fuelMask = SKSpriteNode(texture: nil, color: UIColor(red: 255/255, green: 194/255, blue: 0, alpha: 1), size: CGSize(width: 195, height: 15))
     
     func shakeCamera(layer:SKSpriteNode, duration:Float) {
@@ -456,6 +458,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(usersShip)
         endOnce = 1
         self.fuel = self.initialFuel
+        self.fuelMask.color = UIColor(red: 255/255, green: 194/255, blue: 0, alpha: 1)
         self.restartBtn.removeFromParent()
         self.addChild(gemScore)
         self.theGem.run(SKAction.fadeAlpha(to: 1, duration: 0.5))
@@ -519,7 +522,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         fuelMask.position = CGPoint(x: 0, y: 0)
         fuelBar.addChild(fuelMask)
         
-        
+        self.asteroidExplosion.zPosition = 100
+        self.asteroidExplosion.alpha = 0
+        self.addChild(self.asteroidExplosion)
+
         /*
         
         let delayInSeconds = 0.9
@@ -639,8 +645,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             let delayInSeconds3 = 2.5
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds3) {
-                self.explotion1.removeFromParent()
-                self.explotion.removeFromParent()
+                
+                self.explotion.run(SKAction.fadeAlpha(to: 0, duration: 0.2), completion: {
+                    self.explotion.removeFromParent()
+                    self.explotion.alpha = 1
+                })
+                
+                self.explotion1.run(SKAction.fadeAlpha(to: 0, duration: 0.6), completion: {
+                    self.explotion1.removeFromParent()
+                    self.explotion1.alpha = 1
+                })
+                
                 self.restartBtn.alpha = 1.0
                 self.endOGameDelayIsDone = true
                 
@@ -739,6 +754,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         
+        
+    }
+    
+    func addAsteroidExplosion(point: CGPoint) {
+        self.asteroidExplosion = SKEmitterNode(fileNamed: "RockExplosion")!
+        self.asteroidExplosion.zPosition = 100
+        self.asteroidExplosion.xScale = 0.5
+        self.asteroidExplosion.yScale = 0.5
+        self.addChild(self.asteroidExplosion)
+        self.asteroidExplosion.position = point
+        self.asteroidExplosion.alpha = 1
+        self.asteroidExplosion.run(SKAction.sequence([SKAction.wait(forDuration: 1), SKAction.fadeAlpha(to: 0, duration: 0.5)]))
     }
     
     var countTouch:[Int] = []
@@ -854,8 +881,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Called before each frame is rendered
         
         
-        print(self.frame.width / 2)
-        
         
         if usersShip.position.x > self.size.width / 2 {
             usersShip.position.x = (-self.size.width / 2) + usersShip.size.width
@@ -891,8 +916,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             itsRun = false
         }
  */
-        
-        self.timeSinceLastSpawn += CGFloat(deltaTime)
+        if self.score >= self.startGemsForAsteroid {
+            self.timeSinceLastSpawn += CGFloat(deltaTime)
+        }
         
         
         
@@ -918,12 +944,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.updateFuelBar(amountLeft: self.fuel)
         }
         
+        if self.fuel < self.initialFuel * 0.25 {
+            self.fuelMask.run(SKAction.colorize(with: UIColor.red, colorBlendFactor: 0.5, duration: 2))
+        }
+        
         
         // Update gravity of moon
-        // ADDED
         let distancePlayerToMoon = distance(p1: usersShip.position, p2: sun.position)
         if distancePlayerToMoon > distance(p1: sun.position, p2: self.planet.position) {
-            let dampningValue = CGFloat(0.01 * distancePlayerToMoon / (self.scene!.frame.height * 2))
+            let dampningValue = CGFloat(0.007 * distancePlayerToMoon / (self.scene!.frame.height * 2))
             usersShip.physicsBody?.applyForce(CGVector(dx: (sun.position.x - usersShip.position.x) * dampningValue, dy: (sun.position.y - usersShip.position.y) * dampningValue))
         }
     }
@@ -933,6 +962,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // ADDED
         self.fuelMask.position = CGPoint(x: (-195/2) + self.fuelMask.size.width/2, y: self.fuelMask.position.y)
     }
+    
     
     // ADDED
     func distance(p1: CGPoint, p2: CGPoint) -> CGFloat {

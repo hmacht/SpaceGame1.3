@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rtB-3c-7z2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rtB-3c-7z2">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,7 +32,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KmE-3K-QTf">
-                                <rect key="frame" x="151" y="640" width="73" height="73"/>
+                                <rect key="frame" x="151" y="571" width="73" height="73"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="73" id="G5O-jj-GRK"/>
                                     <constraint firstAttribute="height" constant="73" id="GVU-TR-mLv"/>
@@ -51,7 +51,7 @@
                                 <state key="normal" image="Group 70"/>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Group 68" translatesAutoresizingMaskIntoConstraints="NO" id="d3j-V2-nKT">
-                                <rect key="frame" x="55" y="240" width="265" height="180"/>
+                                <rect key="frame" x="55" y="316" width="265" height="180"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="F6C-uQ-trd"/>
                                     <constraint firstAttribute="width" constant="265" id="xSA-Je-dok"/>
@@ -60,11 +60,11 @@
                         </subviews>
                         <color key="backgroundColor" red="0.95999234914779663" green="0.98417359590530396" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="d3j-V2-nKT" firstAttribute="centerY" secondItem="ubP-SR-G0F" secondAttribute="centerY" id="LIP-hM-3JQ"/>
                             <constraint firstItem="S1c-iE-w7e" firstAttribute="top" secondItem="iZ8-xP-Hi9" secondAttribute="top" id="SWl-cp-E9M"/>
-                            <constraint firstItem="d3j-V2-nKT" firstAttribute="top" secondItem="iZ8-xP-Hi9" secondAttribute="top" constant="196" id="YvT-35-fVC"/>
                             <constraint firstItem="iZ8-xP-Hi9" firstAttribute="trailing" secondItem="S1c-iE-w7e" secondAttribute="trailing" constant="16" id="hr6-Ji-xsu"/>
                             <constraint firstItem="d3j-V2-nKT" firstAttribute="centerX" secondItem="ubP-SR-G0F" secondAttribute="centerX" id="jQ1-U7-dTg"/>
-                            <constraint firstItem="KmE-3K-QTf" firstAttribute="top" secondItem="d3j-V2-nKT" secondAttribute="bottom" constant="220" id="yzb-ou-gzS"/>
+                            <constraint firstItem="KmE-3K-QTf" firstAttribute="top" secondItem="d3j-V2-nKT" secondAttribute="bottom" constant="75" id="mYk-sn-Yko"/>
                             <constraint firstItem="KmE-3K-QTf" firstAttribute="centerX" secondItem="ubP-SR-G0F" secondAttribute="centerX" id="zXx-8o-DED"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="iZ8-xP-Hi9"/>
