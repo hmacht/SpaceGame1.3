@@ -35,6 +35,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var explotion = SKEmitterNode()
     var explotion1 = SKEmitterNode()
     var ringExplosion = SKSpriteNode()
+    var explotion2 = SKEmitterNode()
     
     var gem1 = SKSpriteNode()
     var gem2 = SKSpriteNode()
@@ -54,6 +55,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var removeFired = [SKSpriteNode()]
     var restartBtn = SKSpriteNode()
     var homeBtn = SKSpriteNode()
+    
+    var whatAsteroid = ["Group 78","Group 80","Group 81"]
     
     var timer1 = Timer()
     
@@ -116,6 +119,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let timeInBetweenSpawns: CGFloat = 4.5
     var timeSinceLastSpawn: CGFloat = 0
     let alertAsteroid = SKSpriteNode(imageNamed: "alert")
+    
     
     // For fuel
     let fuelBar = SKShapeNode(rectOf: CGSize(width: 200, height: 20))
@@ -195,7 +199,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createAsteroid() {
-        // Size of screne 750 x 1334
+        // Size of screne 750 x 1334]
+        alertAsteroid.zPosition = 300
         let ranPosX = GKRandomDistribution(lowestValue: 0, highestValue: Int(self.scene!.size.width))
         let ranPosY = GKRandomDistribution(lowestValue: -Int(self.scene!.size.height / 2) - 10, highestValue: Int(self.scene!.size.height / 2) - 10)
         
@@ -213,7 +218,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var endPosX = -posX
         
         let asteroidRadius: CGFloat = 20
-        let asteroid = SKSpriteNode(imageNamed: "asteroid")
+        let asteroid = SKSpriteNode(imageNamed: whatAsteroid[Int(arc4random_uniform(3))])
         asteroid.position = CGPoint(x: posX, y: posY)
         asteroid.xScale = 1.5
         asteroid.yScale = 1.5
@@ -224,7 +229,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         asteroid.physicsBody?.contactTestBitMask = physicsCatagory.asteroid | physicsCatagory.usersShip | physicsCatagory.planet
         asteroid.physicsBody?.affectedByGravity = true
         asteroid.physicsBody?.isDynamic = true
-        self.addChild(asteroid)
+        
         asteroid.physicsBody?.applyTorque(0.1)
         
         if posX < 0 {
@@ -233,9 +238,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.alertAsteroid.position = CGPoint(x: posX - 62, y: posY)
         }
         
-        let grow = SKAction.scale(to: 2, duration: 1.1)
-        let shrink = SKAction.scale(to: 0, duration: 0.3)
+        
+        let grow = SKAction.scale(to: 2, duration: 1.8)
+        let shrink = SKAction.scale(to: 0, duration: 0.5)
         self.alertAsteroid.run(SKAction.sequence([grow, shrink]))
+        let delayInSeconds = 0.6
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
+            
+            self.addChild(asteroid)
+            
+        }
+        
         
         let speed: TimeInterval = 6
         let moveAction = SKAction.move(to: CGPoint(x: endPosX, y: endPosY), duration: speed)
@@ -332,12 +345,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func explode1(){
         explotion1 = SKEmitterNode(fileNamed: "explotionWhite")!
         explotion1.name = "explotionWhite"
+        
         //explotion1.xScale = 0.2
         //explotion1.yScale = 0.2
         explotion1.zPosition = 20
         //explotion1.isHidden = true
         //usersShip.addChild(explotion1)
         explotion1.position = CGPoint(x: 0, y: 400)
+    }
+    func explode2(){
+        explotion2 = SKEmitterNode(fileNamed: "Explotion2")!
+        explotion2.name = "Explotion2"
+ 
+        explotion1.zPosition = 500
+        
+        
     }
     
     func createPlanet() {
@@ -491,7 +513,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         fuelBar.strokeColor = UIColor.black
         fuelBar.lineWidth = 5
         fuelBar.zPosition = 100
-        fuelBar.position = CGPoint(x: -self.size.width/2 + fuelBar.frame.size.width/2 + 10, y: -self.size.height/2 + 50)
+        fuelBar.position = CGPoint(x: -self.size.width/2 + fuelBar.frame.size.width, y: -self.size.height/2 + 50)
         self.addChild(fuelBar)
         fuelMask.name = "mask"
         fuelMask.position = CGPoint(x: 0, y: 0)
@@ -564,7 +586,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
         }
     }
-    
+    func dieAsteroidAnimation() {
+        shakeCamera(layer: sun, duration: 0.5)
+        self.addChild(explotion2)
+        let delayInSeconds = 0.5
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
+            self.explotion2.particleBirthRate = 1
+            let delayInSeconds2 = 1.2
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds2) {
+                self.explotion2.removeFromParent()
+                
+            }
+        }
+    }
     func dieShipAnimation() {
         
         usersShip.removeFromParent()
@@ -676,11 +710,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if firstbody.categoryBitMask == physicsCatagory.asteroid && secondbody.categoryBitMask == physicsCatagory.sun || firstbody.categoryBitMask == physicsCatagory.sun && secondbody.categoryBitMask == physicsCatagory.asteroid {
             if firstbody.categoryBitMask == physicsCatagory.asteroid {
+                explotion2.position = CGPoint(x: (firstbody.node?.position.x)!, y: (firstbody.node?.position.y)!)
+                dieAsteroidAnimation()
+                
                 firstbody.node?.removeFromParent()
             } else {
+                explotion2.position = CGPoint(x: (secondbody.node?.position.x)!, y: (secondbody.node?.position.y)!)
+                dieAsteroidAnimation()
+                
                 secondbody.node?.removeFromParent()
             }
         }
+        /*
+        if firstbody.categoryBitMask == physicsCatagory.asteroid && secondbody.categoryBitMask == physicsCatagory.planet || firstbody.categoryBitMask == physicsCatagory.planet && secondbody.categoryBitMask == physicsCatagory.asteroid {
+            if firstbody.categoryBitMask == physicsCatagory.asteroid {
+                
+                
+                
+                firstbody.node?.removeFromParent()
+            } else {
+                
+                
+                
+                secondbody.node?.removeFromParent()
+            }
+        }
+ */
         
         
         
@@ -852,7 +907,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if touchingScreen {
             var fuelDecreaseRate = self.fuelReductionRate
             if countTouch[countTouch.count - 1] == 2 {
-                fuelDecreaseRate *= 2
+                fuelDecreaseRate *= 10
             }
             self.fuel -= fuelDecreaseRate * CGFloat(deltaTime)
             if fuel < 0 {
