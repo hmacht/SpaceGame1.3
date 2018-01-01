@@ -10,6 +10,9 @@
 		210D61D81FEC7A4C00506C67 /* RockExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 210D61D71FEC7A4C00506C67 /* RockExplosion.sks */; };
 		21BB3B691FEB524D00967D80 /* AsteroidExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 21BB3B681FEB524D00967D80 /* AsteroidExplosion.sks */; };
 		21C8E0CB1FEB13AB00B3CC6C /* explotionWhite.sks in Resources */ = {isa = PBXBuildFile; fileRef = 21C8E0CA1FEB13AB00B3CC6C /* explotionWhite.sks */; };
+		D11ED3181FEC994100D74B7A /* asteroidtrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = D11ED3171FEC994000D74B7A /* asteroidtrail.sks */; };
+		D11ED31A1FF1BBE700D74B7A /* asteroidtrail copy.sks in Resources */ = {isa = PBXBuildFile; fileRef = D11ED3191FF1BBE700D74B7A /* asteroidtrail copy.sks */; };
+		D11ED31C1FF5BA3400D74B7A /* planetToPos.sks in Resources */ = {isa = PBXBuildFile; fileRef = D11ED31B1FF5BA3400D74B7A /* planetToPos.sks */; };
 		D12171711FE770880056DDE3 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12171701FE770880056DDE3 /* HomeVC.swift */; };
 		D12171801FE84ADD0056DDE3 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = D121717E1FE84ADD0056DDE3 /* MyParticle.sks */; };
 		D12171811FE84ADD0056DDE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D121717F1FE84ADD0056DDE3 /* Assets.xcassets */; };
@@ -29,6 +32,9 @@
 		210D61D71FEC7A4C00506C67 /* RockExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = RockExplosion.sks; sourceTree = "<group>"; };
 		21BB3B681FEB524D00967D80 /* AsteroidExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AsteroidExplosion.sks; sourceTree = "<group>"; };
 		21C8E0CA1FEB13AB00B3CC6C /* explotionWhite.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = explotionWhite.sks; sourceTree = "<group>"; };
+		D11ED3171FEC994000D74B7A /* asteroidtrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = asteroidtrail.sks; sourceTree = "<group>"; };
+		D11ED3191FF1BBE700D74B7A /* asteroidtrail copy.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "asteroidtrail copy.sks"; sourceTree = "<group>"; };
+		D11ED31B1FF5BA3400D74B7A /* planetToPos.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = planetToPos.sks; sourceTree = "<group>"; };
 		D12171701FE770880056DDE3 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		D121717E1FE84ADD0056DDE3 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
 		D121717F1FE84ADD0056DDE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -93,8 +99,11 @@
 				D121717E1FE84ADD0056DDE3 /* MyParticle.sks */,
 				D121717F1FE84ADD0056DDE3 /* Assets.xcassets */,
 				21C8E0CA1FEB13AB00B3CC6C /* explotionWhite.sks */,
+				D11ED3171FEC994000D74B7A /* asteroidtrail.sks */,
 				21BB3B681FEB524D00967D80 /* AsteroidExplosion.sks */,
+				D11ED3191FF1BBE700D74B7A /* asteroidtrail copy.sks */,
 				210D61D71FEC7A4C00506C67 /* RockExplosion.sks */,
+				D11ED31B1FF5BA3400D74B7A /* planetToPos.sks */,
 			);
 			path = Orbit;
 			sourceTree = "<group>";
@@ -161,11 +170,14 @@
 				D19B63581FE6D9D400577B0B /* RocketThrust.wav in Resources */,
 				D12171831FE84B090056DDE3 /* Explotion.sks in Resources */,
 				D1EAB1641FDB620300CDC186 /* Main.storyboard in Resources */,
+				D11ED31C1FF5BA3400D74B7A /* planetToPos.sks in Resources */,
 				D1BA75811FE32A8800AA6A64 /* Smoke.sks in Resources */,
 				210D61D81FEC7A4C00506C67 /* RockExplosion.sks in Resources */,
+				D11ED3181FEC994100D74B7A /* asteroidtrail.sks in Resources */,
 				21BB3B691FEB524D00967D80 /* AsteroidExplosion.sks in Resources */,
 				D1EAB15B1FDB620300CDC186 /* GameScene.sks in Resources */,
 				D12171801FE84ADD0056DDE3 /* MyParticle.sks in Resources */,
+				D11ED31A1FF1BBE700D74B7A /* asteroidtrail copy.sks in Resources */,
 				21C8E0CB1FEB13AB00B3CC6C /* explotionWhite.sks in Resources */,
 				D1EAB1691FDB620300CDC186 /* LaunchScreen.storyboard in Resources */,
 				D12171811FE84ADD0056DDE3 /* Assets.xcassets in Resources */,
