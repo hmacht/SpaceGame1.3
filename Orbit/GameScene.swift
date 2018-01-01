@@ -250,11 +250,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         let speed: TimeInterval = 6
-        let moveAction = SKAction.move(to: CGPoint(x: endPosX, y: endPosY), duration: speed)
+        //let moveAction = SKAction.move(to: CGPoint(x: endPosX, y: endPosY), duration: speed)
+        let forceAction = SKAction.applyForce(forceVector, duration: 0.02)
         let wait = SKAction.wait(forDuration: 1.5)
-        asteroid.run(SKAction.sequence([wait, moveAction])) {
-            asteroid.removeFromParent()
-        }
+        asteroid.run(SKAction.sequence([wait, forceAction]))
     }
     
     func createPlanetPath() {
@@ -925,6 +924,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let dampningValue = CGFloat(0.007 * distancePlayerToMoon / (self.scene!.frame.height * 2))
             usersShip.physicsBody?.applyForce(CGVector(dx: (sun.position.x - usersShip.position.x) * dampningValue, dy: (sun.position.y - usersShip.position.y) * dampningValue))
         }
+        
     }
     
     func updateFuelBar(amountLeft: CGFloat) {
