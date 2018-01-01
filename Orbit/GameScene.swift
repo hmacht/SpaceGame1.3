@@ -19,10 +19,12 @@ struct physicsCatagory {
     static let theGem: UInt32 = 0x1 << 9
     static let asteroid: UInt32 = 0x1 << 10
     static let planetPath: UInt32 = 0x1 << 11
+    
+    
+    
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
-    
     
     // Variables
     
@@ -114,7 +116,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var onlyOnce = 1
     
     
-    
     // Functions
     
     
@@ -159,6 +160,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gemScore.position = CGPoint(x: 220, y: 590)
         self.addChild(gemScore)
     }
+        
     
     func createGem() {
         TopoBtm = Int(arc4random_uniform(2))
@@ -557,7 +559,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         planet.zPosition = 50
         moonHelper.addChild(planet)
     }
-
+    
     override func didMove(to view: SKView) {
         //view.showsPhysics = true
         self.physicsWorld.contactDelegate = self
@@ -665,8 +667,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 self.restartBtn.alpha = 1.0
                 self.endOGameDelayIsDone = true
+                
+                
             }
         }
+        
     }
     
     
@@ -736,7 +741,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if firstbody.categoryBitMask == physicsCatagory.asteroid && secondbody.categoryBitMask == physicsCatagory.planetPath || firstbody.categoryBitMask == physicsCatagory.planetPath && secondbody.categoryBitMask == physicsCatagory.asteroid {
-            
             /*
                 if self.onlyOnce == 1{
                     if firstbody.categoryBitMask == physicsCatagory.asteroid {
@@ -755,7 +759,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     }
                     self.onlyOnce = 1
                 }
-           */
+            */
+            
         }
     }
     
@@ -854,13 +859,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //usersShip.childNode(withName: "Smoke")?.isHidden = true
         usersShip.size.height = 38
         self.removeAction(forKey: "rocketSound")
-        
     }
     
     var lastUpdateTime: TimeInterval = 0
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-  
+        
         if usersShip.position.x > self.size.width / 2 {
             usersShip.position.x = (-self.size.width / 2) + usersShip.size.width
         }
@@ -874,6 +878,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             usersShip.position.y = self.size.height / 2
         }
         
+        
         let deltaTime = currentTime - lastUpdateTime
         lastUpdateTime = currentTime
         
@@ -881,13 +886,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.timeSinceLastSpawn += CGFloat(deltaTime)
         }
         
+        /*
+         if timeSinceLastSpawn > self.timeInBetweenSpawns {
+         self.createAsteroid()
+         self.timeSinceLastSpawn = 0
+         }
+         */
+        
         if gameOver == false{
             if timeSinceLastSpawn > self.timeInBetweenSpawns {
                 self.createAsteroid()
                 self.timeSinceLastSpawn = 0
             }
         }
-        
+
         // Update fuel
         if touchingScreen {
             var fuelDecreaseRate = self.fuelReductionRate
@@ -919,11 +931,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.fuelMask.size = CGSize(width: (amountLeft / self.initialFuel) * 195, height: 15)
         self.fuelMask.position = CGPoint(x: (-195/2) + self.fuelMask.size.width/2, y: self.fuelMask.position.y)
     }
-
+    
     func distance(p1: CGPoint, p2: CGPoint) -> CGFloat {
         let xDif = p1.x - p2.x
         let yDif = p1.y - p2.y
         return CGFloat(sqrt((xDif * xDif) + (yDif * yDif)))
     }
-    
 }
