@@ -19,15 +19,12 @@ struct physicsCatagory {
     static let theGem: UInt32 = 0x1 << 9
     static let asteroid: UInt32 = 0x1 << 10
     static let planetPath: UInt32 = 0x1 << 11
-    
-    
-    
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Variables
-    
+
     
     //Graphics
     var usersShip = SKSpriteNode()
@@ -250,10 +247,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         let speed: TimeInterval = 6
+        let moveAction = SKAction.move(to: CGPoint(x: endPosX, y: endPosY), duration: speed)
+        asteroid.run(moveAction) {
+            asteroid.removeFromParent()
+        }
+        
+        /*
+        let speed: TimeInterval = 6
         //let moveAction = SKAction.move(to: CGPoint(x: endPosX, y: endPosY), duration: speed)
         let forceAction = SKAction.applyForce(forceVector, duration: 0.02)
         let wait = SKAction.wait(forDuration: 1.5)
         asteroid.run(SKAction.sequence([wait, forceAction]))
+         */
     }
     
     func createPlanetPath() {
@@ -937,4 +942,5 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let yDif = p1.y - p2.y
         return CGFloat(sqrt((xDif * xDif) + (yDif * yDif)))
     }
+    
 }
