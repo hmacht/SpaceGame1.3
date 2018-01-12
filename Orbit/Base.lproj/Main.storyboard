@@ -36,19 +36,12 @@
                                 <rect key="frame" x="192" y="297" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="testtestHP" translatesAutoresizingMaskIntoConstraints="NO" id="clZ-PK-yMm">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tster123" translatesAutoresizingMaskIntoConstraints="NO" id="clZ-PK-yMm">
                                 <rect key="frame" x="-47" y="0.0" width="469" height="812"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MrK-PR-eBi">
-                                <rect key="frame" x="13" y="69" width="349" height="612"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <segue destination="BV1-FR-VrT" kind="show" id="0fh-T0-8WS"/>
-                                </connections>
-                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.22002539038658142" green="0.72464042901992798" blue="0.99921137094497681" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.92803364990000003" green="0.97225815059999998" blue="1" alpha="1" colorSpace="deviceRGB"/>
                         <viewLayoutGuide key="safeArea" id="iZ8-xP-Hi9"/>
                     </view>
                 </viewController>
@@ -58,6 +51,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="testtestHP" width="375" height="667"/>
+        <image name="tster123" width="538" height="726"/>
     </resources>
 </document>
