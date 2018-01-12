@@ -470,7 +470,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         AboutBtn = SKSpriteNode(imageNamed: "Group 140")
         AboutBtn.setScale(2)
         AboutBtn.position = CGPoint(x: 0, y: 0)
-        AboutBtn.zPosition = 1
+        AboutBtn.zPosition = 3
         AboutBtn.name = "about"
         self.addChild(AboutBtn)
         
