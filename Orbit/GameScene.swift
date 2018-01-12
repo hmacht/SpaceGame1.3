@@ -189,11 +189,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func createAsteroid() {
         // Size of screne 750 x 1334]
-        asteroidTrail = SKEmitterNode(fileNamed: "asteroidtrail.sks")!
+        //asteroidTrail = SKEmitterNode(fileNamed: "asteroidtrail.sks")!
         asteroidTrail.name = "asteroidtrail"
         asteroidTrail.zPosition = 30
         asteroidTrail.targetNode = self
-        asteroidTrailYellow = SKEmitterNode(fileNamed: "asteroidtrail copy.sks")!
+        //asteroidTrailYellow = SKEmitterNode(fileNamed: "asteroidtrail copy.sks")!
         asteroidTrailYellow.name = "asteroidtrail"
         asteroidTrailYellow.zPosition = 40
         asteroidTrailYellow.targetNode = self
@@ -220,45 +220,48 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         asteroid.position = CGPoint(x: posX, y: posY)
         asteroid.xScale = 1.5
         asteroid.yScale = 1.5
-        asteroid.zPosition = 1
+        asteroid.zPosition = 100
         asteroid.physicsBody = SKPhysicsBody(circleOfRadius: asteroidRadius)
         asteroid.physicsBody?.categoryBitMask = physicsCatagory.asteroid
         asteroid.physicsBody?.collisionBitMask = physicsCatagory.asteroid | physicsCatagory.usersShip | physicsCatagory.planet
         asteroid.physicsBody?.contactTestBitMask = physicsCatagory.asteroid | physicsCatagory.usersShip | physicsCatagory.planet | physicsCatagory.planetPath
         asteroid.physicsBody?.affectedByGravity = true
         asteroid.physicsBody?.isDynamic = true
-        asteroid.physicsBody?.applyTorque(0.1)
         
         if posX < 0 {
-            self.alertAsteroid.position = CGPoint(x: posX + 162, y: posY)
+            self.alertAsteroid.position = CGPoint(x: posX + self.size.width/6, y: posY)
         } else {
-            self.alertAsteroid.position = CGPoint(x: posX - 162, y: posY)
+            self.alertAsteroid.position = CGPoint(x: posX - self.size.width/6, y: posY)
         }
         
-        let grow = SKAction.scale(to: 2, duration: 1.8)
-        let shrink = SKAction.scale(to: 0, duration: 0.5)
+        let growTime = 1.2
+        let shrinkTime = 0.5
+        let grow = SKAction.scale(to: 2, duration: growTime)
+        let shrink = SKAction.scale(to: 0, duration: shrinkTime)
         self.alertAsteroid.run(SKAction.sequence([grow, shrink]))
         let delayInSeconds = 0.6
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
             self.addChild(asteroid)
-            asteroid.addChild(self.asteroidTrail)
+            asteroid.physicsBody?.applyTorque(0.1)
+            //asteroid.addChild(self.asteroidTrail)
             //asteroid.addChild(self.asteroidTrailYellow)
             
         }
-        
+        /* Move asteroid with action
         let speed: TimeInterval = 6
         let moveAction = SKAction.move(to: CGPoint(x: endPosX, y: endPosY), duration: speed)
-        asteroid.run(moveAction) {
+        asteroid.run(SKAction.sequence([SKAction.wait(forDuration: growTime + shrinkTime), moveAction])) {
             asteroid.removeFromParent()
-        }
+        }*/
         
-        /*
+        let forceVector = CGVector(dx: 0.2 * (endPosX - posX), dy:  0.2 * (endPosY - posY))
+        // Move with physics
         let speed: TimeInterval = 6
         //let moveAction = SKAction.move(to: CGPoint(x: endPosX, y: endPosY), duration: speed)
         let forceAction = SKAction.applyForce(forceVector, duration: 0.02)
-        let wait = SKAction.wait(forDuration: 1.5)
+        let wait = SKAction.wait(forDuration: growTime + shrinkTime)
         asteroid.run(SKAction.sequence([wait, forceAction]))
-         */
+        
     }
     
     func createPlanetPath() {
@@ -336,7 +339,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createAsteroidTrail(){
-        asteroidTrail = SKEmitterNode(fileNamed: "asteroidtrail.sks")!
+        //asteroidTrail = SKEmitterNode(fileNamed: "asteroidtrail.sks")!
         asteroidTrail.name = "asteroidtrail"
         asteroidTrail.zPosition = 500
     }
@@ -495,7 +498,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func playBtnIsClicked(){
-        startGemsForAsteroid = 3
+        startGemsForAsteroid = 0
         homeMoon.run(SKAction.scale(to: 6, duration: 1))
         homeMoon.run(SKAction.move(to: CGPoint(x: 0, y: 0) , duration: 1.8))
         let delayInSeconds = 1.0
@@ -736,40 +739,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if firstbody.categoryBitMask == physicsCatagory.asteroid {
                 explotion2.position = CGPoint(x: (firstbody.node?.position.x)!, y: (firstbody.node?.position.y)!)
                 dieAsteroidAnimation()
+                self.addAsteroidExplosion(point: firstbody.node!.position)
                 firstbody.node?.removeFromParent()
             } else {
                 explotion2.position = CGPoint(x: (secondbody.node?.position.x)!, y: (secondbody.node?.position.y)!)
                 dieAsteroidAnimation()
+                self.addAsteroidExplosion(point: secondbody.node!.position)
                 secondbody.node?.removeFromParent()
             }
         }
         
-        if firstbody.categoryBitMask == physicsCatagory.asteroid && secondbody.categoryBitMask == physicsCatagory.planetPath || firstbody.categoryBitMask == physicsCatagory.planetPath && secondbody.categoryBitMask == physicsCatagory.asteroid {
-            /*
-                if self.onlyOnce == 1{
-                    if firstbody.categoryBitMask == physicsCatagory.asteroid {
-                        firstbody.node?.removeAllActions()
-                        firstbody.node?.removeFromParent()
-                        self.moonHelper.addChild((firstbody.node)!)
-                        
-                    } else {
-                        print(secondbody.node)
-                        secondbody.node?.removeAllActions()
-                        
-                        secondbody.node?.removeFromParent()
-                        self.moonHelper.addChild((secondbody.node)!)
-                        //print(secondbody.node)
-                        
-                    }
-                    self.onlyOnce = 1
-                }
-            */
+        if firstbody.categoryBitMask == physicsCatagory.asteroid && secondbody.categoryBitMask == physicsCatagory.planet || firstbody.categoryBitMask == physicsCatagory.planet && secondbody.categoryBitMask == physicsCatagory.asteroid {
             
+            if firstbody.categoryBitMask == physicsCatagory.asteroid {
+                self.addAsteroidExplosion(point: firstbody.node!.position)
+                firstbody.node?.removeFromParent()
+            } else {
+                self.addAsteroidExplosion(point: secondbody.node!.position)
+                secondbody.node?.removeFromParent()
+            }
         }
     }
     
     func addAsteroidExplosion(point: CGPoint) {
-        self.asteroidExplosion = SKEmitterNode(fileNamed: "RockExplosion")!
+        self.asteroidExplosion = SKEmitterNode(fileNamed: "AsteroidDie")!
         self.asteroidExplosion.zPosition = 100
         self.asteroidExplosion.xScale = 0.5
         self.asteroidExplosion.yScale = 0.5
