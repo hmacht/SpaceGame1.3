@@ -740,10 +740,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 explotion2.position = CGPoint(x: (firstbody.node?.position.x)!, y: (firstbody.node?.position.y)!)
                 dieAsteroidAnimation()
                 self.addAsteroidExplosion(point: firstbody.node!.position, node: firstbody.node!)
+                firstbody.node?.removeFromParent()
             } else {
                 explotion2.position = CGPoint(x: (secondbody.node?.position.x)!, y: (secondbody.node?.position.y)!)
                 dieAsteroidAnimation()
                 self.addAsteroidExplosion(point: secondbody.node!.position, node: secondbody.node!)
+                secondbody.node?.removeFromParent()
             }
         }
         
@@ -761,12 +763,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func addAsteroidExplosion(point: CGPoint, node: SKNode) {
         var trail = SKEmitterNode()
-        self.addChild(trail)
+        
         if node.children.count > 0 {
             trail = node.children[0] as! SKEmitterNode
             trail.removeFromParent()
+            self.addChild(trail)
             trail.position = node.position
             trail.numParticlesToEmit = 1
+        } else {
+            self.addChild(trail)
         }
         
         let asteroidExplosion = SKEmitterNode(fileNamed: "AsteroidDie")!
@@ -780,8 +785,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         asteroidExplosion.alpha = 1
         asteroidExplosion.run(SKAction.sequence([SKAction.wait(forDuration: 1), SKAction.fadeAlpha(to: 0, duration: 0.5), SKAction.run({
             asteroidExplosion.removeFromParent()
-            trail.removeFromParent()
         })]))
+        
+        trail.run(SKAction.sequence([SKAction.fadeAlpha(to: 0, duration: 4), SKAction.removeFromParent()]))
     }
     
     var countTouch:[Int] = []
