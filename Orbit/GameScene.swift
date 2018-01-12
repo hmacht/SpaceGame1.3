@@ -189,7 +189,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func createAsteroid() {
         // Size of screne 750 x 1334]
-        //asteroidTrail = SKEmitterNode(fileNamed: "asteroidtrail.sks")!
+        asteroidTrail = SKEmitterNode(fileNamed: "asteroidtrail.sks")!
         asteroidTrail.name = "asteroidtrail"
         asteroidTrail.zPosition = 30
         asteroidTrail.targetNode = self
@@ -243,7 +243,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
             self.addChild(asteroid)
             asteroid.physicsBody?.applyTorque(0.1)
-            //asteroid.addChild(self.asteroidTrail)
+            asteroid.addChild(self.asteroidTrail)
             //asteroid.addChild(self.asteroidTrailYellow)
             
         }
@@ -616,7 +616,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func dieAsteroidAnimation() {
         shakeCamera(layer: sun, duration: 0.5)
-        self.addChild(explotion2)
+        //self.addChild(explotion2)
         let delayInSeconds = 0.5
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
             self.explotion2.particleBirthRate = 1
@@ -739,37 +739,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if firstbody.categoryBitMask == physicsCatagory.asteroid {
                 explotion2.position = CGPoint(x: (firstbody.node?.position.x)!, y: (firstbody.node?.position.y)!)
                 dieAsteroidAnimation()
-                self.addAsteroidExplosion(point: firstbody.node!.position)
-                firstbody.node?.removeFromParent()
+                self.addAsteroidExplosion(point: firstbody.node!.position, node: firstbody.node!)
             } else {
                 explotion2.position = CGPoint(x: (secondbody.node?.position.x)!, y: (secondbody.node?.position.y)!)
                 dieAsteroidAnimation()
-                self.addAsteroidExplosion(point: secondbody.node!.position)
-                secondbody.node?.removeFromParent()
+                self.addAsteroidExplosion(point: secondbody.node!.position, node: secondbody.node!)
             }
         }
         
         if firstbody.categoryBitMask == physicsCatagory.asteroid && secondbody.categoryBitMask == physicsCatagory.planet || firstbody.categoryBitMask == physicsCatagory.planet && secondbody.categoryBitMask == physicsCatagory.asteroid {
             
             if firstbody.categoryBitMask == physicsCatagory.asteroid {
-                self.addAsteroidExplosion(point: firstbody.node!.position)
+                self.addAsteroidExplosion(point: firstbody.node!.position, node: firstbody.node!)
                 firstbody.node?.removeFromParent()
             } else {
-                self.addAsteroidExplosion(point: secondbody.node!.position)
+                self.addAsteroidExplosion(point: secondbody.node!.position, node: secondbody.node!)
                 secondbody.node?.removeFromParent()
             }
         }
     }
     
-    func addAsteroidExplosion(point: CGPoint) {
-        self.asteroidExplosion = SKEmitterNode(fileNamed: "AsteroidDie")!
-        self.asteroidExplosion.zPosition = 100
-        self.asteroidExplosion.xScale = 0.5
-        self.asteroidExplosion.yScale = 0.5
-        self.addChild(self.asteroidExplosion)
-        self.asteroidExplosion.position = point
-        self.asteroidExplosion.alpha = 1
-        self.asteroidExplosion.run(SKAction.sequence([SKAction.wait(forDuration: 1), SKAction.fadeAlpha(to: 0, duration: 0.5)]))
+    func addAsteroidExplosion(point: CGPoint, node: SKNode) {
+        var trail = SKEmitterNode()
+        self.addChild(trail)
+        if node.children.count > 0 {
+            trail = node.children[0] as! SKEmitterNode
+            trail.removeFromParent()
+            trail.position = node.position
+            trail.numParticlesToEmit = 1
+        }
+        
+        let asteroidExplosion = SKEmitterNode(fileNamed: "AsteroidDie")!
+        asteroidExplosion.zPosition = 100
+        asteroidExplosion.xScale = 0.5
+        asteroidExplosion.yScale = 0.5
+        
+        self.addChild(asteroidExplosion)
+        
+        asteroidExplosion.position = point
+        asteroidExplosion.alpha = 1
+        asteroidExplosion.run(SKAction.sequence([SKAction.wait(forDuration: 1), SKAction.fadeAlpha(to: 0, duration: 0.5), SKAction.run({
+            asteroidExplosion.removeFromParent()
+            trail.removeFromParent()
+        })]))
     }
     
     var countTouch:[Int] = []
