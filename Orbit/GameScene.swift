@@ -595,6 +595,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.asteroidExplosion.alpha = 0
         self.addChild(self.asteroidExplosion)
         
+        self.setupBackgroundMusic()
+        
         timer1 = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: "update1", userInfo: nil, repeats: true)
     }
     
@@ -703,6 +705,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if firstbody.categoryBitMask == physicsCatagory.usersShip && secondbody.categoryBitMask == physicsCatagory.theGem || firstbody.categoryBitMask == physicsCatagory.theGem && secondbody.categoryBitMask == physicsCatagory.usersShip{
             print("G1")
             //self.score = self.score + 1
+            self.playSound(s: "gold.wav", waitForEnd: true)
             score = score + 1
             gemScore.text = "\(score)"
             theGem.physicsBody = nil
@@ -797,9 +800,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //usersShip.childNode(withName: "Smoke")?.isHidden = false
         touchingScreen = true
         
-        if gameOver == false{
-            let sound = SKAction.repeatForever(SKAction.playSoundFileNamed("RocketThrust.wav", waitForCompletion: true))
-            self.run(sound, withKey: "rocketSound")
+        if gameOver == false {
+            if self.action(forKey: "rocketSound") == nil {
+                let sequence = SKAction.sequence([SKAction.wait(forDuration: 0.02), SKAction.playSoundFileNamed("RocketThrust.wav", waitForCompletion: true)])
+                let sound = SKAction.repeatForever(sequence)
+                self.run(sound, withKey: "rocketSound")
+            }
         }
         
         usersShip.size.height = 43
@@ -952,6 +958,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let xDif = p1.x - p2.x
         let yDif = p1.y - p2.y
         return CGFloat(sqrt((xDif * xDif) + (yDif * yDif)))
+    }
+    
+    func playSound(s: String, waitForEnd: Bool) {
+        self.run(SKAction.playSoundFileNamed(s, waitForCompletion: waitForEnd))
+    }
+    
+    func setupBackgroundMusic() {
+        let audioNode = SKAudioNode(fileNamed: "orbit_music2.wav")
+        self.addChild(audioNode)
+        
+        /*
+        let play = SKAction.play()
+        let stop = SKAction.stop()
+        // Wait for duration should be length of music in seconds plus 2 seconds
+        let forever = SKAction.repeatForever(SKAction.sequence([play, SKAction.wait(forDuration: 44), stop]))
+        audioNode.run(forever, withKey: "backgroundMusic")*/
     }
     
 }
