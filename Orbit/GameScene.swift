@@ -315,6 +315,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         usersShip.physicsBody?.contactTestBitMask = physicsCatagory.usersShip | physicsCatagory.planet | physicsCatagory.sun | physicsCatagory.theGem | physicsCatagory.asteroid
         usersShip.physicsBody?.affectedByGravity = true
         usersShip.physicsBody?.isDynamic = true
+        
+        let smokeTrail = SKEmitterNode(fileNamed: "explotionWhite")!
+        smokeTrail.targetNode = self.scene
+        smokeTrail.name = "Smoke"
+        smokeTrail.zPosition = 20
+        smokeTrail.numParticlesToEmit = 1
+        usersShip.addChild(smokeTrail)
+        smokeTrail.isHidden = true
+        
         self.addChild(usersShip)
     }
     
@@ -808,7 +817,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         countTouch.append((event?.allTouches?.count)!)
-        //usersShip.childNode(withName: "Smoke")?.isHidden = false
+        
+        if let smoke = usersShip.childNode(withName: "Smoke") as? SKEmitterNode {
+            smoke.isHidden = false
+            smoke.numParticlesToEmit = 0
+        }
+        
         touchingScreen = true
         
         if gameOver == false {
@@ -880,7 +894,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         touchingScreen = false
         usersShip.texture = SKTexture(imageNamed:"myShip")
-        //usersShip.childNode(withName: "Smoke")?.isHidden = true
+        
+        if let smoke = usersShip.childNode(withName: "Smoke") as? SKEmitterNode {
+            smoke.isHidden = true
+            smoke.numParticlesToEmit = 1
+        }
+        
         usersShip.size.height = 38
         self.removeAction(forKey: "rocketSound")
     }
@@ -888,7 +907,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         touchingScreen = false
         usersShip.texture = SKTexture(imageNamed:"myShip")
-        //usersShip.childNode(withName: "Smoke")?.isHidden = true
+        
+        if let smoke = usersShip.childNode(withName: "Smoke") as? SKEmitterNode {
+            smoke.isHidden = true
+            smoke.numParticlesToEmit = 1
+        }
+        
         usersShip.size.height = 38
         self.removeAction(forKey: "rocketSound")
     }
