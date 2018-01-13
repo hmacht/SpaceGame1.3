@@ -391,6 +391,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func endofGameNoDelay(){
         if endOnce == 1 {
             print("Game Over")
+            
+            // Save gems
+            self.updateGems()
+            
             gameOver = true
             self.timer1.invalidate()
             self.sun.run(SKAction.scale(to: 0, duration: 1))
@@ -407,6 +411,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             endOnce = 0
         }
+    }
+    
+    func updateGems() {
+        // Get gems for memory. If nothing stored, returns 0
+        let currentGems = UserDefaults.standard.integer(forKey: "Gems")
+        UserDefaults.standard.set(currentGems + self.score, forKey: "Gems")
+        //print("Total gems:", UserDefaults.standard.integer(forKey: "Gems"))
     }
     
     func goToGameScene(){
@@ -968,12 +979,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let audioNode = SKAudioNode(fileNamed: "orbit_music2.wav")
         self.addChild(audioNode)
         
-        /*
-        let play = SKAction.play()
-        let stop = SKAction.stop()
-        // Wait for duration should be length of music in seconds plus 2 seconds
-        let forever = SKAction.repeatForever(SKAction.sequence([play, SKAction.wait(forDuration: 44), stop]))
-        audioNode.run(forever, withKey: "backgroundMusic")*/
     }
     
 }
