@@ -9,7 +9,8 @@
 import SpriteKit
 import GameplayKit
 import AudioToolbox
-struct physicsCatagory {
+
+public struct physicsCatagory {
     static let sun: UInt32 = 0x1 << 1
     static let usersShip: UInt32 = 0x1 << 2
     static let planet: UInt32 = 0x1 << 3
@@ -121,7 +122,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         moonHelper.position = CGPoint(x: 0, y: 0)
         self.addChild(moonHelper)
         
-        print("Test github level_feature branch")
     }
     
     func shakeCamera(layer:SKSpriteNode, duration:Float) {
@@ -190,16 +190,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createAsteroid() {
-        // Size of screne 750 x 1334]
-        asteroidTrail = SKEmitterNode(fileNamed: "asteroidtrail.sks")!
-        asteroidTrail.name = "asteroidtrail"
-        asteroidTrail.zPosition = 30
-        asteroidTrail.targetNode = self
-        //asteroidTrailYellow = SKEmitterNode(fileNamed: "asteroidtrail copy.sks")!
-        asteroidTrailYellow.name = "asteroidtrail"
-        asteroidTrailYellow.zPosition = 40
-        asteroidTrailYellow.targetNode = self
+        
         alertAsteroid.zPosition = 300
+        
         let ranPosX = GKRandomDistribution(lowestValue: 0, highestValue: Int(self.scene!.size.width))
         let ranPosY = GKRandomDistribution(lowestValue: -Int(self.scene!.size.height / 2) - 10, highestValue: Int(self.scene!.size.height / 2) - 10)
         var posX = CGFloat(ranPosX.nextInt())
@@ -217,18 +210,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         var endPosY = CGFloat(GKRandomDistribution(lowestValue: -Int(self.scene!.size.height / 2) - 10, highestValue: Int(self.scene!.size.height / 2) - 10).nextInt())
         var endPosX = -posX
         
-        let asteroidRadius: CGFloat = 20
-        let asteroid = SKSpriteNode(imageNamed: whatAsteroid[Int(arc4random_uniform(3))])
+        let asteroid = Asteroid(asteroidName: whatAsteroid[Int(arc4random_uniform(3))])
         asteroid.position = CGPoint(x: posX, y: posY)
-        asteroid.xScale = 1.5
-        asteroid.yScale = 1.5
-        asteroid.zPosition = 100
-        asteroid.physicsBody = SKPhysicsBody(circleOfRadius: asteroidRadius)
-        asteroid.physicsBody?.categoryBitMask = physicsCatagory.asteroid
-        asteroid.physicsBody?.collisionBitMask = physicsCatagory.asteroid | physicsCatagory.usersShip | physicsCatagory.planet
-        asteroid.physicsBody?.contactTestBitMask = physicsCatagory.asteroid | physicsCatagory.usersShip | physicsCatagory.planet | physicsCatagory.planetPath
-        asteroid.physicsBody?.affectedByGravity = true
-        asteroid.physicsBody?.isDynamic = true
+        asteroid.trail.targetNode = self.scene
+        
+        self.addChild(asteroid)
         
         if posX < 0 {
             self.alertAsteroid.position = CGPoint(x: posX + self.size.width/6, y: posY)
@@ -241,28 +227,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let grow = SKAction.scale(to: 2, duration: growTime)
         let shrink = SKAction.scale(to: 0, duration: shrinkTime)
         self.alertAsteroid.run(SKAction.sequence([grow, shrink]))
-        let delayInSeconds = 0.6
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
-            self.addChild(asteroid)
-            asteroid.physicsBody?.applyTorque(0.1)
-            asteroid.addChild(self.asteroidTrail)
-            //asteroid.addChild(self.asteroidTrailYellow)
-            
-        }
-        /* Move asteroid with action
-        let speed: TimeInterval = 6
-        let moveAction = SKAction.move(to: CGPoint(x: endPosX, y: endPosY), duration: speed)
-        asteroid.run(SKAction.sequence([SKAction.wait(forDuration: growTime + shrinkTime), moveAction])) {
-            asteroid.removeFromParent()
-        }*/
         
-        let forceVector = CGVector(dx: 0.2 * (endPosX - posX), dy:  0.2 * (endPosY - posY))
-        // Move with physics
-        let speed: TimeInterval = 6
-        //let moveAction = SKAction.move(to: CGPoint(x: endPosX, y: endPosY), duration: speed)
-        let forceAction = SKAction.applyForce(forceVector, duration: 0.02)
-        let wait = SKAction.wait(forDuration: growTime + shrinkTime)
-        asteroid.run(SKAction.sequence([wait, forceAction]))
+        asteroid.run(SKAction.sequence([SKAction.wait(forDuration: growTime + shrinkTime), SKAction.run({
+            asteroid.spin()
+            asteroid.move(to: CGPoint(x: endPosX, y: endPosY))
+        })]))
         
     }
     
@@ -290,16 +259,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     func createSun() {
-        sun = SKSpriteNode(imageNamed: "Moon")
-        sun.setScale(2)
+        
+        self.sun = Sun(imageName: "Moon")
         sun.position = CGPoint(x: 0, y: 0)
-        sun.zPosition = 80
-        sun.physicsBody = SKPhysicsBody(circleOfRadius: sun.size.width / 2.0)
-        sun.physicsBody?.categoryBitMask = physicsCatagory.sun
-        sun.physicsBody?.collisionBitMask = physicsCatagory.sun | physicsCatagory.usersShip | physicsCatagory.asteroid
-        sun.physicsBody?.contactTestBitMask = physicsCatagory.sun | physicsCatagory.usersShip | physicsCatagory.asteroid
-        sun.physicsBody?.affectedByGravity = false
-        sun.physicsBody?.isDynamic = false
         self.addChild(sun)
     }
     
@@ -356,20 +318,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createPlanet() {
-        let planet = SKSpriteNode(imageNamed: "planet")
-        planet.setScale(2)
+        let planet = Planet(imageName: "planet")
         planet.position = CGPoint(x: 0, y: 0)
-        planet.zPosition = 50
-        planet.physicsBody = SKPhysicsBody(circleOfRadius: planet.size.width / 2.0)
-        planet.physicsBody?.categoryBitMask = physicsCatagory.planet
-        planet.physicsBody?.collisionBitMask = physicsCatagory.planet | physicsCatagory.usersShip
-        planet.physicsBody?.contactTestBitMask = physicsCatagory.planet | physicsCatagory.usersShip
-        planet.physicsBody?.affectedByGravity = false
-        planet.physicsBody?.isDynamic = true
+        
         self.addChild(planet)
+        
         circle = UIBezierPath(roundedRect: CGRect(x: self.frame.midX - 260, y: self.frame.midY - 260, width: 525, height: 525), cornerRadius: 300)
-        circularMove = SKAction.follow(circle.cgPath, asOffset: false, orientToPath: false, duration: 2)
-        planet.run(SKAction.repeatForever(circularMove))
+        
+        planet.orbit(path: circle.cgPath, speed: 2)
     }
     
     func createyears(){
