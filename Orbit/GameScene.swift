@@ -120,6 +120,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func createHelper() {
         moonHelper.position = CGPoint(x: 0, y: 0)
         self.addChild(moonHelper)
+        
+        print("Test github level_feature branch")
     }
     
     func shakeCamera(layer:SKSpriteNode, duration:Float) {
