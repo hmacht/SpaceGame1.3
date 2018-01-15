@@ -34,6 +34,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var planetPath = SKSpriteNode()
     var theGem = SKSpriteNode()
     
+    //paused
+    var pauseBtn = SKSpriteNode()
+    var continuebtn = SKSpriteNode()
+    var restartbtn2 = SKSpriteNode()
+    var quitbtn = SKSpriteNode()
+    var settingsbtn2 = SKSpriteNode()
+    var pausedBg = SKSpriteNode()
+    
+    
     
     // lables
     var gemScore = SKLabelNode()
@@ -424,6 +433,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.updateGems()
             
             gameOver = true
+            pauseBtn.removeFromParent()
             self.timer1.invalidate()
             self.sun.run(SKAction.scale(to: 0, duration: 1))
             self.numberofYears.text = "You gathered \(self.score) gems"
@@ -469,6 +479,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         explotion.particleBirthRate = 19
         explotion1.particleBirthRate = 35
         ringExplosion.alpha = 1
+        createPauseBtn()
         createGem()
     }
     
@@ -485,6 +496,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         explode1()
         explode()
         createRing()
+        createPauseBtn()
         //moonHelper.run(SKAction.repeatForever(SKAction.rotate(byAngle: 10, duration: 5)))
         self.addChild(self.alertAsteroid)
     }
@@ -606,6 +618,56 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         moonHelper.addChild(planet)
     }
     
+    func createPauseBtn(){
+        pauseBtn = SKSpriteNode(imageNamed: "Group 362")
+        pauseBtn.setScale(2.7)
+        pauseBtn.position = CGPoint(x: -220, y: 625)
+        pauseBtn.zPosition = 5
+        pauseBtn.name = "pausebtn"
+        self.addChild(pauseBtn)
+    }
+    
+    func pausedGame(){
+        
+        pausedBg = SKSpriteNode(imageNamed: "Rectangle 1783")
+        pausedBg.setScale(2)
+        pausedBg.position = CGPoint(x: 0, y: 0)
+        pausedBg.zPosition = 400
+        self.addChild(pausedBg)
+        
+        continuebtn = SKSpriteNode(imageNamed: "Group 358")
+        continuebtn.setScale(2)
+        continuebtn.position = CGPoint(x: 0, y: 150)
+        continuebtn.zPosition = 500
+        continuebtn.name = "continue"
+        self.addChild(continuebtn)
+        
+        restartbtn2 = SKSpriteNode(imageNamed: "Group 359")
+        restartbtn2.setScale(2)
+        restartbtn2.position = CGPoint(x: -10, y: 50)
+        restartbtn2.zPosition = 500
+        restartbtn2.name = "restart2"
+        self.addChild(restartbtn2)
+        
+        quitbtn = SKSpriteNode(imageNamed: "Group 360")
+        quitbtn.setScale(2)
+        quitbtn.position = CGPoint(x: -50, y: -50)
+        quitbtn.zPosition = 500
+        quitbtn.name = "quit"
+        self.addChild(quitbtn)
+        
+        settingsbtn2 = SKSpriteNode(imageNamed: "Group 366")
+        settingsbtn2.setScale(2)
+        settingsbtn2.position = CGPoint(x: 0, y: -150)
+        settingsbtn2.zPosition = 50000001
+        settingsbtn2.name = "settings2"
+        self.addChild(settingsbtn2)
+        
+    }
+    
+    
+    
+    
     override func didMove(to view: SKView) {
         //view.showsPhysics = true
         self.physicsWorld.contactDelegate = self
@@ -700,7 +762,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.explotion1.particleBirthRate = 1
             }
             
-            let delayInSeconds3 = 2.5
+            let delayInSeconds3 = 0.6
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds3) {
                 
                 self.explotion.run(SKAction.fadeAlpha(to: 0, duration: 0.2), completion: {
@@ -860,11 +922,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
+        
+        
+        
         usersShip.size.height = 43
         usersShip.texture = SKTexture(imageNamed:"myShip2")
         let touch:UITouch = touches.first!
         let positionInScene = touch.location(in: self)
         let touchedNode = self.atPoint(positionInScene)
+        
+        if let name = touchedNode.name{
+            if name == "pausebtn"{
+                pausedGame()
+                scene?.speed = 0
+                scene?.physicsWorld.speed = 0
+            }
+        }
+        if let name = touchedNode.name{
+            if name == "continue"{
+                pausedBg.removeFromParent()
+                continuebtn.removeFromParent()
+                restartbtn2.removeFromParent()
+                quitbtn.removeFromParent()
+                settingsbtn2.removeFromParent()
+                scene?.speed = 1
+                scene?.physicsWorld.speed = 1
+            }
+        }
         
         if undoAbout {
             homeMoon.run(SKAction.move(to: CGPoint(x: 0, y: -600), duration: 2.5))
