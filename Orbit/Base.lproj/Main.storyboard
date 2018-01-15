@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QlY-tH-GhU">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,6 +10,55 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Level Select View Controller-->
+        <scene sceneID="uPq-yS-hpv">
+            <objects>
+                <viewController id="QlY-tH-GhU" customClass="LevelSelectViewController" customModule="Orbit" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nOE-lb-ABJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gqR-D1-OOL">
+                                <rect key="frame" x="163.66666666666666" y="391" width="47" height="30"/>
+                                <state key="normal" title="Level 1"/>
+                                <connections>
+                                    <action selector="levelButtonPressed:" destination="QlY-tH-GhU" eventType="touchUpInside" id="Yfl-qO-5MI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M6l-3k-vP2">
+                                <rect key="frame" x="172.66666666666666" y="311" width="30" height="30"/>
+                                <state key="normal" title="Play"/>
+                                <connections>
+                                    <action selector="levelButtonPressed:" destination="QlY-tH-GhU" eventType="touchUpInside" id="hhk-V2-aps"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJk-EL-lMs">
+                                <rect key="frame" x="162.66666666666666" y="471" width="49" height="30"/>
+                                <state key="normal" title="Level 2"/>
+                                <connections>
+                                    <action selector="levelButtonPressed:" destination="QlY-tH-GhU" eventType="touchUpInside" id="hUa-hT-Rj3"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gqR-D1-OOL" firstAttribute="top" secondItem="M6l-3k-vP2" secondAttribute="bottom" constant="50" id="4yD-tf-6a4"/>
+                            <constraint firstItem="gqR-D1-OOL" firstAttribute="centerX" secondItem="nOE-lb-ABJ" secondAttribute="centerX" id="9YY-7C-Ktx"/>
+                            <constraint firstItem="mJk-EL-lMs" firstAttribute="top" secondItem="gqR-D1-OOL" secondAttribute="bottom" constant="50" id="Bid-I7-qud"/>
+                            <constraint firstItem="M6l-3k-vP2" firstAttribute="centerX" secondItem="nOE-lb-ABJ" secondAttribute="centerX" id="KjH-Oo-RwK"/>
+                            <constraint firstItem="gqR-D1-OOL" firstAttribute="centerY" secondItem="nOE-lb-ABJ" secondAttribute="centerY" id="V92-mm-zdD"/>
+                            <constraint firstItem="mJk-EL-lMs" firstAttribute="centerX" secondItem="nOE-lb-ABJ" secondAttribute="centerX" id="dA0-VA-tB8"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="pbP-j0-F2B"/>
+                    </view>
+                    <connections>
+                        <segue destination="BV1-FR-VrT" kind="show" identifier="toGameScene" id="ddJ-wJ-lXU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8tu-QI-ytO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-398" y="59"/>
+        </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
@@ -23,6 +72,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="514" y="106"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="uwH-xW-6BT">
@@ -47,7 +97,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nYE-nd-bDW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-788" y="32.512315270935964"/>
+            <point key="canvasLocation" x="-1174" y="35"/>
         </scene>
     </scenes>
     <resources>

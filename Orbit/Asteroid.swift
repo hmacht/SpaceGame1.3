@@ -8,6 +8,7 @@
 
 import SpriteKit
 
+
 class Asteroid: SKSpriteNode {
     
     let radius: CGFloat = 20

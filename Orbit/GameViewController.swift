@@ -11,16 +11,21 @@ import SpriteKit
 import GameplayKit
 
 class GameViewController: UIViewController {
-
+    
+    var selectedLevel = 0
+    
+    let sceneArray = ["GameScene", "Level1", "Level2"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let s = sceneArray[selectedLevel]
+        
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
+            if let scene = SKScene(fileNamed: s) {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
-                
                 // Present the scene
                 view.presentScene(scene)
             }

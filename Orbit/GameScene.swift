@@ -20,6 +20,7 @@ public struct physicsCatagory {
     static let theGem: UInt32 = 0x1 << 9
     static let asteroid: UInt32 = 0x1 << 10
     static let planetPath: UInt32 = 0x1 << 11
+    static let finishLine: UInt32 = 0x1 << 12
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -113,6 +114,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var newRotationRadians = CGFloat()
     var onlyOnce = 1
     
+    // Whether or not in normal game mode or in level
+    var inLevel = false
     
     // Functions
     
@@ -191,8 +194,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func createAsteroid() {
         
-        alertAsteroid.zPosition = 300
-        
         let ranPosX = GKRandomDistribution(lowestValue: 0, highestValue: Int(self.scene!.size.width))
         let ranPosY = GKRandomDistribution(lowestValue: -Int(self.scene!.size.height / 2) - 10, highestValue: Int(self.scene!.size.height / 2) - 10)
         var posX = CGFloat(ranPosX.nextInt())
@@ -216,19 +217,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.addChild(asteroid)
         
+        let growTime: CGFloat = 1.2
+        let shrinkTime: CGFloat = 0.5
+        let alert = AlertAsteroid(image: "alert", growTime: growTime, shrinkTime: shrinkTime)
+        
         if posX < 0 {
-            self.alertAsteroid.position = CGPoint(x: posX + self.size.width/6, y: posY)
+            alert.position = CGPoint(x: posX + self.size.width/6, y: posY)
         } else {
-            self.alertAsteroid.position = CGPoint(x: posX - self.size.width/6, y: posY)
+            alert.position = CGPoint(x: posX - self.size.width/6, y: posY)
         }
         
-        let growTime = 1.2
-        let shrinkTime = 0.5
-        let grow = SKAction.scale(to: 2, duration: growTime)
-        let shrink = SKAction.scale(to: 0, duration: shrinkTime)
-        self.alertAsteroid.run(SKAction.sequence([grow, shrink]))
+        self.addChild(alert)
         
-        asteroid.run(SKAction.sequence([SKAction.wait(forDuration: growTime + shrinkTime), SKAction.run({
+        alert.warn()
+        
+        asteroid.run(SKAction.sequence([SKAction.wait(forDuration: TimeInterval(growTime + shrinkTime)), SKAction.run({
             asteroid.spin()
             asteroid.move(to: CGPoint(x: endPosX, y: endPosY))
         })]))
@@ -365,16 +368,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             gameOver = true
             self.timer1.invalidate()
             self.sun.run(SKAction.scale(to: 0, duration: 1))
-            self.numberofYears.text = "You gathered \(self.score) gems"
+            if !inLevel {
+                self.numberofYears.text = "You gathered \(self.score) gems"
+            }
             restartBtn.alpha = 0.5
             self.addChild(restartBtn)
             theGem.removeFromParent()
             let delayInSeconds = 1.0
             gemScore.removeFromParent()
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
-                self.numberofYears.alpha = 0
-                self.addChild(self.numberofYears)
-                self.numberofYears.run(SKAction.fadeAlpha(to: 1, duration: 1))
+            if !inLevel {
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
+                    self.numberofYears.alpha = 0
+                    self.addChild(self.numberofYears)
+                    self.numberofYears.run(SKAction.fadeAlpha(to: 1, duration: 1))
+                }
             }
             endOnce = 0
         }
@@ -391,7 +398,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         print("Game Started")
         gameOver = false
         timer1 = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: "update1", userInfo: nil, repeats: true)
-        self.sun.run(SKAction.scale(to: 2, duration: 1))
+        if !inLevel {
+            self.sun.run(SKAction.scale(to: 2, duration: 1))
+        }
         score = 0
         hitAlready = 1
         gemScore.text = "\(score)"
@@ -408,24 +417,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         explotion.particleBirthRate = 19
         explotion1.particleBirthRate = 35
         ringExplosion.alpha = 1
-        createGem()
+        if !inLevel {
+            createGem()
+        }
     }
     
     func playBtnClicked(){
-        createHelper()
+        
         createRestartbtn()
-        createPlanetPath()
-        //createSun()
-        createPlanet()
-        //createPlanetTest()
         createyears()
-        createGem()
-        creategemScore()
-        explode1()
-        explode()
         createRing()
+        
+        if !inLevel {
+            createHelper()
+            createPlanetPath()
+            //createSun()
+            createPlanet()
+            //createPlanetTest()
+            createGem()
+            creategemScore()
+            explode1()
+            explode()
+        }
         //moonHelper.run(SKAction.repeatForever(SKAction.rotate(byAngle: 10, duration: 5)))
-        self.addChild(self.alertAsteroid)
+        //self.addChild(self.alertAsteroid)
     }
     func createTheHomeScreen(){
         homeBackground = SKSpriteNode(imageNamed: "homeBG")
@@ -485,7 +500,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let delayInSeconds2 = 0.9
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds2) {
                 self.homeMoon.removeFromParent()
-                self.createSun()
+                if !self.inLevel {
+                    self.createSun()
+                }
                 self.shakeCamera(layer: self.sun, duration: 0.5)
             }
             
@@ -546,6 +563,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didMove(to view: SKView) {
+        
+        // Get rid of camera
+        self.camera = nil
+        self.backgroundColor = UIColor(red: 237/255, green: 248/255, blue: 255/255, alpha: 1)
+        
         //view.showsPhysics = true
         self.physicsWorld.contactDelegate = self
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
@@ -740,6 +762,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 secondbody.node?.removeFromParent()
             }
         }
+        
+        if firstbody.categoryBitMask == physicsCatagory.usersShip && secondbody.categoryBitMask == physicsCatagory.finishLine || firstbody.categoryBitMask == physicsCatagory.finishLine && secondbody.categoryBitMask == physicsCatagory.usersShip {
+            
+            dieShipAnimation()
+            endofGameNoDelay()
+            print("Level complete")
+        }
     }
     
     func addAsteroidExplosion(point: CGPoint, node: SKNode) {
@@ -885,11 +914,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if usersShip.position.x < -self.size.width / 2{
             usersShip.position.x = self.size.width / 2 - usersShip.size.width
         }
-        if usersShip.position.y > self.size.height / 2 {
-            usersShip.position.y = -self.size.height / 2
-        }
-        if usersShip.position.y < -self.size.height / 2{
-            usersShip.position.y = self.size.height / 2
+        if !inLevel {
+            if usersShip.position.y > self.size.height / 2 {
+                usersShip.position.y = -self.size.height / 2
+            }
+            if usersShip.position.y < -self.size.height / 2{
+                usersShip.position.y = self.size.height / 2
+            }
+        } else {
+            if usersShip.position.y < -self.size.height/2  && !gameOver {
+                dieShipAnimation()
+                endofGameNoDelay()
+            }
         }
         
         
@@ -907,7 +943,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
          }
          */
         
-        if gameOver == false{
+        if gameOver == false && !inLevel {
             if timeSinceLastSpawn > self.timeInBetweenSpawns {
                 self.createAsteroid()
                 self.timeSinceLastSpawn = 0
@@ -934,10 +970,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         // Update gravity of moon
-        let distancePlayerToMoon = distance(p1: usersShip.position, p2: sun.position)
-        if distancePlayerToMoon > distance(p1: sun.position, p2: self.planet.position) {
-            let dampningValue = CGFloat(0.007 * distancePlayerToMoon / (self.scene!.frame.height * 2))
-            usersShip.physicsBody?.applyForce(CGVector(dx: (sun.position.x - usersShip.position.x) * dampningValue, dy: (sun.position.y - usersShip.position.y) * dampningValue))
+        if !inLevel {
+            let distancePlayerToMoon = distance(p1: usersShip.position, p2: sun.position)
+            if distancePlayerToMoon > distance(p1: sun.position, p2: self.planet.position) {
+                let dampningValue = CGFloat(0.007 * distancePlayerToMoon / (self.scene!.frame.height * 2))
+                usersShip.physicsBody?.applyForce(CGVector(dx: (sun.position.x - usersShip.position.x) * dampningValue, dy:     (sun.position.y - usersShip.position.y) * dampningValue))
+            }
         }
         
     }
