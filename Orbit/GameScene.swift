@@ -111,6 +111,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var radianFactor = CGFloat(0.0174532925)
     var newRotationRadians = CGFloat()
     var onlyOnce = 1
+    var differentColorGems = ["Group 216","Group 304","Group 305"]
+    var randomGemColor = arc4random_uniform(3)
     
     
     // Functions
@@ -173,8 +175,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             ranPosy = GKRandomDistribution(lowestValue: -500, highestValue: -180)
             posy = CGFloat(ranPosy.nextInt())
         }
-        
-        theGem = SKSpriteNode(imageNamed: "gem")
+        randomGemColor = arc4random_uniform(3)
+        print(Int(randomGemColor))
+        theGem = SKSpriteNode(imageNamed: differentColorGems[Int(randomGemColor)])
         theGem.setScale(2)
         theGem.position = CGPoint(x: posx, y: posy)
         theGem.zPosition = 85
@@ -265,7 +268,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createPlanetPath() {
-        planetPath = SKSpriteNode(imageNamed: "theRealPPath")
+        planetPath = SKSpriteNode(imageNamed: "Group 206")
         planetPath.setScale(1.7)
         planetPath.position = CGPoint(x: 0, y: 0)
         planetPath.zPosition = 15
@@ -288,7 +291,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     func createSun() {
-        sun = SKSpriteNode(imageNamed: "Moon")
+        sun = SKSpriteNode(imageNamed: "Group 288")
         sun.setScale(2)
         sun.position = CGPoint(x: 0, y: 0)
         sun.zPosition = 80
@@ -316,13 +319,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         usersShip.physicsBody?.affectedByGravity = true
         usersShip.physicsBody?.isDynamic = true
         
-        let smokeTrail = SKEmitterNode(fileNamed: "explotionWhite")!
+        let smokeTrail = SKEmitterNode(fileNamed: "newTrail")!
         smokeTrail.targetNode = self.scene
         smokeTrail.name = "Smoke"
         smokeTrail.zPosition = 20
         smokeTrail.numParticlesToEmit = 1
         usersShip.addChild(smokeTrail)
         smokeTrail.isHidden = true
+        
+        let smokeTrail2 = SKEmitterNode(fileNamed: "newTrail2")!
+        smokeTrail2.targetNode = self.scene
+        smokeTrail2.name = "Smoke2"
+        smokeTrail2.zPosition = 21
+        smokeTrail2.numParticlesToEmit = 1
+        usersShip.addChild(smokeTrail2)
+        smokeTrail2.isHidden = true
+        
+        let smokeTrail3 = SKEmitterNode(fileNamed: "newTrail3")!
+        smokeTrail3.targetNode = self.scene
+        smokeTrail3.name = "Smoke3"
+        smokeTrail3.zPosition = 20
+        smokeTrail3.numParticlesToEmit = 1
+        usersShip.addChild(smokeTrail3)
+        smokeTrail3.isHidden = true
         
         self.addChild(usersShip)
     }
@@ -797,7 +816,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.addChild(trail)
         }
         
-        let asteroidExplosion = SKEmitterNode(fileNamed: "AsteroidDie")!
+        let asteroidExplosion = SKEmitterNode(fileNamed: "RockExplosion")!
         asteroidExplosion.zPosition = 100
         asteroidExplosion.xScale = 0.5
         asteroidExplosion.yScale = 0.5
@@ -819,6 +838,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         countTouch.append((event?.allTouches?.count)!)
         
         if let smoke = usersShip.childNode(withName: "Smoke") as? SKEmitterNode {
+            smoke.isHidden = false
+            smoke.numParticlesToEmit = 0
+        }
+        if let smoke = usersShip.childNode(withName: "Smoke2") as? SKEmitterNode {
+            smoke.isHidden = false
+            smoke.numParticlesToEmit = 0
+        }
+        if let smoke = usersShip.childNode(withName: "Smoke3") as? SKEmitterNode {
             smoke.isHidden = false
             smoke.numParticlesToEmit = 0
         }
@@ -899,6 +926,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             smoke.isHidden = true
             smoke.numParticlesToEmit = 1
         }
+        if let smoke = usersShip.childNode(withName: "Smoke2") as? SKEmitterNode {
+            smoke.isHidden = true
+            smoke.numParticlesToEmit = 1
+        }
+        if let smoke = usersShip.childNode(withName: "Smoke3") as? SKEmitterNode {
+            smoke.isHidden = true
+            smoke.numParticlesToEmit = 1
+        }
         
         usersShip.size.height = 38
         self.removeAction(forKey: "rocketSound")
@@ -909,6 +944,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         usersShip.texture = SKTexture(imageNamed:"myShip")
         
         if let smoke = usersShip.childNode(withName: "Smoke") as? SKEmitterNode {
+            smoke.isHidden = true
+            smoke.numParticlesToEmit = 1
+        }
+        if let smoke = usersShip.childNode(withName: "Smoke2") as? SKEmitterNode {
+            smoke.isHidden = true
+            smoke.numParticlesToEmit = 1
+        }
+        if let smoke = usersShip.childNode(withName: "Smoke3") as? SKEmitterNode {
             smoke.isHidden = true
             smoke.numParticlesToEmit = 1
         }
