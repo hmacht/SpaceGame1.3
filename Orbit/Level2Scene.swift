@@ -10,7 +10,8 @@ import SpriteKit
 
 class Level2Scene: GameScene {
     
-    let cameraNode = SKCameraNode()
+    let proximityToLaunchAsteroid: CGFloat = 400
+    var asteroidYPositions = [CGFloat]()
     
     override func didMove(to view: SKView) {
         
@@ -39,15 +40,23 @@ class Level2Scene: GameScene {
         planet1.orbit(path: circle1.cgPath, speed: 2)
         
         // Level has camera
-        cameraNode.position = CGPoint.zero
-        self.addChild(cameraNode)
-        self.camera = cameraNode
+        self.enableCameraFollow()
+        
+        asteroidYPositions.append(200)
+        asteroidYPositions.append(500)
+        asteroidYPositions.append(600)
         
     }
     
     override func update(_ currentTime: TimeInterval) {
         super.update(currentTime)
         
-        self.cameraNode.position = CGPoint(x: 0, y: usersShip.position.y)
+        for asteroidY in asteroidYPositions {
+            if abs(asteroidY - usersShip.position.y) < self.proximityToLaunchAsteroid {
+                self.createAsteroid(startPointY: asteroidY, endPointY: asteroidY + 200)
+                self.asteroidYPositions.remove(at: 0)
+            }
+        }
     }
+
 }

@@ -55,3 +55,5 @@ class Asteroid: SKSpriteNode {
         self.physicsBody?.applyTorque(0.1)
     }
 }
+
+

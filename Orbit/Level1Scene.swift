@@ -33,7 +33,8 @@ class Level1Scene: GameScene {
         let planet1 = Planet(imageName: "planet")
         planet1.position = CGPoint(x: 0, y: 0)
         self.addChild(planet1)
-        let circle1 = UIBezierPath(ovalIn: CGRect(x: -200, y: -200, width: 400, height: 400))
+        //let circle1 = UIBezierPath(ovalIn: CGRect(x: -200, y: -200, width: 400, height: 400))
+        let circle1 = UIBezierPath(center: sun.position, radius: 200)
         planet1.orbit(path: circle1.cgPath, speed: 2)
         
     }

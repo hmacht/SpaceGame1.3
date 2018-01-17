@@ -116,6 +116,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // Whether or not in normal game mode or in level
     var inLevel = false
+    var cameraNode: SKCameraNode?
     
     // Functions
     
@@ -125,6 +126,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         moonHelper.position = CGPoint(x: 0, y: 0)
         self.addChild(moonHelper)
         
+    }
+    
+    func enableCameraFollow() {
+        self.cameraNode = SKCameraNode()
+        self.cameraNode?.position = CGPoint.zero
+        self.addChild(self.cameraNode!)
+        self.camera = cameraNode
     }
     
     func shakeCamera(layer:SKSpriteNode, duration:Float) {
@@ -192,12 +200,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(theGem)
     }
     
-    func createAsteroid() {
+    func createAsteroid(startPointY: CGFloat? = nil, endPointY: CGFloat? = nil) {
         
         let ranPosX = GKRandomDistribution(lowestValue: 0, highestValue: Int(self.scene!.size.width))
         let ranPosY = GKRandomDistribution(lowestValue: -Int(self.scene!.size.height / 2) - 10, highestValue: Int(self.scene!.size.height / 2) - 10)
         var posX = CGFloat(ranPosX.nextInt())
-        let posY = CGFloat(ranPosY.nextInt())
+        var posY = CGFloat(ranPosY.nextInt())
         
         // Set start point to either left or right side
         // send end point to the opposite
@@ -210,6 +218,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         var endPosY = CGFloat(GKRandomDistribution(lowestValue: -Int(self.scene!.size.height / 2) - 10, highestValue: Int(self.scene!.size.height / 2) - 10).nextInt())
         var endPosX = -posX
+        
+        if let sP = startPointY {
+            posY = sP
+        }
+        
+        if let eP = endPointY {
+            endPosY = eP
+        }
         
         let asteroid = Asteroid(asteroidName: whatAsteroid[Int(arc4random_uniform(3))])
         asteroid.position = CGPoint(x: posX, y: posY)
@@ -976,6 +992,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 let dampningValue = CGFloat(0.007 * distancePlayerToMoon / (self.scene!.frame.height * 2))
                 usersShip.physicsBody?.applyForce(CGVector(dx: (sun.position.x - usersShip.position.x) * dampningValue, dy:     (sun.position.y - usersShip.position.y) * dampningValue))
             }
+        }
+        
+        if let c = self.cameraNode {
+            c.position = CGPoint(x: 0, y: usersShip.position.y)
         }
         
     }

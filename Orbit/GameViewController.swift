@@ -14,13 +14,12 @@ class GameViewController: UIViewController {
     
     var selectedLevel = 0
     
-    let sceneArray = ["GameScene", "Level1", "Level2"]
+    let sceneArray = ["GameScene", "Level1", "Level2", "Level3"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let s = sceneArray[selectedLevel]
-        
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: s) {
