@@ -14,50 +14,10 @@
         <scene sceneID="uPq-yS-hpv">
             <objects>
                 <viewController id="QlY-tH-GhU" customClass="LevelSelectViewController" customModule="Orbit" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="nOE-lb-ABJ">
+                    <view key="view" contentMode="scaleToFill" id="nOE-lb-ABJ" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gqR-D1-OOL">
-                                <rect key="frame" x="163.66666666666666" y="391" width="47" height="30"/>
-                                <state key="normal" title="Level 1"/>
-                                <connections>
-                                    <action selector="levelButtonPressed:" destination="QlY-tH-GhU" eventType="touchUpInside" id="Yfl-qO-5MI"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M6l-3k-vP2">
-                                <rect key="frame" x="172.66666666666666" y="311" width="30" height="30"/>
-                                <state key="normal" title="Play"/>
-                                <connections>
-                                    <action selector="levelButtonPressed:" destination="QlY-tH-GhU" eventType="touchUpInside" id="hhk-V2-aps"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJk-EL-lMs">
-                                <rect key="frame" x="162.66666666666666" y="471" width="49" height="30"/>
-                                <state key="normal" title="Level 2"/>
-                                <connections>
-                                    <action selector="levelButtonPressed:" destination="QlY-tH-GhU" eventType="touchUpInside" id="hUa-hT-Rj3"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftC-xQ-9lE">
-                                <rect key="frame" x="163" y="551" width="49" height="30"/>
-                                <state key="normal" title="Level 3"/>
-                                <connections>
-                                    <action selector="levelButtonPressed:" destination="QlY-tH-GhU" eventType="touchUpInside" id="3Ui-6I-BOB"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="ftC-xQ-9lE" firstAttribute="centerX" secondItem="nOE-lb-ABJ" secondAttribute="centerX" id="3Kg-tM-ktX"/>
-                            <constraint firstItem="gqR-D1-OOL" firstAttribute="top" secondItem="M6l-3k-vP2" secondAttribute="bottom" constant="50" id="4yD-tf-6a4"/>
-                            <constraint firstItem="gqR-D1-OOL" firstAttribute="centerX" secondItem="nOE-lb-ABJ" secondAttribute="centerX" id="9YY-7C-Ktx"/>
-                            <constraint firstItem="mJk-EL-lMs" firstAttribute="top" secondItem="gqR-D1-OOL" secondAttribute="bottom" constant="50" id="Bid-I7-qud"/>
-                            <constraint firstItem="M6l-3k-vP2" firstAttribute="centerX" secondItem="nOE-lb-ABJ" secondAttribute="centerX" id="KjH-Oo-RwK"/>
-                            <constraint firstItem="gqR-D1-OOL" firstAttribute="centerY" secondItem="nOE-lb-ABJ" secondAttribute="centerY" id="V92-mm-zdD"/>
-                            <constraint firstItem="ftC-xQ-9lE" firstAttribute="top" secondItem="mJk-EL-lMs" secondAttribute="bottom" constant="50" id="YPJ-G3-k0M"/>
-                            <constraint firstItem="mJk-EL-lMs" firstAttribute="centerX" secondItem="nOE-lb-ABJ" secondAttribute="centerX" id="dA0-VA-tB8"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="pbP-j0-F2B"/>
                     </view>
                     <connections>
@@ -66,7 +26,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8tu-QI-ytO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-398" y="59"/>
+            <point key="canvasLocation" x="-353" y="-633"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="82Q-Fe-Ebx">
+            <objects>
+                <viewController id="vjU-HD-6L2" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0M4-Os-2sM" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="fSh-lc-k2M"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AkP-sG-b1j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-804" y="221"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
@@ -83,33 +58,5 @@
             </objects>
             <point key="canvasLocation" x="514" y="106"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="uwH-xW-6BT">
-            <objects>
-                <viewController id="rtB-3c-7z2" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ubP-SR-G0F">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dLx-qD-REl">
-                                <rect key="frame" x="192" y="297" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="tster123" translatesAutoresizingMaskIntoConstraints="NO" id="clZ-PK-yMm">
-                                <rect key="frame" x="-47" y="0.0" width="469" height="812"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                        </subviews>
-                        <color key="backgroundColor" red="0.92803364990000003" green="0.97225815059999998" blue="1" alpha="1" colorSpace="deviceRGB"/>
-                        <viewLayoutGuide key="safeArea" id="iZ8-xP-Hi9"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nYE-nd-bDW" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1174" y="35"/>
-        </scene>
     </scenes>
-    <resources>
-        <image name="tster123" width="538" height="726"/>
-    </resources>
 </document>

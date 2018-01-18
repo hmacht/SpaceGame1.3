@@ -107,6 +107,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var restartBtn = SKSpriteNode()
     var whatAsteroid = ["Group 78","Group 80","Group 81"]
     var timer1 = Timer()
+    var timer2 = Timer()
     var TopoBtm = Int(arc4random_uniform(2))
     var endOnce = 1
     var hitAlready = 1
@@ -287,11 +288,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         restartBtn.alpha = 0
         restartBtn.name = "restartGame"
     }
-    
+    func createdottedPath() {
+        let dottedPath = SKSpriteNode(imageNamed: "Asset 4")
+        dottedPath.alpha = 1
+        dottedPath.setScale(1.2)
+        dottedPath.position = CGPoint(x: 0, y: 0)
+        self.addChild(dottedPath)
+        dottedPath.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat.pi * 2, duration: 50.0)))
+        dottedPath.run(SKAction.scale(to: 1.5, duration: 2.5))
+        let sequence = SKAction.sequence([SKAction.wait(forDuration: 2.5), SKAction.fadeOut(withDuration: 0.5)])
+        dottedPath.run(sequence)
+        
+    }
     
     func createSun() {
         
-        self.sun = Sun(imageName: "Moon")
+        self.sun = Sun(imageName: "Group 287")
         sun.position = CGPoint(x: 0, y: 0)
         self.addChild(sun)
     }
@@ -408,7 +420,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             // Save gems
             self.updateGems()
-            
+            pauseBtn.removeFromParent()
             gameOver = true
             pauseBtn.removeFromParent()
             self.timer1.invalidate()
@@ -462,6 +474,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         explotion.particleBirthRate = 19
         explotion1.particleBirthRate = 35
         ringExplosion.alpha = 1
+        createPauseBtn()
         if !inLevel {
             createGem()
         }
@@ -483,84 +496,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             creategemScore()
             explode1()
             explode()
+            createPauseBtn()
         }
         //moonHelper.run(SKAction.repeatForever(SKAction.rotate(byAngle: 10, duration: 5)))
         //self.addChild(self.alertAsteroid)
     }
-    func createTheHomeScreen(){
-        homeBackground = SKSpriteNode(imageNamed: "homeBG")
-        homeBackground.size.width = self.size.width
-        homeBackground.size.height = self.size.height
-        homeBackground.zPosition = 0
-        self.addChild(homeBackground)
-
-        homeMoon = SKSpriteNode(imageNamed: "Group 142")
-        homeMoon.setScale(2)
-        homeMoon.position = CGPoint(x: 0, y: -600)
-        homeMoon.zPosition = 100000
-        self.addChild(homeMoon)
-        //homeMoon.run(SKAction.repeatForever(SKAction.rotate(byAngle: 10, duration: 30)))
-        
-        playBtn = SKSpriteNode(imageNamed: "Group 139")
-        playBtn.setScale(2)
-        playBtn.position = CGPoint(x: 0, y: 100)
-        playBtn.zPosition = 3
-        playBtn.name = "play"
-        self.addChild(playBtn)
-        
-        AboutBtn = SKSpriteNode(imageNamed: "Group 140")
-        AboutBtn.setScale(2)
-        AboutBtn.position = CGPoint(x: 0, y: 0)
-        AboutBtn.zPosition = 3
-        AboutBtn.name = "about"
-        self.addChild(AboutBtn)
-        
-        settingsBtn = SKSpriteNode(imageNamed: "Group 141")
-        settingsBtn.setScale(2)
-        settingsBtn.position = CGPoint(x: 0, y: -100)
-        settingsBtn.zPosition = 3
-        settingsBtn.name = "settings"
-        self.addChild(settingsBtn)
-        
-        homeShip = SKSpriteNode(imageNamed: "Group 133")
-        homeShip.setScale(2)
-        homeShip.position = CGPoint(x: -135, y: 90)
-        homeShip.zPosition = 2
-        //self.addChild(homeShip)
-        
-        orbitLab = SKSpriteNode(imageNamed: "Orbit")
-        orbitLab.setScale(2)
-        orbitLab.position = CGPoint(x: 0, y: 400)
-        orbitLab.zPosition = 2
-        self.addChild(orbitLab)
-    }
+    
     
     func playBtnIsClicked(){
-        startGemsForAsteroid = 0
-        homeMoon.run(SKAction.scale(to: 6, duration: 1))
-        homeMoon.run(SKAction.move(to: CGPoint(x: 0, y: 0) , duration: 1.8))
-        let delayInSeconds = 1.0
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
-            self.homeMoon.run(SKAction.scale(to: 0.3, duration: 1))
-            let delayInSeconds2 = 0.9
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds2) {
-                self.homeMoon.removeFromParent()
-                if !self.inLevel {
-                    self.createSun()
-                }
-                self.shakeCamera(layer: self.sun, duration: 0.5)
-            }
+        startGemsForAsteroid = 1
+        
+        if !self.inLevel {
+            self.createSun()
+        }
+        
             
-            self.orbitLab.removeFromParent()
-            self.homeBackground.removeFromParent()
-            self.playBtn.removeFromParent()
-            self.settingsBtn.removeFromParent()
-            self.AboutBtn.removeFromParent()
-            self.playBtnClicked()
-            let delayInSeconds3 = 1.5
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds3) {
-                self.createShip()
-            }
+        self.playBtnClicked()
+        let delayInSeconds3 = 0.4
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds3) {
+            self.createShip()
         }
     }
     
@@ -626,28 +580,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         continuebtn = SKSpriteNode(imageNamed: "Group 358")
         continuebtn.setScale(2)
-        continuebtn.position = CGPoint(x: 0, y: 150)
+        continuebtn.position = CGPoint(x: 0, y: 120)
         continuebtn.zPosition = 500
         continuebtn.name = "continue"
         self.addChild(continuebtn)
         
         restartbtn2 = SKSpriteNode(imageNamed: "Group 359")
         restartbtn2.setScale(2)
-        restartbtn2.position = CGPoint(x: -10, y: 50)
+        restartbtn2.position = CGPoint(x: -10, y: 40)
         restartbtn2.zPosition = 500
         restartbtn2.name = "restart2"
         self.addChild(restartbtn2)
         
         quitbtn = SKSpriteNode(imageNamed: "Group 360")
         quitbtn.setScale(2)
-        quitbtn.position = CGPoint(x: -50, y: -50)
+        quitbtn.position = CGPoint(x: -50, y: -40)
         quitbtn.zPosition = 500
         quitbtn.name = "quit"
         self.addChild(quitbtn)
         
         settingsbtn2 = SKSpriteNode(imageNamed: "Group 366")
         settingsbtn2.setScale(2)
-        settingsbtn2.position = CGPoint(x: 0, y: -150)
+        settingsbtn2.position = CGPoint(x: 0, y: -120)
         settingsbtn2.zPosition = 50000001
         settingsbtn2.name = "settings2"
         self.addChild(settingsbtn2)
@@ -675,7 +629,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         field.strength = 0.6
         self.addChild(field)
         
-        createTheHomeScreen()
+        
+        playBtnIsClicked()
+        
+        
         
         fuelBar.strokeColor = UIColor.black
         fuelBar.lineWidth = 5
@@ -693,8 +650,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.setupBackgroundMusic()
         
         timer1 = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: "update1", userInfo: nil, repeats: true)
+        timer2 = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: "update2", userInfo: nil, repeats: true)
     }
-    
+    @objc func update2() {
+        if gameOver == false{
+            createdottedPath()
+        }
+    }
     @objc func update1() {
         rotationInDegrees = usersShip.zRotation / radianFactor;
         newRotationDegrees = rotationInDegrees + 90;

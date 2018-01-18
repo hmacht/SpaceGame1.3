@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SpriteKit
 
 class LevelSelectViewController: UIViewController {
 
@@ -14,8 +15,19 @@ class LevelSelectViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+        if let view = self.view as! SKView? {
+            print("Hello")
+            // Load the SKScene from 'GameScene.sks'
+            if let scene = SKScene(fileNamed: "LevelSelect") {
+                // Set the scale mode to scale to fit the window
+                scene.scaleMode = .aspectFill
+                // Present the scene
+                
+                view.presentScene(scene)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

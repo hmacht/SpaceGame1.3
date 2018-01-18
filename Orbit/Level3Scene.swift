@@ -12,6 +12,7 @@ class Level3Scene: GameScene {
     
     override func didMove(to view: SKView) {
         self.inLevel = true
+        
         super.didMove(to: view)
         
         self.enableCameraFollow()

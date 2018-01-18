@@ -31,10 +31,12 @@
 		D12171801FE84ADD0056DDE3 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = D121717E1FE84ADD0056DDE3 /* MyParticle.sks */; };
 		D12171811FE84ADD0056DDE3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D121717F1FE84ADD0056DDE3 /* Assets.xcassets */; };
 		D12171831FE84B090056DDE3 /* Explotion.sks in Resources */ = {isa = PBXBuildFile; fileRef = D12171821FE84B090056DDE3 /* Explotion.sks */; };
-		D139F396200BFEF300915F54 /* newTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = D139F395200BFEF300915F54 /* newTrail.sks */; };
-		D139F398200C02BA00915F54 /* newTrail2.sks in Resources */ = {isa = PBXBuildFile; fileRef = D139F397200C02BA00915F54 /* newTrail2.sks */; };
-		D139F39A200C02E400915F54 /* newTrail3.sks in Resources */ = {isa = PBXBuildFile; fileRef = D139F399200C02E400915F54 /* newTrail3.sks */; };
-		D176D8F0200D09DC001A54AC /* asteroidtrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = D176D8EF200D09DC001A54AC /* asteroidtrail.sks */; };
+		D18A1ABA201133EF0052CF14 /* newTrail3.sks in Resources */ = {isa = PBXBuildFile; fileRef = D18A1AB6201133EF0052CF14 /* newTrail3.sks */; };
+		D18A1ABB201133EF0052CF14 /* asteroidtrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = D18A1AB7201133EF0052CF14 /* asteroidtrail.sks */; };
+		D18A1ABC201133EF0052CF14 /* newTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = D18A1AB8201133EF0052CF14 /* newTrail.sks */; };
+		D18A1ABD201133EF0052CF14 /* newTrail2.sks in Resources */ = {isa = PBXBuildFile; fileRef = D18A1AB9201133EF0052CF14 /* newTrail2.sks */; };
+		D18A1ABF201137D70052CF14 /* LevelSelect.sks in Resources */ = {isa = PBXBuildFile; fileRef = D18A1ABE201137D70052CF14 /* LevelSelect.sks */; };
+		D18A1AC1201138190052CF14 /* LevelSelectScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A1AC0201138190052CF14 /* LevelSelectScene.swift */; };
 		D19B63581FE6D9D400577B0B /* RocketThrust.wav in Resources */ = {isa = PBXBuildFile; fileRef = D19B63561FE6D8E600577B0B /* RocketThrust.wav */; };
 		D1BA75811FE32A8800AA6A64 /* Smoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = D1BA75801FE32A8800AA6A64 /* Smoke.sks */; };
 		D1EAB1591FDB620300CDC186 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EAB1581FDB620300CDC186 /* AppDelegate.swift */; };
@@ -71,10 +73,12 @@
 		D121717E1FE84ADD0056DDE3 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
 		D121717F1FE84ADD0056DDE3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D12171821FE84B090056DDE3 /* Explotion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explotion.sks; sourceTree = "<group>"; };
-		D139F395200BFEF300915F54 /* newTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = newTrail.sks; sourceTree = "<group>"; };
-		D139F397200C02BA00915F54 /* newTrail2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = newTrail2.sks; sourceTree = "<group>"; };
-		D139F399200C02E400915F54 /* newTrail3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = newTrail3.sks; sourceTree = "<group>"; };
-		D176D8EF200D09DC001A54AC /* asteroidtrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = asteroidtrail.sks; sourceTree = "<group>"; };
+		D18A1AB6201133EF0052CF14 /* newTrail3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = newTrail3.sks; path = ../newTrail3.sks; sourceTree = "<group>"; };
+		D18A1AB7201133EF0052CF14 /* asteroidtrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = asteroidtrail.sks; path = ../asteroidtrail.sks; sourceTree = "<group>"; };
+		D18A1AB8201133EF0052CF14 /* newTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = newTrail.sks; path = ../newTrail.sks; sourceTree = "<group>"; };
+		D18A1AB9201133EF0052CF14 /* newTrail2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = newTrail2.sks; path = ../newTrail2.sks; sourceTree = "<group>"; };
+		D18A1ABE201137D70052CF14 /* LevelSelect.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelSelect.sks; sourceTree = "<group>"; };
+		D18A1AC0201138190052CF14 /* LevelSelectScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSelectScene.swift; sourceTree = "<group>"; };
 		D19B63561FE6D8E600577B0B /* RocketThrust.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RocketThrust.wav; sourceTree = "<group>"; };
 		D1BA75801FE32A8800AA6A64 /* Smoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Smoke.sks; sourceTree = "<group>"; };
 		D1EAB1551FDB620300CDC186 /* Orbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Orbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,11 +103,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D18A1AB5201133280052CF14 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				D18A1AB7201133EF0052CF14 /* asteroidtrail.sks */,
+				D18A1AB8201133EF0052CF14 /* newTrail.sks */,
+				D18A1AB9201133EF0052CF14 /* newTrail2.sks */,
+				D18A1AB6201133EF0052CF14 /* newTrail3.sks */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		D1EAB14C1FDB620200CDC186 = {
 			isa = PBXGroup;
 			children = (
 				D1EAB1571FDB620300CDC186 /* Orbit */,
 				D1EAB1561FDB620300CDC186 /* Products */,
+				D18A1AB5201133280052CF14 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -152,6 +168,8 @@
 				21080E79200D33ED00C89907 /* Level2Scene.swift */,
 				21B275A6200ECCF9005AB6BD /* Level3.sks */,
 				21B275A8200ECD0D005AB6BD /* Level3Scene.swift */,
+				D18A1ABE201137D70052CF14 /* LevelSelect.sks */,
+				D18A1AC0201138190052CF14 /* LevelSelectScene.swift */,
 			);
 			path = Orbit;
 			sourceTree = "<group>";
@@ -215,27 +233,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D176D8F0200D09DC001A54AC /* asteroidtrail.sks in Resources */,
 				D19B63581FE6D9D400577B0B /* RocketThrust.wav in Resources */,
 				D12171831FE84B090056DDE3 /* Explotion.sks in Resources */,
+				D18A1ABA201133EF0052CF14 /* newTrail3.sks in Resources */,
 				D1EAB1641FDB620300CDC186 /* Main.storyboard in Resources */,
 				D11ED31C1FF5BA3400D74B7A /* planetToPos.sks in Resources */,
 				D1BA75811FE32A8800AA6A64 /* Smoke.sks in Resources */,
 				21F39C6320096A410008B32B /* orbit_music2.wav in Resources */,
 				21F39C592007FC8B0008B32B /* AsteroidDie.sks in Resources */,
-				D139F398200C02BA00915F54 /* newTrail2.sks in Resources */,
 				210D61D81FEC7A4C00506C67 /* RockExplosion.sks in Resources */,
 				21BB3B691FEB524D00967D80 /* AsteroidExplosion.sks in Resources */,
-				D139F39A200C02E400915F54 /* newTrail3.sks in Resources */,
+				D18A1ABC201133EF0052CF14 /* newTrail.sks in Resources */,
 				D1EAB15B1FDB620300CDC186 /* GameScene.sks in Resources */,
+				D18A1ABB201133EF0052CF14 /* asteroidtrail.sks in Resources */,
 				21F39C5D20095FC70008B32B /* gold.wav in Resources */,
 				D12171801FE84ADD0056DDE3 /* MyParticle.sks in Resources */,
-				D139F396200BFEF300915F54 /* newTrail.sks in Resources */,
 				21F39C60200963960008B32B /* orbit_music.wav in Resources */,
+				D18A1ABF201137D70052CF14 /* LevelSelect.sks in Resources */,
 				21C8E0CB1FEB13AB00B3CC6C /* explotionWhite.sks in Resources */,
 				D1EAB1691FDB620300CDC186 /* LaunchScreen.storyboard in Resources */,
 				D12171811FE84ADD0056DDE3 /* Assets.xcassets in Resources */,
 				21080E72200D01A400C89907 /* Level1.sks in Resources */,
+				D18A1ABD201133EF0052CF14 /* newTrail2.sks in Resources */,
 				21B275A7200ECCF9005AB6BD /* Level3.sks in Resources */,
 				D1EAB15D1FDB620300CDC186 /* Actions.sks in Resources */,
 				21080E78200D33D300C89907 /* Level2.sks in Resources */,
@@ -250,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				21080E7A200D33ED00C89907 /* Level2Scene.swift in Sources */,
+				D18A1AC1201138190052CF14 /* LevelSelectScene.swift in Sources */,
 				D1EAB15F1FDB620300CDC186 /* GameScene.swift in Sources */,
 				D12171711FE770880056DDE3 /* HomeVC.swift in Sources */,
 				2122220E200C0B4900587A09 /* Sun.swift in Sources */,
