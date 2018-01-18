@@ -36,6 +36,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var planetPath = SKSpriteNode()
     var theGem = SKSpriteNode()
     
+    //paused
+    var pauseBtn = SKSpriteNode()
+    var continuebtn = SKSpriteNode()
+    var restartbtn2 = SKSpriteNode()
+    var quitbtn = SKSpriteNode()
+    var settingsbtn2 = SKSpriteNode()
+    var pausedBg = SKSpriteNode()
+    
+    
     
     // lables
     var gemScore = SKLabelNode()
@@ -113,6 +122,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var radianFactor = CGFloat(0.0174532925)
     var newRotationRadians = CGFloat()
     var onlyOnce = 1
+    var differentColorGems = ["Group 216","Group 304","Group 305"]
+    var randomGemColor = arc4random_uniform(3)
     
     // Whether or not in normal game mode or in level
     var inLevel = false
@@ -186,8 +197,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             ranPosy = GKRandomDistribution(lowestValue: -500, highestValue: -180)
             posy = CGFloat(ranPosy.nextInt())
         }
-        
-        theGem = SKSpriteNode(imageNamed: "gem")
+        randomGemColor = arc4random_uniform(3)
+        print(Int(randomGemColor))
+        theGem = SKSpriteNode(imageNamed: differentColorGems[Int(randomGemColor)])
         theGem.setScale(2)
         theGem.position = CGPoint(x: posx, y: posy)
         theGem.zPosition = 85
@@ -255,7 +267,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createPlanetPath() {
-        planetPath = SKSpriteNode(imageNamed: "theRealPPath")
+        planetPath = SKSpriteNode(imageNamed: "Group 206")
         planetPath.setScale(1.7)
         planetPath.position = CGPoint(x: 0, y: 0)
         planetPath.zPosition = 15
@@ -299,13 +311,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         usersShip.physicsBody?.affectedByGravity = true
         usersShip.physicsBody?.isDynamic = true
         
-        let smokeTrail = SKEmitterNode(fileNamed: "explotionWhite")!
+        let smokeTrail = SKEmitterNode(fileNamed: "newTrail")!
         smokeTrail.targetNode = self.scene
         smokeTrail.name = "Smoke"
         smokeTrail.zPosition = 20
         smokeTrail.numParticlesToEmit = 1
         usersShip.addChild(smokeTrail)
         smokeTrail.isHidden = true
+        
+        let smokeTrail2 = SKEmitterNode(fileNamed: "newTrail2")!
+        smokeTrail2.targetNode = self.scene
+        smokeTrail2.name = "Smoke2"
+        smokeTrail2.zPosition = 21
+        smokeTrail2.numParticlesToEmit = 1
+        usersShip.addChild(smokeTrail2)
+        smokeTrail2.isHidden = true
+        
+        let smokeTrail3 = SKEmitterNode(fileNamed: "newTrail3")!
+        smokeTrail3.targetNode = self.scene
+        smokeTrail3.name = "Smoke3"
+        smokeTrail3.zPosition = 20
+        smokeTrail3.numParticlesToEmit = 1
+        usersShip.addChild(smokeTrail3)
+        smokeTrail3.isHidden = true
         
         self.addChild(usersShip)
     }
@@ -382,6 +410,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.updateGems()
             
             gameOver = true
+            pauseBtn.removeFromParent()
             self.timer1.invalidate()
             self.sun.run(SKAction.scale(to: 0, duration: 1))
             if !inLevel {
@@ -578,6 +607,56 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         moonHelper.addChild(planet)
     }
     
+    func createPauseBtn(){
+        pauseBtn = SKSpriteNode(imageNamed: "Group 362")
+        pauseBtn.setScale(2.7)
+        pauseBtn.position = CGPoint(x: -220, y: 625)
+        pauseBtn.zPosition = 5
+        pauseBtn.name = "pausebtn"
+        self.addChild(pauseBtn)
+    }
+    
+    func pausedGame(){
+        
+        pausedBg = SKSpriteNode(imageNamed: "Rectangle 1783")
+        pausedBg.setScale(2)
+        pausedBg.position = CGPoint(x: 0, y: 0)
+        pausedBg.zPosition = 400
+        self.addChild(pausedBg)
+        
+        continuebtn = SKSpriteNode(imageNamed: "Group 358")
+        continuebtn.setScale(2)
+        continuebtn.position = CGPoint(x: 0, y: 150)
+        continuebtn.zPosition = 500
+        continuebtn.name = "continue"
+        self.addChild(continuebtn)
+        
+        restartbtn2 = SKSpriteNode(imageNamed: "Group 359")
+        restartbtn2.setScale(2)
+        restartbtn2.position = CGPoint(x: -10, y: 50)
+        restartbtn2.zPosition = 500
+        restartbtn2.name = "restart2"
+        self.addChild(restartbtn2)
+        
+        quitbtn = SKSpriteNode(imageNamed: "Group 360")
+        quitbtn.setScale(2)
+        quitbtn.position = CGPoint(x: -50, y: -50)
+        quitbtn.zPosition = 500
+        quitbtn.name = "quit"
+        self.addChild(quitbtn)
+        
+        settingsbtn2 = SKSpriteNode(imageNamed: "Group 366")
+        settingsbtn2.setScale(2)
+        settingsbtn2.position = CGPoint(x: 0, y: -150)
+        settingsbtn2.zPosition = 50000001
+        settingsbtn2.name = "settings2"
+        self.addChild(settingsbtn2)
+        
+    }
+    
+    
+    
+    
     override func didMove(to view: SKView) {
         
         // Get rid of camera
@@ -677,7 +756,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.explotion1.particleBirthRate = 1
             }
             
-            let delayInSeconds3 = 2.5
+            let delayInSeconds3 = 0.6
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds3) {
                 
                 self.explotion.run(SKAction.fadeAlpha(to: 0, duration: 0.2), completion: {
@@ -800,7 +879,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.addChild(trail)
         }
         
-        let asteroidExplosion = SKEmitterNode(fileNamed: "AsteroidDie")!
+        let asteroidExplosion = SKEmitterNode(fileNamed: "RockExplosion")!
         asteroidExplosion.zPosition = 100
         asteroidExplosion.xScale = 0.5
         asteroidExplosion.yScale = 0.5
@@ -825,6 +904,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             smoke.isHidden = false
             smoke.numParticlesToEmit = 0
         }
+        if let smoke = usersShip.childNode(withName: "Smoke2") as? SKEmitterNode {
+            smoke.isHidden = false
+            smoke.numParticlesToEmit = 0
+        }
+        if let smoke = usersShip.childNode(withName: "Smoke3") as? SKEmitterNode {
+            smoke.isHidden = false
+            smoke.numParticlesToEmit = 0
+        }
         
         touchingScreen = true
         
@@ -836,11 +923,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
+        
+        
+        
         usersShip.size.height = 43
         usersShip.texture = SKTexture(imageNamed:"myShip2")
         let touch:UITouch = touches.first!
         let positionInScene = touch.location(in: self)
         let touchedNode = self.atPoint(positionInScene)
+        
+        if let name = touchedNode.name{
+            if name == "pausebtn"{
+                pausedGame()
+                scene?.speed = 0
+                scene?.physicsWorld.speed = 0
+            }
+        }
+        if let name = touchedNode.name{
+            if name == "continue"{
+                pausedBg.removeFromParent()
+                continuebtn.removeFromParent()
+                restartbtn2.removeFromParent()
+                quitbtn.removeFromParent()
+                settingsbtn2.removeFromParent()
+                scene?.speed = 1
+                scene?.physicsWorld.speed = 1
+            }
+        }
         
         if undoAbout {
             homeMoon.run(SKAction.move(to: CGPoint(x: 0, y: -600), duration: 2.5))
@@ -902,6 +1011,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             smoke.isHidden = true
             smoke.numParticlesToEmit = 1
         }
+        if let smoke = usersShip.childNode(withName: "Smoke2") as? SKEmitterNode {
+            smoke.isHidden = true
+            smoke.numParticlesToEmit = 1
+        }
+        if let smoke = usersShip.childNode(withName: "Smoke3") as? SKEmitterNode {
+            smoke.isHidden = true
+            smoke.numParticlesToEmit = 1
+        }
         
         usersShip.size.height = 38
         self.removeAction(forKey: "rocketSound")
@@ -912,6 +1029,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         usersShip.texture = SKTexture(imageNamed:"myShip")
         
         if let smoke = usersShip.childNode(withName: "Smoke") as? SKEmitterNode {
+            smoke.isHidden = true
+            smoke.numParticlesToEmit = 1
+        }
+        if let smoke = usersShip.childNode(withName: "Smoke2") as? SKEmitterNode {
+            smoke.isHidden = true
+            smoke.numParticlesToEmit = 1
+        }
+        if let smoke = usersShip.childNode(withName: "Smoke3") as? SKEmitterNode {
             smoke.isHidden = true
             smoke.numParticlesToEmit = 1
         }
