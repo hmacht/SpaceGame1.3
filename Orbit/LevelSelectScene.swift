@@ -9,6 +9,7 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import AudioToolbox
 
 class LevelSelectScene: SKScene {
     
@@ -23,6 +24,10 @@ class LevelSelectScene: SKScene {
     var posX = CGFloat()
     var posY = CGFloat()
     var timer3 = Timer()
+    
+    
+    
+    var clickedPlay = false
     
     
     // For home screen
@@ -137,6 +142,7 @@ class LevelSelectScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
+        self.run(SKAction.repeatForever(SKAction.playSoundFileNamed("bgMusic3.mp3", waitForCompletion: true)))
         createTheHomeScreen()
         timer3 = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: "update3", userInfo: nil, repeats: true)
     }
@@ -158,10 +164,30 @@ class LevelSelectScene: SKScene {
         
         if let name = touchedNode.name{
             if name == "endless"{
+                self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
                 self.menuManager?.didPressEndless(level: 0)
-            } else if name == "play" {
-                self.menuManager?.didPressPlay()
+            }
+            if name == "play" {
+                self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
+                playBtn.run(SKAction.scale(to: 1.5, duration: 0.2))
+                clickedPlay = true
+                
             }
         }
+    }
+
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        playBtn.run(SKAction.scale(to: 2.0, duration: 0.3))
+        if clickedPlay == true{
+            self.menuManager?.didPressPlay()
+        }
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
     }
 }

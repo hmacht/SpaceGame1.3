@@ -1104,7 +1104,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func setupBackgroundMusic() {
         let audioNode = SKAudioNode(fileNamed: "orbit_music2.wav")
-        self.addChild(audioNode)
+        //self.addChild(audioNode)
         
     }
     

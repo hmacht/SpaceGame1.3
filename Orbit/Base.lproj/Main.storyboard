@@ -17,7 +17,7 @@
                     <view key="view" contentMode="scaleToFill" id="nOE-lb-ABJ" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.96338063478469849" green="0.98392397165298462" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="pbP-j0-F2B"/>
                     </view>
                     <connections>

@@ -18,10 +18,6 @@
 		2122220C200C047700587A09 /* Asteroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2122220B200C047700587A09 /* Asteroid.swift */; };
 		2122220E200C0B4900587A09 /* Sun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2122220D200C0B4900587A09 /* Sun.swift */; };
 		21222210200C0D2400587A09 /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2122220F200C0D2400587A09 /* Planet.swift */; };
-		215846F82011562C00891A44 /* newTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = 215846F72011562C00891A44 /* newTrail.sks */; };
-		215846FC2011565B00891A44 /* newTrail3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 215846FB2011565B00891A44 /* newTrail3.sks */; };
-		215846FE2011567300891A44 /* newTrail2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 215846FD2011567300891A44 /* newTrail2.sks */; };
-		215847002011567D00891A44 /* asteroidtrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = 215846FF2011567D00891A44 /* asteroidtrail.sks */; };
 		2158470220118A9E00891A44 /* LevelMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2158470120118A9E00891A44 /* LevelMenuScene.swift */; };
 		2158470420118B7800891A44 /* LevelMenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2158470320118B7800891A44 /* LevelMenuScene.sks */; };
 		21B275A7200ECCF9005AB6BD /* Level3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 21B275A6200ECCF9005AB6BD /* Level3.sks */; };
@@ -39,6 +35,12 @@
 		D12171831FE84B090056DDE3 /* Explotion.sks in Resources */ = {isa = PBXBuildFile; fileRef = D12171821FE84B090056DDE3 /* Explotion.sks */; };
 		D18A1ABF201137D70052CF14 /* LevelSelect.sks in Resources */ = {isa = PBXBuildFile; fileRef = D18A1ABE201137D70052CF14 /* LevelSelect.sks */; };
 		D18A1AC1201138190052CF14 /* LevelSelectScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18A1AC0201138190052CF14 /* LevelSelectScene.swift */; };
+		D18A1AC62011912D0052CF14 /* newTrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = D18A1AC22011912C0052CF14 /* newTrail.sks */; };
+		D18A1AC72011912D0052CF14 /* newTrail3.sks in Resources */ = {isa = PBXBuildFile; fileRef = D18A1AC32011912C0052CF14 /* newTrail3.sks */; };
+		D18A1AC82011912D0052CF14 /* asteroidtrail.sks in Resources */ = {isa = PBXBuildFile; fileRef = D18A1AC42011912C0052CF14 /* asteroidtrail.sks */; };
+		D18A1AC92011912D0052CF14 /* newTrail2.sks in Resources */ = {isa = PBXBuildFile; fileRef = D18A1AC52011912C0052CF14 /* newTrail2.sks */; };
+		D18A1B0F2011A9A60052CF14 /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D18A1B0E2011A9A60052CF14 /* click.mp3 */; };
+		D18A1B132011AB1C0052CF14 /* bgMusic3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D18A1B122011AB1C0052CF14 /* bgMusic3.mp3 */; };
 		D19B63581FE6D9D400577B0B /* RocketThrust.wav in Resources */ = {isa = PBXBuildFile; fileRef = D19B63561FE6D8E600577B0B /* RocketThrust.wav */; };
 		D1BA75811FE32A8800AA6A64 /* Smoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = D1BA75801FE32A8800AA6A64 /* Smoke.sks */; };
 		D1EAB1591FDB620300CDC186 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EAB1581FDB620300CDC186 /* AppDelegate.swift */; };
@@ -62,10 +64,6 @@
 		2122220B200C047700587A09 /* Asteroid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asteroid.swift; sourceTree = "<group>"; };
 		2122220D200C0B4900587A09 /* Sun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sun.swift; sourceTree = "<group>"; };
 		2122220F200C0D2400587A09 /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
-		215846F72011562C00891A44 /* newTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = newTrail.sks; path = ../../../../Downloads/newTrail.sks; sourceTree = "<group>"; };
-		215846FB2011565B00891A44 /* newTrail3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = newTrail3.sks; path = ../../../../Downloads/newTrail3.sks; sourceTree = "<group>"; };
-		215846FD2011567300891A44 /* newTrail2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = newTrail2.sks; path = ../../../../Downloads/newTrail2.sks; sourceTree = "<group>"; };
-		215846FF2011567D00891A44 /* asteroidtrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = asteroidtrail.sks; path = ../../../../Downloads/asteroidtrail.sks; sourceTree = "<group>"; };
 		2158470120118A9E00891A44 /* LevelMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelMenuScene.swift; sourceTree = "<group>"; };
 		2158470320118B7800891A44 /* LevelMenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelMenuScene.sks; sourceTree = "<group>"; };
 		21B275A6200ECCF9005AB6BD /* Level3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level3.sks; sourceTree = "<group>"; };
@@ -83,6 +81,12 @@
 		D12171821FE84B090056DDE3 /* Explotion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explotion.sks; sourceTree = "<group>"; };
 		D18A1ABE201137D70052CF14 /* LevelSelect.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelSelect.sks; sourceTree = "<group>"; };
 		D18A1AC0201138190052CF14 /* LevelSelectScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelSelectScene.swift; sourceTree = "<group>"; };
+		D18A1AC22011912C0052CF14 /* newTrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = newTrail.sks; sourceTree = "<group>"; };
+		D18A1AC32011912C0052CF14 /* newTrail3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = newTrail3.sks; sourceTree = "<group>"; };
+		D18A1AC42011912C0052CF14 /* asteroidtrail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = asteroidtrail.sks; sourceTree = "<group>"; };
+		D18A1AC52011912C0052CF14 /* newTrail2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = newTrail2.sks; sourceTree = "<group>"; };
+		D18A1B0E2011A9A60052CF14 /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click.mp3; sourceTree = "<group>"; };
+		D18A1B122011AB1C0052CF14 /* bgMusic3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgMusic3.mp3; sourceTree = "<group>"; };
 		D19B63561FE6D8E600577B0B /* RocketThrust.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RocketThrust.wav; sourceTree = "<group>"; };
 		D1BA75801FE32A8800AA6A64 /* Smoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Smoke.sks; sourceTree = "<group>"; };
 		D1EAB1551FDB620300CDC186 /* Orbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Orbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -144,6 +148,8 @@
 				D1EAB1671FDB620300CDC186 /* LaunchScreen.storyboard */,
 				D1EAB16A1FDB620300CDC186 /* Info.plist */,
 				D19B63561FE6D8E600577B0B /* RocketThrust.wav */,
+				D18A1B0E2011A9A60052CF14 /* click.mp3 */,
+				D18A1B122011AB1C0052CF14 /* bgMusic3.mp3 */,
 				D1BA75801FE32A8800AA6A64 /* Smoke.sks */,
 				D12171821FE84B090056DDE3 /* Explotion.sks */,
 				D12171701FE770880056DDE3 /* HomeVC.swift */,
@@ -157,6 +163,10 @@
 				21F39C5C20095FC60008B32B /* gold.wav */,
 				21F39C5F200963950008B32B /* orbit_music.wav */,
 				21F39C6220096A410008B32B /* orbit_music2.wav */,
+				D18A1AC42011912C0052CF14 /* asteroidtrail.sks */,
+				D18A1AC22011912C0052CF14 /* newTrail.sks */,
+				D18A1AC52011912C0052CF14 /* newTrail2.sks */,
+				D18A1AC32011912C0052CF14 /* newTrail3.sks */,
 				2122220B200C047700587A09 /* Asteroid.swift */,
 				2122220D200C0B4900587A09 /* Sun.swift */,
 				2122220F200C0D2400587A09 /* Planet.swift */,
@@ -170,10 +180,6 @@
 				21B275A8200ECD0D005AB6BD /* Level3Scene.swift */,
 				D18A1ABE201137D70052CF14 /* LevelSelect.sks */,
 				D18A1AC0201138190052CF14 /* LevelSelectScene.swift */,
-				215846F72011562C00891A44 /* newTrail.sks */,
-				215846FD2011567300891A44 /* newTrail2.sks */,
-				215846FB2011565B00891A44 /* newTrail3.sks */,
-				215846FF2011567D00891A44 /* asteroidtrail.sks */,
 				2158470120118A9E00891A44 /* LevelMenuScene.swift */,
 				2158470320118B7800891A44 /* LevelMenuScene.sks */,
 			);
@@ -239,19 +245,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D18A1B0F2011A9A60052CF14 /* click.mp3 in Resources */,
 				D19B63581FE6D9D400577B0B /* RocketThrust.wav in Resources */,
-				215846F82011562C00891A44 /* newTrail.sks in Resources */,
 				D12171831FE84B090056DDE3 /* Explotion.sks in Resources */,
-				215847002011567D00891A44 /* asteroidtrail.sks in Resources */,
+				D18A1B132011AB1C0052CF14 /* bgMusic3.mp3 in Resources */,
 				D1EAB1641FDB620300CDC186 /* Main.storyboard in Resources */,
+				D18A1AC82011912D0052CF14 /* asteroidtrail.sks in Resources */,
 				D11ED31C1FF5BA3400D74B7A /* planetToPos.sks in Resources */,
-				215846FC2011565B00891A44 /* newTrail3.sks in Resources */,
 				D1BA75811FE32A8800AA6A64 /* Smoke.sks in Resources */,
+				D18A1AC72011912D0052CF14 /* newTrail3.sks in Resources */,
 				21F39C6320096A410008B32B /* orbit_music2.wav in Resources */,
 				21F39C592007FC8B0008B32B /* AsteroidDie.sks in Resources */,
 				2158470420118B7800891A44 /* LevelMenuScene.sks in Resources */,
 				210D61D81FEC7A4C00506C67 /* RockExplosion.sks in Resources */,
 				21BB3B691FEB524D00967D80 /* AsteroidExplosion.sks in Resources */,
+				D18A1AC62011912D0052CF14 /* newTrail.sks in Resources */,
 				D1EAB15B1FDB620300CDC186 /* GameScene.sks in Resources */,
 				21F39C5D20095FC70008B32B /* gold.wav in Resources */,
 				D12171801FE84ADD0056DDE3 /* MyParticle.sks in Resources */,
@@ -259,9 +267,9 @@
 				D18A1ABF201137D70052CF14 /* LevelSelect.sks in Resources */,
 				21C8E0CB1FEB13AB00B3CC6C /* explotionWhite.sks in Resources */,
 				D1EAB1691FDB620300CDC186 /* LaunchScreen.storyboard in Resources */,
+				D18A1AC92011912D0052CF14 /* newTrail2.sks in Resources */,
 				D12171811FE84ADD0056DDE3 /* Assets.xcassets in Resources */,
 				21080E72200D01A400C89907 /* Level1.sks in Resources */,
-				215846FE2011567300891A44 /* newTrail2.sks in Resources */,
 				21B275A7200ECCF9005AB6BD /* Level3.sks in Resources */,
 				D1EAB15D1FDB620300CDC186 /* Actions.sks in Resources */,
 				21080E78200D33D300C89907 /* Level2.sks in Resources */,
@@ -427,7 +435,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SWYGWFGR5M;
+				DEVELOPMENT_TEAM = 38ZEQFSP28;
 				INFOPLIST_FILE = Orbit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -443,7 +451,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SWYGWFGR5M;
+				DEVELOPMENT_TEAM = 38ZEQFSP28;
 				INFOPLIST_FILE = Orbit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
