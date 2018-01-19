@@ -12,6 +12,8 @@ import GameplayKit
 
 class LevelSelectScene: SKScene {
     
+    var menuManager: MenuManager?
+    
     var planetPath = SKSpriteNode()
     var moonHelper = SKSpriteNode()
     var twinkleHome = SKSpriteNode()
@@ -146,5 +148,20 @@ class LevelSelectScene: SKScene {
             posY = CGFloat(ranPosy.nextInt())
             
             createtwinkle()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        let touch:UITouch = touches.first!
+        let positionInScene = touch.location(in: self)
+        let touchedNode = self.atPoint(positionInScene)
+        
+        if let name = touchedNode.name{
+            if name == "endless"{
+                self.menuManager?.didPressEndless(level: 0)
+            } else if name == "play" {
+                self.menuManager?.didPressPlay()
+            }
+        }
     }
 }

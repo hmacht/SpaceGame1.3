@@ -9,7 +9,12 @@
 import UIKit
 import SpriteKit
 
-class LevelSelectViewController: UIViewController {
+protocol MenuManager {
+    func didPressPlay()
+    func didPressEndless(level: Int)
+}
+
+class LevelSelectViewController: UIViewController, MenuManager {
 
     var selectedLevel = 0
     
@@ -20,8 +25,9 @@ class LevelSelectViewController: UIViewController {
         if let view = self.view as! SKView? {
             print("Hello")
             // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "LevelSelect") {
+            if let scene = SKScene(fileNamed: "LevelSelect") as? LevelSelectScene {
                 // Set the scale mode to scale to fit the window
+                scene.menuManager = self
                 scene.scaleMode = .aspectFill
                 // Present the scene
                 
@@ -54,5 +60,17 @@ class LevelSelectViewController: UIViewController {
         self.performSegue(withIdentifier: "toGameScene", sender: self)
     }
     
-
+    func didPressPlay() {
+        if let view = self.view as? SKView {
+            if let scene = SKScene(fileNamed: "LevelMenuScene") as? LevelMenuScene {
+                scene.menuManager = self
+                view.presentScene(scene)
+            }
+        }
+    }
+    
+    func didPressEndless(level: Int) {
+        self.selectedLevel = level
+        self.performSegue(withIdentifier: "toGameScene", sender: self)
+    }
 }
