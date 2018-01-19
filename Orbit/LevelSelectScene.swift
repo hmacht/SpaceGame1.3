@@ -142,7 +142,7 @@ class LevelSelectScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        self.run(SKAction.repeatForever(SKAction.playSoundFileNamed("bgMusic3.mp3", waitForCompletion: true)))
+        //self.run(SKAction.repeatForever(SKAction.playSoundFileNamed("bgMusic3.mp3", waitForCompletion: true)))
         createTheHomeScreen()
         timer3 = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: "update3", userInfo: nil, repeats: true)
     }
@@ -164,11 +164,11 @@ class LevelSelectScene: SKScene {
         
         if let name = touchedNode.name{
             if name == "endless"{
-                self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
+                //self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
                 self.menuManager?.didPressEndless(level: 0)
             }
             if name == "play" {
-                self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
+                //self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
                 playBtn.run(SKAction.scale(to: 1.5, duration: 0.2))
                 clickedPlay = true
                 

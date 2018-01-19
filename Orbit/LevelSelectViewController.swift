@@ -12,6 +12,7 @@ import SpriteKit
 protocol MenuManager {
     func didPressPlay()
     func didPressEndless(level: Int)
+    func didReturnToMainMenu(scene: LevelSelectScene)
 }
 
 class LevelSelectViewController: UIViewController, MenuManager {
@@ -21,6 +22,7 @@ class LevelSelectViewController: UIViewController, MenuManager {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.isNavigationBarHidden = true
         // Do any additional setup after loading the view.
         if let view = self.view as! SKView? {
             print("Hello")
@@ -72,5 +74,9 @@ class LevelSelectViewController: UIViewController, MenuManager {
     func didPressEndless(level: Int) {
         self.selectedLevel = level
         self.performSegue(withIdentifier: "toGameScene", sender: self)
+    }
+    
+    func didReturnToMainMenu(scene: LevelSelectScene) {
+        scene.menuManager = self
     }
 }

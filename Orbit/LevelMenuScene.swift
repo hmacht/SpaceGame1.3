@@ -70,22 +70,12 @@ class LevelMenuScene: SKScene {
         levelSelection.color = UIColor(red: 21/255.0, green: 31/255.0, blue: 56/255.0, alpha: 1)
         self.addChild(levelSelection)
         
-        /*
-        let level1Btn = SKLabelNode(text: "Level 1")
-        level1Btn.position = CGPoint.zero
-        level1Btn.name = "1"
-        self.addChild(level1Btn)
-        
-        let level2Btn = SKLabelNode(text: "Level 2")
-        level2Btn.position = CGPoint(x: 0, y: level1Btn.position.y - 75)
-        level2Btn.name = "2"
-        self.addChild(level2Btn)
-        
-        let level3Btn = SKLabelNode(text: "Level 3")
-        level3Btn.position = CGPoint(x: 0, y: level2Btn.position.y - 75)
-        level3Btn.name = "3"
-        self.addChild(level3Btn)
- */
+        let backBtn = SKLabelNode(text: "<")
+        backBtn.fontColor = UIColor.black
+        backBtn.fontSize = 30
+        backBtn.position = CGPoint(x: -self.size.width/2 + 50, y: self.size.height/2 - 50)
+        backBtn.name = "back"
+        self.addChild(backBtn)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -94,25 +84,35 @@ class LevelMenuScene: SKScene {
         let touchedNode = self.atPoint(positionInScene)
         
         if let name = touchedNode.name{
-            
-            if name == "1"{
-                self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
-                self.menuManager?.didPressEndless(level: 1)
-            } else if name == "2" {
-                self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
-                self.menuManager?.didPressEndless(level: 2)
-            } else if name == "3" {
-                self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
-                self.menuManager?.didPressEndless(level: 3)
-            } else if name == "4" {
-                self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
-                self.menuManager?.didPressEndless(level: 4)
-            } else if name == "5" {
-                self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
-                self.menuManager?.didPressEndless(level: 5)
+            if let n = Int(name) {
+                //self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
+                print("Play button click sound")
             }
             
-            if name == "locked"{
+            if name == "1"{
+                //self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
+                self.menuManager?.didPressEndless(level: 1)
+            } else if name == "2" {
+                //self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
+                self.menuManager?.didPressEndless(level: 2)
+            } else if name == "3" {
+                //self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
+                self.menuManager?.didPressEndless(level: 3)
+            } else if name == "4" {
+                //self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
+                self.menuManager?.didPressEndless(level: 4)
+            } else if name == "5" {
+                //self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
+                self.menuManager?.didPressEndless(level: 5)
+            } else if name == "back" {
+                if let scene = SKScene(fileNamed: "LevelSelect") as? LevelSelectScene {
+                    scene.scaleMode = .aspectFill
+                    self.menuManager?.didReturnToMainMenu(scene: scene)
+                    self.scene?.view?.presentScene(scene, transition: SKTransition.fade(with: UIColor.lightGray, duration: 0.2))
+                }
+            }
+            
+            if name == "locked" {
                 print("Locked: Buy?")
             }
             

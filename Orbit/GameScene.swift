@@ -25,6 +25,8 @@ public struct physicsCatagory {
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    var gameManager: GameManager?
+    
     // Variables
 
     
@@ -286,6 +288,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         restartBtn.setScale(2)
         restartBtn.position = CGPoint(x: 0, y: -500)
         restartBtn.alpha = 0
+        restartBtn.zPosition = 200
         restartBtn.name = "restartGame"
     }
     func createdottedPath() {
@@ -430,6 +433,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             restartBtn.alpha = 0.5
             self.addChild(restartBtn)
+            if let c = self.cameraNode {
+                restartBtn.position = CGPoint(x: 0, y: c.position.y - 200)
+            }
             theGem.removeFromParent()
             let delayInSeconds = 1.0
             gemScore.removeFromParent()
@@ -485,6 +491,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createRestartbtn()
         createyears()
         createRing()
+        createPauseBtn()
         
         if !inLevel {
             createHelper()
@@ -496,7 +503,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             creategemScore()
             explode1()
             explode()
-            createPauseBtn()
         }
         //moonHelper.run(SKAction.repeatForever(SKAction.rotate(byAngle: 10, duration: 5)))
         //self.addChild(self.alertAsteroid)
@@ -564,44 +570,48 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func createPauseBtn(){
         pauseBtn = SKSpriteNode(imageNamed: "Group 362")
         pauseBtn.setScale(2.7)
-        pauseBtn.position = CGPoint(x: -220, y: 625)
+        pauseBtn.position = CGPoint(x: -self.size.width/2 + 75, y: self.size.height/2 - 75)
         pauseBtn.zPosition = 5
         pauseBtn.name = "pausebtn"
         self.addChild(pauseBtn)
     }
     
     func pausedGame(){
+        var yOffset: CGFloat = 0
+        if let c = self.cameraNode {
+            yOffset += c.position.y
+        }
         
         pausedBg = SKSpriteNode(imageNamed: "Rectangle 1783")
         pausedBg.setScale(2)
-        pausedBg.position = CGPoint(x: 0, y: 0)
+        pausedBg.position = CGPoint(x: 0, y: yOffset)
         pausedBg.zPosition = 400
         self.addChild(pausedBg)
         
         continuebtn = SKSpriteNode(imageNamed: "Group 358")
         continuebtn.setScale(2)
-        continuebtn.position = CGPoint(x: 0, y: 120)
+        continuebtn.position = CGPoint(x: 0, y: 120 + yOffset)
         continuebtn.zPosition = 500
         continuebtn.name = "continue"
         self.addChild(continuebtn)
         
         restartbtn2 = SKSpriteNode(imageNamed: "Group 359")
         restartbtn2.setScale(2)
-        restartbtn2.position = CGPoint(x: -10, y: 40)
+        restartbtn2.position = CGPoint(x: -10, y: 40 + yOffset)
         restartbtn2.zPosition = 500
         restartbtn2.name = "restart2"
         self.addChild(restartbtn2)
         
         quitbtn = SKSpriteNode(imageNamed: "Group 360")
         quitbtn.setScale(2)
-        quitbtn.position = CGPoint(x: -50, y: -40)
+        quitbtn.position = CGPoint(x: -50, y: -40 + yOffset)
         quitbtn.zPosition = 500
         quitbtn.name = "quit"
         self.addChild(quitbtn)
         
         settingsbtn2 = SKSpriteNode(imageNamed: "Group 366")
         settingsbtn2.setScale(2)
-        settingsbtn2.position = CGPoint(x: 0, y: -120)
+        settingsbtn2.position = CGPoint(x: 0, y: -120 + yOffset)
         settingsbtn2.zPosition = 50000001
         settingsbtn2.name = "settings2"
         self.addChild(settingsbtn2)
@@ -900,8 +910,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 scene?.speed = 0
                 scene?.physicsWorld.speed = 0
             }
-        }
-        if let name = touchedNode.name{
+            
             if name == "continue"{
                 pausedBg.removeFromParent()
                 continuebtn.removeFromParent()
@@ -910,6 +919,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 settingsbtn2.removeFromParent()
                 scene?.speed = 1
                 scene?.physicsWorld.speed = 1
+            }
+            
+            if name == "quit" {
+                pausedBg.removeFromParent()
+                continuebtn.removeFromParent()
+                restartbtn2.removeFromParent()
+                quitbtn.removeFromParent()
+                settingsbtn2.removeFromParent()
+                scene?.speed = 1
+                scene?.physicsWorld.speed = 1
+                self.gameManager?.returnToMenu()
             }
         }
         
@@ -1082,7 +1102,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if let c = self.cameraNode {
-            c.position = CGPoint(x: 0, y: usersShip.position.y)
+            c.run(SKAction.move(to: CGPoint(x: 0, y: usersShip.position.y), duration: 0.2))
+            self.pauseBtn.run(SKAction.move(to: CGPoint(x: self.pauseBtn.position.x, y: c.position.y + self.size.height/2 - 75), duration: 0.2))
         }
         
     }
