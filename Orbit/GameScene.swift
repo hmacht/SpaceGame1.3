@@ -887,13 +887,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if firstbody.categoryBitMask == physicsCatagory.usersShip && secondbody.categoryBitMask == physicsCatagory.finishLine || firstbody.categoryBitMask == physicsCatagory.finishLine && secondbody.categoryBitMask == physicsCatagory.usersShip {
             
-            //dieShipAnimation()
-            //endofGameNoDelay()
+            dieShipAnimation()
+            endofGameNoDelay()
             print("Level complete")
             gameOver = true
             creatEndScrene()
-            usersShip.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 80))
-            cameraNode?.run(SKAction.moveBy(x: 0, y: 700, duration: 1.5))
+            //usersShip.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 80))
+            cameraNode?.run(SKAction.moveTo(y: 1.8 * (self.size.height), duration: 1.5))
             
         }
     }
@@ -1054,9 +1054,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         if let name = touchedNode.name{
             if name == "reatarLevel"{
-                self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                if endOGameDelayIsDone{
+                    self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                    goToGameScene()
+                    endOGameDelayIsDone = false
+                }
             }
         }
+        
+        
+        
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
