@@ -15,10 +15,11 @@
 		21080E78200D33D300C89907 /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 21080E77200D33D300C89907 /* Level2.sks */; };
 		21080E7A200D33ED00C89907 /* Level2Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21080E79200D33ED00C89907 /* Level2Scene.swift */; };
 		210D61D81FEC7A4C00506C67 /* RockExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 210D61D71FEC7A4C00506C67 /* RockExplosion.sks */; };
-		211A65532012B917007F7786 /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 211A65512012B916007F7786 /* click.mp3 */; };
+		211A65532012B917007F7786 /* click1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 211A65512012B916007F7786 /* click1.mp3 */; };
 		211A65542012B917007F7786 /* bgMusic3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 211A65522012B917007F7786 /* bgMusic3.mp3 */; };
 		211A65562012BCAE007F7786 /* wood-5.wav in Resources */ = {isa = PBXBuildFile; fileRef = 211A65552012BCAE007F7786 /* wood-5.wav */; };
 		211A65582012BF16007F7786 /* DeathSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 211A65572012BF16007F7786 /* DeathSound.wav */; };
+		211A655A2012EC4C007F7786 /* click2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 211A65592012EC4C007F7786 /* click2.mp3 */; };
 		2122220C200C047700587A09 /* Asteroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2122220B200C047700587A09 /* Asteroid.swift */; };
 		2122220E200C0B4900587A09 /* Sun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2122220D200C0B4900587A09 /* Sun.swift */; };
 		21222210200C0D2400587A09 /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2122220F200C0D2400587A09 /* Planet.swift */; };
@@ -65,10 +66,11 @@
 		21080E77200D33D300C89907 /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2.sks; sourceTree = "<group>"; };
 		21080E79200D33ED00C89907 /* Level2Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level2Scene.swift; sourceTree = "<group>"; };
 		210D61D71FEC7A4C00506C67 /* RockExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = RockExplosion.sks; sourceTree = "<group>"; };
-		211A65512012B916007F7786 /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click.mp3; sourceTree = "<group>"; };
+		211A65512012B916007F7786 /* click1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click1.mp3; sourceTree = "<group>"; };
 		211A65522012B917007F7786 /* bgMusic3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgMusic3.mp3; sourceTree = "<group>"; };
 		211A65552012BCAE007F7786 /* wood-5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "wood-5.wav"; sourceTree = "<group>"; };
 		211A65572012BF16007F7786 /* DeathSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = DeathSound.wav; sourceTree = "<group>"; };
+		211A65592012EC4C007F7786 /* click2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click2.mp3; sourceTree = "<group>"; };
 		2122220B200C047700587A09 /* Asteroid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asteroid.swift; sourceTree = "<group>"; };
 		2122220D200C0B4900587A09 /* Sun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sun.swift; sourceTree = "<group>"; };
 		2122220F200C0D2400587A09 /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
@@ -160,7 +162,7 @@
 				D19B63561FE6D8E600577B0B /* RocketThrust.wav */,
 				D1BA75801FE32A8800AA6A64 /* Smoke.sks */,
 				211A65522012B917007F7786 /* bgMusic3.mp3 */,
-				211A65512012B916007F7786 /* click.mp3 */,
+				211A65512012B916007F7786 /* click1.mp3 */,
 				211A65552012BCAE007F7786 /* wood-5.wav */,
 				D12171821FE84B090056DDE3 /* Explotion.sks */,
 				D12171701FE770880056DDE3 /* HomeVC.swift */,
@@ -173,6 +175,7 @@
 				21F39C582007FC8B0008B32B /* AsteroidDie.sks */,
 				21F39C5C20095FC60008B32B /* gold.wav */,
 				211A65572012BF16007F7786 /* DeathSound.wav */,
+				211A65592012EC4C007F7786 /* click2.mp3 */,
 				21F39C5F200963950008B32B /* orbit_music.wav */,
 				21F39C6220096A410008B32B /* orbit_music2.wav */,
 				D18A1AC42011912C0052CF14 /* asteroidtrail.sks */,
@@ -257,13 +260,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				211A65532012B917007F7786 /* click.mp3 in Resources */,
+				211A65532012B917007F7786 /* click1.mp3 in Resources */,
 				D19B63581FE6D9D400577B0B /* RocketThrust.wav in Resources */,
 				211A65562012BCAE007F7786 /* wood-5.wav in Resources */,
 				211A65582012BF16007F7786 /* DeathSound.wav in Resources */,
 				D12171831FE84B090056DDE3 /* Explotion.sks in Resources */,
 				211A65542012B917007F7786 /* bgMusic3.mp3 in Resources */,
 				D1EAB1641FDB620300CDC186 /* Main.storyboard in Resources */,
+				211A655A2012EC4C007F7786 /* click2.mp3 in Resources */,
 				D18A1AC82011912D0052CF14 /* asteroidtrail.sks in Resources */,
 				D11ED31C1FF5BA3400D74B7A /* planetToPos.sks in Resources */,
 				D1BA75811FE32A8800AA6A64 /* Smoke.sks in Resources */,
@@ -271,7 +275,6 @@
 				21F39C6320096A410008B32B /* orbit_music2.wav in Resources */,
 				21F39C592007FC8B0008B32B /* AsteroidDie.sks in Resources */,
 				2158470420118B7800891A44 /* LevelMenuScene.sks in Resources */,
-				D1DA162F2012D66700B56070 /* error.mp3 in Resources */,
 				210D61D81FEC7A4C00506C67 /* RockExplosion.sks in Resources */,
 				21BB3B691FEB524D00967D80 /* AsteroidExplosion.sks in Resources */,
 				D18A1AC62011912D0052CF14 /* newTrail.sks in Resources */,
@@ -282,7 +285,6 @@
 				D18A1ABF201137D70052CF14 /* LevelSelect.sks in Resources */,
 				21C8E0CB1FEB13AB00B3CC6C /* explotionWhite.sks in Resources */,
 				D1EAB1691FDB620300CDC186 /* LaunchScreen.storyboard in Resources */,
-				D1DA16312012DBC600B56070 /* bgMusic4.mp3 in Resources */,
 				D18A1AC92011912D0052CF14 /* newTrail2.sks in Resources */,
 				D12171811FE84ADD0056DDE3 /* Assets.xcassets in Resources */,
 				21080E72200D01A400C89907 /* Level1.sks in Resources */,
@@ -451,7 +453,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 38ZEQFSP28;
+				DEVELOPMENT_TEAM = SWYGWFGR5M;
 				INFOPLIST_FILE = Orbit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -467,7 +469,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 38ZEQFSP28;
+				DEVELOPMENT_TEAM = SWYGWFGR5M;
 				INFOPLIST_FILE = Orbit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

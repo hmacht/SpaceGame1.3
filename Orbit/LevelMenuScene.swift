@@ -107,7 +107,7 @@ class LevelMenuScene: SKScene {
                 if let scene = SKScene(fileNamed: "LevelSelect") as? LevelSelectScene {
                     scene.scaleMode = .aspectFill
                     self.menuManager?.didReturnToMainMenu(scene: scene)
-                    self.scene?.view?.presentScene(scene, transition: SKTransition.fade(with: UIColor.lightGray, duration: 0.2))
+                    self.scene?.view?.presentScene(scene, transition: SKTransition.doorsOpenHorizontal(withDuration: 0.5))
                 }
             }
             

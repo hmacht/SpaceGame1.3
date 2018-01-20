@@ -140,6 +140,14 @@ class LevelSelectScene: SKScene {
         planetHome.position = CGPoint(x: -1 * planetPath.size.width / 2, y: 0)
         moonHelper.addChild(planetHome)
         
+        let titleLabel = SKLabelNode(text: "Orbit")
+        titleLabel.position = CGPoint(x: 0, y: playBtn.position
+        .y + 200)
+        titleLabel.fontSize = 100
+        titleLabel.setScale(2)
+        titleLabel.fontName = "Bebas Neue"
+        titleLabel.fontColor = SKColor(red: 21/255.0, green: 31/255.0, blue: 56/255.0, alpha: 1)
+        self.addChild(titleLabel)
     }
     
     override func didMove(to view: SKView) {
