@@ -74,12 +74,6 @@ class LevelMenuScene: SKScene {
         backBtn.position = CGPoint(x: -self.size.width/2 + 50, y: self.size.height/2 - 50)
         backBtn.name = "back"
         self.addChild(backBtn)
-        
-       
-        
-        
-        
-        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -118,8 +112,7 @@ class LevelMenuScene: SKScene {
             }
             
             if name == "locked" {
-                print("Locked: Buy?")
-                self.run(SKAction.playSoundFileNamed("error.mp3", waitForCompletion: true))
+                self.run(SKAction.playSoundFileNamed("wood-5.wav", waitForCompletion: true))
             }
             
             

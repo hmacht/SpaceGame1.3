@@ -143,8 +143,11 @@ class LevelSelectScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        self.run(SKAction.repeatForever(SKAction.playSoundFileNamed("bgMusic4.mp3", waitForCompletion: true)))
-        
+        let musicAction = SKAction.repeatForever(SKAction.playSoundFileNamed("bgMusic3.mp3", waitForCompletion: true))
+        if self.playBgMusic {
+            print("Playing bgMusic")
+            self.run(musicAction, withKey: "bgMusic")
+        }
         createTheHomeScreen()
         timer3 = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: "update3", userInfo: nil, repeats: true)
     }
