@@ -70,12 +70,18 @@ class LevelMenuScene: SKScene {
         levelSelection.color = UIColor(red: 21/255.0, green: 31/255.0, blue: 56/255.0, alpha: 1)
         self.addChild(levelSelection)
         
-        let backBtn = SKLabelNode(text: "<")
-        backBtn.fontColor = UIColor.black
-        backBtn.fontSize = 30
+        let backBtn = SKSpriteNode(imageNamed: "Path 978")
+        backBtn.zRotation = CGFloat(M_PI)
         backBtn.position = CGPoint(x: -self.size.width/2 + 50, y: self.size.height/2 - 50)
         backBtn.name = "back"
         self.addChild(backBtn)
+        
+        let levelsTitle = SKLabelNode(text: "Levels")
+        levelsTitle.position = CGPoint(x: 0, y: self.size.height/2 - 150)
+        levelsTitle.fontSize = 50
+        levelsTitle.fontColor = .black
+        levelsTitle.horizontalAlignmentMode = .center
+        self.addChild(levelsTitle)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -85,8 +91,7 @@ class LevelMenuScene: SKScene {
         
         if let name = touchedNode.name{
             if let n = Int(name) {
-                //self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
-                print("Play button click sound")
+                self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
             }
             
             if name == "1"{
@@ -105,6 +110,7 @@ class LevelMenuScene: SKScene {
                 //self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
                 self.menuManager?.didPressEndless(level: 5)
             } else if name == "back" {
+                self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
                 if let scene = SKScene(fileNamed: "LevelSelect") as? LevelSelectScene {
                     scene.scaleMode = .aspectFill
                     self.menuManager?.didReturnToMainMenu(scene: scene)
@@ -113,7 +119,7 @@ class LevelMenuScene: SKScene {
             }
             
             if name == "locked" {
-                print("Locked: Buy?")
+                self.run(SKAction.playSoundFileNamed("wood-5.wav", waitForCompletion: true))
             }
             
             

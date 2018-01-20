@@ -571,7 +571,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         pauseBtn = SKSpriteNode(imageNamed: "Group 362")
         pauseBtn.setScale(2.7)
         pauseBtn.position = CGPoint(x: -self.size.width/2 + 75, y: self.size.height/2 - 75)
-        pauseBtn.zPosition = 5
+        pauseBtn.zPosition = 399
         pauseBtn.name = "pausebtn"
         self.addChild(pauseBtn)
     }
@@ -699,6 +699,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         usersShip.removeFromParent()
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        self.run(SKAction.playSoundFileNamed("DeathSound.wav", waitForCompletion: true))
         shakeCamera(layer: theGem, duration: 0.5)
         shakeCamera(layer: planetPath, duration: 0.5)
         shakeCamera(layer: sun, duration: 0.5)
@@ -906,12 +907,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if let name = touchedNode.name{
             if name == "pausebtn"{
+                self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
                 pausedGame()
                 scene?.speed = 0
                 scene?.physicsWorld.speed = 0
             }
             
             if name == "continue"{
+                self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
                 pausedBg.removeFromParent()
                 continuebtn.removeFromParent()
                 restartbtn2.removeFromParent()
@@ -922,6 +925,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
             if name == "quit" {
+                self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
                 pausedBg.removeFromParent()
                 continuebtn.removeFromParent()
                 restartbtn2.removeFromParent()
@@ -967,6 +971,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if let name = touchedNode.name{
             if name == "restartGame"{
                 if endOGameDelayIsDone{
+                    self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
                     goToGameScene()
                     endOGameDelayIsDone = false
                 }
