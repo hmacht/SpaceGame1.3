@@ -67,8 +67,11 @@ class LevelSelectViewController: UIViewController, MenuManager {
         if let view = self.view as? SKView {
             if let scene = SKScene(fileNamed: "LevelMenuScene") as? LevelMenuScene {
                 scene.menuManager = self
-                let transition = SKTransition.doorsCloseHorizontal(withDuration: 0.5)
-                view.presentScene(scene, transition: transition)
+                //let transition = SKTransition.doorsCloseHorizontal(withDuration: 0.5)
+                view.presentScene(scene) //, transition: transition
+                
+                
+                
             }
         }
     }

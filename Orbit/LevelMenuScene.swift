@@ -16,6 +16,8 @@ class LevelMenuScene: SKScene {
     var levelsUnlocked = 3
     var background = SKSpriteNode()
     var levelColors = ["Ellipse 8533", "Ellipse 8534", "Ellipse 8535", "Ellipse 8538"]
+    var allTheLevels = [SKSpriteNode()]
+    var allTheLevelsLabs = [SKLabelNode()]
     
     func createBG(){
         background = SKSpriteNode(imageNamed: "Rectangle 1806")
@@ -32,20 +34,25 @@ class LevelMenuScene: SKScene {
                     let levelBtn = SKSpriteNode(imageNamed: levelColors[Int(arc4random_uniform(4))])
                     levelBtn.position = CGPoint(x: cPosX, y: cPosY)
                     levelBtn.name = "\(levelNum)"
-                    levelBtn.setScale(1.4)
+                    levelBtn.setScale(0)
+                    allTheLevels.append(levelBtn)
+                    
                     print(levelBtn.name)
                     self.addChild(levelBtn)
                     let levelLab = SKLabelNode(text: "\(levelNum)")
                     levelLab.position = CGPoint(x: cPosX, y: cPosY - 15)
                     levelLab.isUserInteractionEnabled = false
                     levelLab.fontName = "Bebas Neue"
+                    levelLab.setScale(0)
                     levelLab.fontSize = 40
+                    allTheLevelsLabs.append(levelLab)
                     self.addChild(levelLab)
                 } else {
                     let levelBtnLocked = SKSpriteNode(imageNamed: "Group 423")
                     levelBtnLocked.position = CGPoint(x: cPosX, y: cPosY)
                     levelBtnLocked.name = "locked"
-                    levelBtnLocked.setScale(1.4)
+                    levelBtnLocked.setScale(0)
+                    allTheLevels.append(levelBtnLocked)
                     self.addChild(levelBtnLocked)
                 }
                 cPosX = cPosX + 80
@@ -56,12 +63,25 @@ class LevelMenuScene: SKScene {
         }
     }
     
+    func openScene() {
+        for i in 1...allTheLevelsLabs.count {
+          allTheLevelsLabs[i - 1].run(SKAction.scale(to: 1, duration: 0.4))
+        
+        }
+        for i in 1...allTheLevels.count {
+            allTheLevels[i - 1].run(SKAction.scale(to: 1.4, duration: 0.4))
+            
+        }
+        
+    }
+    
     
     
     
     override func didMove(to view: SKView) {
         createBG()
         createAllLevels()
+        openScene()
         
         let levelSelection = SKLabelNode(text: "Galaxy One")
         levelSelection.position = CGPoint(x: 0, y: 230)
@@ -107,7 +127,7 @@ class LevelMenuScene: SKScene {
                 if let scene = SKScene(fileNamed: "LevelSelect") as? LevelSelectScene {
                     scene.scaleMode = .aspectFill
                     self.menuManager?.didReturnToMainMenu(scene: scene)
-                    self.scene?.view?.presentScene(scene, transition: SKTransition.doorsOpenHorizontal(withDuration: 0.5))
+                    self.scene?.view?.presentScene(scene, transition: SKTransition.fade(with: UIColor.lightGray, duration: 0.2))
                 }
             }
             

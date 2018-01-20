@@ -17,7 +17,7 @@ class FinishLine: SKSpriteNode {
         self.zPosition = 50
         self.physicsBody = SKPhysicsBody(rectangleOf: size)
         self.physicsBody?.categoryBitMask = physicsCatagory.finishLine
-        self.physicsBody?.collisionBitMask = physicsCatagory.finishLine | physicsCatagory.usersShip
+        self.physicsBody?.collisionBitMask = physicsCatagory.finishLine 
         self.physicsBody?.contactTestBitMask = physicsCatagory.finishLine | physicsCatagory.usersShip
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.isDynamic = false

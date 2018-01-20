@@ -8,6 +8,7 @@
 
 import SpriteKit
 
+
 class Level3Scene: GameScene {
     
     override func didMove(to view: SKView) {
@@ -16,6 +17,10 @@ class Level3Scene: GameScene {
         super.didMove(to: view)
         
         self.enableCameraFollow()
+        
+        
+        
+        
         
         // Finish line
         let finish = FinishLine(color: UIColor(red: 0, green: 222/255, blue: 0, alpha: 0.4), size: CGSize(width: self.size.width, height: 100))

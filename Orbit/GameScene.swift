@@ -46,6 +46,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var settingsbtn2 = SKSpriteNode()
     var pausedBg = SKSpriteNode()
     
+    //endofGame
+    var endBox = SKSpriteNode()
+    var endRestart = SKSpriteNode()
+    var endNext = SKSpriteNode()
+    var endQuit = SKSpriteNode()
+    var endTime = SKLabelNode()
+    var endStar = SKSpriteNode()
+    var endGems = SKLabelNode()
     
     
     // lables
@@ -135,7 +143,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Functions
     
     
-    
+    func creatEndScrene(){
+        endBox = SKSpriteNode(imageNamed: "endofLevelBox")
+        endBox.setScale(2)
+        endBox.position = CGPoint(x: 0, y: 1.8 * self.size.height)
+        self.addChild(endBox)
+        
+        endTime = SKLabelNode(fontNamed: "Bebas Neue")
+        endTime.text = "1:38"
+        endTime.fontSize = 150
+        endTime.fontColor = SKColor.black
+        endTime.alpha = 1
+        endTime.zPosition = 2
+        endTime.position = CGPoint(x: 0, y: 30)
+        endBox.addChild(endTime)
+        
+        endGems = SKLabelNode(fontNamed: "Bebas Neue")
+        endGems.text = "+ \(score) Gems"
+        endGems.fontSize = 40
+        endGems.fontColor = SKColor.black
+        endGems.alpha = 1
+        endGems.zPosition = 3
+        endGems.position = CGPoint(x: 0, y: -10)
+        endBox.addChild(endGems)
+        var starPosX = -50
+        for i in 1...3{
+            endStar = SKSpriteNode(imageNamed: "Path 1238")
+            endStar.setScale(1)
+            endStar.zPosition = 4
+            endStar.position = CGPoint(x: starPosX, y: -50)
+            endBox.addChild(endStar)
+            starPosX = starPosX + 50
+            
+        }
+        
+        endRestart = SKSpriteNode(imageNamed: "Group 435")
+        endRestart.setScale(1.3)
+        endRestart.name = "reatarLevel"
+        endRestart.position = CGPoint(x: 0, y: -140)
+        endRestart.zPosition = 5
+        endBox.addChild(endRestart)
+        
+        
+    }
     func createHelper() {
         moonHelper.position = CGPoint(x: 0, y: 0)
         self.addChild(moonHelper)
@@ -147,6 +197,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.cameraNode?.position = CGPoint.zero
         self.addChild(self.cameraNode!)
         self.camera = cameraNode
+        
+        
+        
+        
     }
     
     func shakeCamera(layer:SKSpriteNode, duration:Float) {
@@ -833,9 +887,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if firstbody.categoryBitMask == physicsCatagory.usersShip && secondbody.categoryBitMask == physicsCatagory.finishLine || firstbody.categoryBitMask == physicsCatagory.finishLine && secondbody.categoryBitMask == physicsCatagory.usersShip {
             
-            dieShipAnimation()
-            endofGameNoDelay()
+            //dieShipAnimation()
+            //endofGameNoDelay()
             print("Level complete")
+            gameOver = true
+            creatEndScrene()
+            usersShip.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 80))
+            cameraNode?.run(SKAction.moveBy(x: 0, y: 700, duration: 1.5))
+            
         }
     }
     
@@ -986,12 +1045,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if let name = touchedNode.name{
             if name == "restartGame"{
-                
                 if endOGameDelayIsDone{
                     self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
                     goToGameScene()
                     endOGameDelayIsDone = false
                 }
+            }
+        }
+        if let name = touchedNode.name{
+            if name == "reatarLevel"{
+                self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
             }
         }
     }
@@ -1126,11 +1189,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 usersShip.physicsBody?.applyForce(CGVector(dx: (sun.position.x - usersShip.position.x) * dampningValue, dy:     (sun.position.y - usersShip.position.y) * dampningValue))
             }
         }
-        
-        if let c = self.cameraNode {
-            c.run(SKAction.move(to: CGPoint(x: 0, y: usersShip.position.y), duration: 0.2))
-            self.pauseBtn.run(SKAction.move(to: CGPoint(x: self.pauseBtn.position.x, y: c.position.y + self.size.height/2 - 75), duration: 0.2))
+        if gameOver == false {
+            if let c = self.cameraNode {
+                c.run(SKAction.move(to: CGPoint(x: 0, y: usersShip.position.y), duration: 0.2))
+                self.pauseBtn.run(SKAction.move(to: CGPoint(x: self.pauseBtn.position.x, y: c.position.y + self.size.height/2 - 75), duration: 0.2))
+            }
         }
+        
         
     }
     

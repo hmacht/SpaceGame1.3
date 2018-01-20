@@ -147,7 +147,7 @@ class LevelSelectScene: SKScene {
         titleLabel.setScale(2)
         titleLabel.fontName = "Bebas Neue"
         titleLabel.fontColor = SKColor(red: 21/255.0, green: 31/255.0, blue: 56/255.0, alpha: 1)
-        self.addChild(titleLabel)
+        //self.addChild(titleLabel)
     }
     
     override func didMove(to view: SKView) {
