@@ -30,6 +30,7 @@ class LevelSelectViewController: UIViewController, MenuManager {
             if let scene = SKScene(fileNamed: "LevelSelect") as? LevelSelectScene {
                 // Set the scale mode to scale to fit the window
                 scene.menuManager = self
+                scene.playBgMusic = true
                 scene.scaleMode = .aspectFill
                 // Present the scene
                 
