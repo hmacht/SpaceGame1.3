@@ -166,11 +166,11 @@ class LevelSelectScene: SKScene {
         
         if let name = touchedNode.name{
             if name == "endless"{
-                self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
+                self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
                 self.menuManager?.didPressEndless(level: 0)
             }
             if name == "play" {
-                self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
+                self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
                 playBtn.run(SKAction.scale(to: 1.5, duration: 0.2))
                 clickedPlay = true
                 

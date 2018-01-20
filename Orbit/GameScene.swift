@@ -913,7 +913,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
             if name == "continue"{
-                self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
+                self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
                 pausedBg.removeFromParent()
                 continuebtn.removeFromParent()
                 restartbtn2.removeFromParent()
@@ -924,7 +924,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
             if name == "quit" {
-                self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
+                self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
                 pausedBg.removeFromParent()
                 continuebtn.removeFromParent()
                 restartbtn2.removeFromParent()
@@ -987,7 +987,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if name == "restartGame"{
                 
                 if endOGameDelayIsDone{
-                    self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
+                    self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
                     goToGameScene()
                     endOGameDelayIsDone = false
                 }
