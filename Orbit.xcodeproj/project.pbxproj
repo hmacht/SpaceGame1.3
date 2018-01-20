@@ -25,6 +25,10 @@
 		21222210200C0D2400587A09 /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2122220F200C0D2400587A09 /* Planet.swift */; };
 		2158470220118A9E00891A44 /* LevelMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2158470120118A9E00891A44 /* LevelMenuScene.swift */; };
 		2158470420118B7800891A44 /* LevelMenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2158470320118B7800891A44 /* LevelMenuScene.sks */; };
+		2160E1DC2014095000967E16 /* Level4Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2160E1DB2014095000967E16 /* Level4Scene.swift */; };
+		2160E1DE20140AA600967E16 /* Level4.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2160E1DD20140AA600967E16 /* Level4.sks */; };
+		2160E1E020140C8800967E16 /* Level5Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2160E1DF20140C8800967E16 /* Level5Scene.swift */; };
+		2160E1E220140D7D00967E16 /* Level5.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2160E1E120140D7D00967E16 /* Level5.sks */; };
 		21B275A7200ECCF9005AB6BD /* Level3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 21B275A6200ECCF9005AB6BD /* Level3.sks */; };
 		21B275A9200ECD0D005AB6BD /* Level3Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B275A8200ECD0D005AB6BD /* Level3Scene.swift */; };
 		21BB3B691FEB524D00967D80 /* AsteroidExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 21BB3B681FEB524D00967D80 /* AsteroidExplosion.sks */; };
@@ -74,6 +78,10 @@
 		2122220F200C0D2400587A09 /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
 		2158470120118A9E00891A44 /* LevelMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelMenuScene.swift; sourceTree = "<group>"; };
 		2158470320118B7800891A44 /* LevelMenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelMenuScene.sks; sourceTree = "<group>"; };
+		2160E1DB2014095000967E16 /* Level4Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level4Scene.swift; sourceTree = "<group>"; };
+		2160E1DD20140AA600967E16 /* Level4.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level4.sks; sourceTree = "<group>"; };
+		2160E1DF20140C8800967E16 /* Level5Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level5Scene.swift; sourceTree = "<group>"; };
+		2160E1E120140D7D00967E16 /* Level5.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level5.sks; sourceTree = "<group>"; };
 		21B275A6200ECCF9005AB6BD /* Level3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level3.sks; sourceTree = "<group>"; };
 		21B275A8200ECD0D005AB6BD /* Level3Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level3Scene.swift; sourceTree = "<group>"; };
 		21BB3B681FEB524D00967D80 /* AsteroidExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AsteroidExplosion.sks; sourceTree = "<group>"; };
@@ -195,6 +203,10 @@
 				D18A1AC0201138190052CF14 /* LevelSelectScene.swift */,
 				2158470120118A9E00891A44 /* LevelMenuScene.swift */,
 				2158470320118B7800891A44 /* LevelMenuScene.sks */,
+				2160E1DB2014095000967E16 /* Level4Scene.swift */,
+				2160E1DF20140C8800967E16 /* Level5Scene.swift */,
+				2160E1DD20140AA600967E16 /* Level4.sks */,
+				2160E1E120140D7D00967E16 /* Level5.sks */,
 			);
 			path = Orbit;
 			sourceTree = "<group>";
@@ -279,6 +291,8 @@
 				D1EAB15B1FDB620300CDC186 /* GameScene.sks in Resources */,
 				21F39C5D20095FC70008B32B /* gold.wav in Resources */,
 				D12171801FE84ADD0056DDE3 /* MyParticle.sks in Resources */,
+				2160E1DE20140AA600967E16 /* Level4.sks in Resources */,
+				2160E1E220140D7D00967E16 /* Level5.sks in Resources */,
 				21F39C60200963960008B32B /* orbit_music.wav in Resources */,
 				D18A1ABF201137D70052CF14 /* LevelSelect.sks in Resources */,
 				21C8E0CB1FEB13AB00B3CC6C /* explotionWhite.sks in Resources */,
@@ -305,9 +319,11 @@
 				D1EAB15F1FDB620300CDC186 /* GameScene.swift in Sources */,
 				D12171711FE770880056DDE3 /* HomeVC.swift in Sources */,
 				2122220E200C0B4900587A09 /* Sun.swift in Sources */,
+				2160E1DC2014095000967E16 /* Level4Scene.swift in Sources */,
 				21080E70200CFFD500C89907 /* FinishLine.swift in Sources */,
 				21080E6E200CFD2100C89907 /* AsteroidSpawner.swift in Sources */,
 				21080E76200D1B0100C89907 /* Level1Scene.swift in Sources */,
+				2160E1E020140C8800967E16 /* Level5Scene.swift in Sources */,
 				D1EAB1611FDB620300CDC186 /* GameViewController.swift in Sources */,
 				21222210200C0D2400587A09 /* Planet.swift in Sources */,
 				21B275A9200ECD0D005AB6BD /* Level3Scene.swift in Sources */,
@@ -451,7 +467,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 38ZEQFSP28;
+				DEVELOPMENT_TEAM = SWYGWFGR5M;
 				INFOPLIST_FILE = Orbit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -467,7 +483,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 38ZEQFSP28;
+				DEVELOPMENT_TEAM = SWYGWFGR5M;
 				INFOPLIST_FILE = Orbit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

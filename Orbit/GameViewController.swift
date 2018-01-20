@@ -18,10 +18,14 @@ class GameViewController: UIViewController, GameManager {
     
     var selectedLevel = 0
     
-    let sceneArray = ["GameScene", "Level1", "Level2", "Level3"]
+    var sceneArray = ["GameScene"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        for i in 1...20 {
+            sceneArray.append("Level\(i)")
+        }
         
         let s = sceneArray[selectedLevel]
         if let view = self.view as! SKView? {

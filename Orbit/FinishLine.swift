@@ -14,7 +14,7 @@ class FinishLine: SKSpriteNode {
         //self.init(color: color, size: size)
         self.init(texture: nil, color: color, size: size)
         
-        self.zPosition = 50
+        self.zPosition = 4
         self.physicsBody = SKPhysicsBody(rectangleOf: size)
         self.physicsBody?.categoryBitMask = physicsCatagory.finishLine
         self.physicsBody?.collisionBitMask = physicsCatagory.finishLine 

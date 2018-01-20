@@ -96,7 +96,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     // For spawing asteroids
-    let timeInBetweenSpawns: CGFloat = 4.5
+    var timeInBetweenSpawns: CGFloat = 4.5
     var timeSinceLastSpawn: CGFloat = 0
     let alertAsteroid = SKSpriteNode(imageNamed: "alert")
     var startGemsForAsteroid = 0
@@ -143,10 +143,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Functions
     
     
-    func creatEndScrene(){
+    func creatEndScrene(yPos: CGFloat){
         endBox = SKSpriteNode(imageNamed: "endofLevelBox")
         endBox.setScale(2)
-        endBox.position = CGPoint(x: 0, y: 1.8 * self.size.height)
+        endBox.position = CGPoint(x: 0, y: yPos)
         self.addChild(endBox)
         
         endTime = SKLabelNode(fontNamed: "Bebas Neue")
@@ -197,10 +197,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.cameraNode?.position = CGPoint.zero
         self.addChild(self.cameraNode!)
         self.camera = cameraNode
-        
-        
-        
-        
     }
     
     func shakeCamera(layer:SKSpriteNode, duration:Float) {
@@ -887,13 +883,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if firstbody.categoryBitMask == physicsCatagory.usersShip && secondbody.categoryBitMask == physicsCatagory.finishLine || firstbody.categoryBitMask == physicsCatagory.finishLine && secondbody.categoryBitMask == physicsCatagory.usersShip {
             
+            let yPos = usersShip.position.y + self.size.height * 0.75
+            creatEndScrene(yPos: yPos)
             dieShipAnimation()
             endofGameNoDelay()
             print("Level complete")
             gameOver = true
-            creatEndScrene()
             //usersShip.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 80))
-            cameraNode?.run(SKAction.moveTo(y: 1.8 * (self.size.height), duration: 1.5))
+            cameraNode?.run(SKAction.moveTo(y: yPos, duration: 0.8))
             
         }
     }
@@ -1155,12 +1152,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.timeSinceLastSpawn += CGFloat(deltaTime)
         }
         
-        /*
-         if timeSinceLastSpawn > self.timeInBetweenSpawns {
-         self.createAsteroid()
-         self.timeSinceLastSpawn = 0
-         }
-         */
         
         if gameOver == false && !inLevel {
             if timeSinceLastSpawn > self.timeInBetweenSpawns {

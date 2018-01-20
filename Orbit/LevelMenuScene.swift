@@ -13,7 +13,7 @@ class LevelMenuScene: SKScene {
     var cPosX = -120
     var cPosY = 100
     var levelNum = 1
-    var levelsUnlocked = 3
+    var levelsUnlocked = 5
     var background = SKSpriteNode()
     var levelColors = ["Ellipse 8533", "Ellipse 8534", "Ellipse 8535", "Ellipse 8538"]
     var allTheLevels = [SKSpriteNode()]
@@ -37,16 +37,17 @@ class LevelMenuScene: SKScene {
                     levelBtn.setScale(0)
                     allTheLevels.append(levelBtn)
                     
-                    print(levelBtn.name)
+                    //print(levelBtn.name)
                     self.addChild(levelBtn)
                     let levelLab = SKLabelNode(text: "\(levelNum)")
-                    levelLab.position = CGPoint(x: cPosX, y: cPosY - 15)
+                    //levelLab.position = CGPoint(x: cPosX, y: cPosY - 15)
+                    levelLab.position = CGPoint(x: 0, y: -0.75 * 15)
                     levelLab.isUserInteractionEnabled = false
                     levelLab.fontName = "Bebas Neue"
-                    levelLab.setScale(0)
-                    levelLab.fontSize = 40
-                    allTheLevelsLabs.append(levelLab)
-                    self.addChild(levelLab)
+                    //levelLab.setScale(0)
+                    levelLab.fontSize = 30
+                    //allTheLevelsLabs.append(levelLab)
+                    levelBtn.addChild(levelLab)
                 } else {
                     let levelBtnLocked = SKSpriteNode(imageNamed: "Group 423")
                     levelBtnLocked.position = CGPoint(x: cPosX, y: cPosY)
@@ -69,7 +70,7 @@ class LevelMenuScene: SKScene {
         
         }
         for i in 1...allTheLevels.count {
-            allTheLevels[i - 1].run(SKAction.scale(to: 1.4, duration: 0.4))
+            allTheLevels[i - 1].run(SKAction.scale(to: 1.4, duration: 0.32))
             
         }
         

@@ -10,9 +10,6 @@ import SpriteKit
 
 class Level2Scene: GameScene {
     
-    let proximityToLaunchAsteroid: CGFloat = 400
-    var asteroidYPositions = [CGFloat]()
-    
     override func didMove(to view: SKView) {
         
         self.inLevel = true
@@ -20,7 +17,7 @@ class Level2Scene: GameScene {
         super.didMove(to: view)
         
         // Set up level
-        
+        self.timeInBetweenSpawns = 3.5
         
         // Finish Line
         let finish = FinishLine(color: UIColor(red: 0, green: 222/255, blue: 0, alpha: 0.4), size: CGSize(width: self.size.width, height: 100))
@@ -42,21 +39,18 @@ class Level2Scene: GameScene {
         // Level has camera
         self.enableCameraFollow()
         
-        asteroidYPositions.append(200)
-        asteroidYPositions.append(500)
-        asteroidYPositions.append(600)
-        
     }
     
     override func update(_ currentTime: TimeInterval) {
-        super.update(currentTime)
         
-        for asteroidY in asteroidYPositions {
-            if abs(asteroidY - usersShip.position.y) < self.proximityToLaunchAsteroid {
-                self.createAsteroid(startPointY: asteroidY, endPointY: asteroidY + 200)
-                self.asteroidYPositions.remove(at: 0)
-            }
+        let deltaTime = currentTime - lastUpdateTime
+        self.timeSinceLastSpawn += CGFloat(deltaTime)
+
+        if self.timeSinceLastSpawn > self.timeInBetweenSpawns {
+            self.timeSinceLastSpawn = 0
+            self.createAsteroid(startPointY: usersShip.position.y + 375 + CGFloat(arc4random_uniform(100)), endPointY: nil)
         }
+        super.update(currentTime)
     }
 
 }

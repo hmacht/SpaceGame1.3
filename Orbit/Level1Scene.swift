@@ -17,7 +17,7 @@ class Level1Scene: GameScene {
         super.didMove(to: view)
         
         // Set up level
-
+        self.enableCameraFollow()
         
         // Finish Line
         let finish = FinishLine(color: UIColor(red: 0, green: 222/255, blue: 0, alpha: 0.4), size: CGSize(width: self.size.width, height: 100))
