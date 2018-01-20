@@ -15,6 +15,10 @@
 		21080E78200D33D300C89907 /* Level2.sks in Resources */ = {isa = PBXBuildFile; fileRef = 21080E77200D33D300C89907 /* Level2.sks */; };
 		21080E7A200D33ED00C89907 /* Level2Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21080E79200D33ED00C89907 /* Level2Scene.swift */; };
 		210D61D81FEC7A4C00506C67 /* RockExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 210D61D71FEC7A4C00506C67 /* RockExplosion.sks */; };
+		211A65532012B917007F7786 /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 211A65512012B916007F7786 /* click.mp3 */; };
+		211A65542012B917007F7786 /* bgMusic3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 211A65522012B917007F7786 /* bgMusic3.mp3 */; };
+		211A65562012BCAE007F7786 /* wood-5.wav in Resources */ = {isa = PBXBuildFile; fileRef = 211A65552012BCAE007F7786 /* wood-5.wav */; };
+		211A65582012BF16007F7786 /* DeathSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 211A65572012BF16007F7786 /* DeathSound.wav */; };
 		2122220C200C047700587A09 /* Asteroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2122220B200C047700587A09 /* Asteroid.swift */; };
 		2122220E200C0B4900587A09 /* Sun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2122220D200C0B4900587A09 /* Sun.swift */; };
 		21222210200C0D2400587A09 /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2122220F200C0D2400587A09 /* Planet.swift */; };
@@ -63,6 +67,10 @@
 		21080E77200D33D300C89907 /* Level2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level2.sks; sourceTree = "<group>"; };
 		21080E79200D33ED00C89907 /* Level2Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level2Scene.swift; sourceTree = "<group>"; };
 		210D61D71FEC7A4C00506C67 /* RockExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = RockExplosion.sks; sourceTree = "<group>"; };
+		211A65512012B916007F7786 /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click.mp3; sourceTree = "<group>"; };
+		211A65522012B917007F7786 /* bgMusic3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgMusic3.mp3; sourceTree = "<group>"; };
+		211A65552012BCAE007F7786 /* wood-5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "wood-5.wav"; sourceTree = "<group>"; };
+		211A65572012BF16007F7786 /* DeathSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = DeathSound.wav; sourceTree = "<group>"; };
 		2122220B200C047700587A09 /* Asteroid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asteroid.swift; sourceTree = "<group>"; };
 		2122220D200C0B4900587A09 /* Sun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sun.swift; sourceTree = "<group>"; };
 		2122220F200C0D2400587A09 /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
@@ -157,6 +165,9 @@
 				D1EAB16A1FDB620300CDC186 /* Info.plist */,
 				D19B63561FE6D8E600577B0B /* RocketThrust.wav */,
 				D1BA75801FE32A8800AA6A64 /* Smoke.sks */,
+				211A65522012B917007F7786 /* bgMusic3.mp3 */,
+				211A65512012B916007F7786 /* click.mp3 */,
+				211A65552012BCAE007F7786 /* wood-5.wav */,
 				D12171821FE84B090056DDE3 /* Explotion.sks */,
 				D12171701FE770880056DDE3 /* HomeVC.swift */,
 				D121717E1FE84ADD0056DDE3 /* MyParticle.sks */,
@@ -167,6 +178,7 @@
 				D11ED31B1FF5BA3400D74B7A /* planetToPos.sks */,
 				21F39C582007FC8B0008B32B /* AsteroidDie.sks */,
 				21F39C5C20095FC60008B32B /* gold.wav */,
+				211A65572012BF16007F7786 /* DeathSound.wav */,
 				21F39C5F200963950008B32B /* orbit_music.wav */,
 				21F39C6220096A410008B32B /* orbit_music2.wav */,
 				D18A1AC42011912C0052CF14 /* asteroidtrail.sks */,
@@ -251,8 +263,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				211A65532012B917007F7786 /* click.mp3 in Resources */,
 				D19B63581FE6D9D400577B0B /* RocketThrust.wav in Resources */,
+				211A65562012BCAE007F7786 /* wood-5.wav in Resources */,
+				211A65582012BF16007F7786 /* DeathSound.wav in Resources */,
 				D12171831FE84B090056DDE3 /* Explotion.sks in Resources */,
+				211A65542012B917007F7786 /* bgMusic3.mp3 in Resources */,
 				D1EAB1641FDB620300CDC186 /* Main.storyboard in Resources */,
 				D18A1AC82011912D0052CF14 /* asteroidtrail.sks in Resources */,
 				D11ED31C1FF5BA3400D74B7A /* planetToPos.sks in Resources */,

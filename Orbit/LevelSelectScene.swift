@@ -14,6 +14,7 @@ import AudioToolbox
 class LevelSelectScene: SKScene {
     
     var menuManager: MenuManager?
+    var playBgMusic = false
     
     var planetPath = SKSpriteNode()
     var moonHelper = SKSpriteNode()

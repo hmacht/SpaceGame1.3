@@ -699,6 +699,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         usersShip.removeFromParent()
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        self.run(SKAction.playSoundFileNamed("DeathSound.wav", waitForCompletion: true))
         shakeCamera(layer: theGem, duration: 0.5)
         shakeCamera(layer: planetPath, duration: 0.5)
         shakeCamera(layer: sun, duration: 0.5)
