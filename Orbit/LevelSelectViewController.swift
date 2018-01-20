@@ -79,4 +79,7 @@ class LevelSelectViewController: UIViewController, MenuManager {
     func didReturnToMainMenu(scene: LevelSelectScene) {
         scene.menuManager = self
     }
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
 }

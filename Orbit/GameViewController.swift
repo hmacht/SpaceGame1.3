@@ -42,6 +42,7 @@ class GameViewController: UIViewController, GameManager {
         }
     }
     
+    
     func returnToMenu() {
         self.navigationController?.popViewController(animated: true)
     }

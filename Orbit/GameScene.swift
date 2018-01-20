@@ -570,7 +570,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func createPauseBtn(){
         pauseBtn = SKSpriteNode(imageNamed: "Group 362")
         pauseBtn.setScale(2.7)
-        pauseBtn.position = CGPoint(x: -self.size.width/2 + 75, y: self.size.height/2 - 75)
+        pauseBtn.position = CGPoint(x: -self.size.width/2 + 120, y: self.size.height/2 - 50)
         pauseBtn.zPosition = 5
         pauseBtn.name = "pausebtn"
         self.addChild(pauseBtn)
@@ -906,12 +906,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if let name = touchedNode.name{
             if name == "pausebtn"{
+                self.run(SKAction.playSoundFileNamed("click2.mp3", waitForCompletion: true))
                 pausedGame()
                 scene?.speed = 0
                 scene?.physicsWorld.speed = 0
             }
             
             if name == "continue"{
+                self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
                 pausedBg.removeFromParent()
                 continuebtn.removeFromParent()
                 restartbtn2.removeFromParent()
@@ -922,6 +924,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
             if name == "quit" {
+                self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
                 pausedBg.removeFromParent()
                 continuebtn.removeFromParent()
                 restartbtn2.removeFromParent()
@@ -930,6 +933,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 scene?.speed = 1
                 scene?.physicsWorld.speed = 1
                 self.gameManager?.returnToMenu()
+            }
+            if name == "restart2"{
+                self.run(SKAction.playSoundFileNamed("click2.mp3", waitForCompletion: true))
+                pausedBg.removeFromParent()
+                continuebtn.removeFromParent()
+                restartbtn2.removeFromParent()
+                quitbtn.removeFromParent()
+                settingsbtn2.removeFromParent()
+                scene?.speed = 1
+                scene?.physicsWorld.speed = 1
+                gemScore.text = "0"
+                score = 0
+                usersShip.zRotation = 0
+                usersShip.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+                usersShip.position = CGPoint(x: 0, y: 100)
+                
             }
         }
         
@@ -966,7 +985,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if let name = touchedNode.name{
             if name == "restartGame"{
+                
                 if endOGameDelayIsDone{
+                    self.run(SKAction.playSoundFileNamed("click.mp3", waitForCompletion: true))
                     goToGameScene()
                     endOGameDelayIsDone = false
                 }
@@ -1026,6 +1047,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         usersShip.size.height = 38
         self.removeAction(forKey: "rocketSound")
     }
+    
+    
+    
+    
     
     var lastUpdateTime: TimeInterval = 0
     override func update(_ currentTime: TimeInterval) {
