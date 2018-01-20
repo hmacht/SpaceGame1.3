@@ -41,10 +41,10 @@
 		D18A1AC92011912D0052CF14 /* newTrail2.sks in Resources */ = {isa = PBXBuildFile; fileRef = D18A1AC52011912C0052CF14 /* newTrail2.sks */; };
 		D19B63581FE6D9D400577B0B /* RocketThrust.wav in Resources */ = {isa = PBXBuildFile; fileRef = D19B63561FE6D8E600577B0B /* RocketThrust.wav */; };
 		D1BA75811FE32A8800AA6A64 /* Smoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = D1BA75801FE32A8800AA6A64 /* Smoke.sks */; };
-		D1DA162A2012B89100B56070 /* bgMusic3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D1DA16282012B89000B56070 /* bgMusic3.mp3 */; };
 		D1DA162B2012B89100B56070 /* click.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D1DA16292012B89000B56070 /* click.mp3 */; };
 		D1DA162D2012C0EA00B56070 /* click2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D1DA162C2012C0EA00B56070 /* click2.mp3 */; };
 		D1DA162F2012D66700B56070 /* error.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D1DA162E2012D66700B56070 /* error.mp3 */; };
+		D1DA16312012DBC600B56070 /* bgMusic4.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D1DA16302012DBC600B56070 /* bgMusic4.mp3 */; };
 		D1EAB1591FDB620300CDC186 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EAB1581FDB620300CDC186 /* AppDelegate.swift */; };
 		D1EAB15B1FDB620300CDC186 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D1EAB15A1FDB620300CDC186 /* GameScene.sks */; };
 		D1EAB15D1FDB620300CDC186 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = D1EAB15C1FDB620300CDC186 /* Actions.sks */; };
@@ -89,10 +89,10 @@
 		D18A1AC52011912C0052CF14 /* newTrail2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = newTrail2.sks; sourceTree = "<group>"; };
 		D19B63561FE6D8E600577B0B /* RocketThrust.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RocketThrust.wav; sourceTree = "<group>"; };
 		D1BA75801FE32A8800AA6A64 /* Smoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Smoke.sks; sourceTree = "<group>"; };
-		D1DA16282012B89000B56070 /* bgMusic3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgMusic3.mp3; sourceTree = "<group>"; };
 		D1DA16292012B89000B56070 /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click.mp3; sourceTree = "<group>"; };
 		D1DA162C2012C0EA00B56070 /* click2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click2.mp3; sourceTree = "<group>"; };
 		D1DA162E2012D66700B56070 /* error.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = error.mp3; sourceTree = "<group>"; };
+		D1DA16302012DBC600B56070 /* bgMusic4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgMusic4.mp3; sourceTree = "<group>"; };
 		D1EAB1551FDB620300CDC186 /* Orbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Orbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1EAB1581FDB620300CDC186 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1EAB15A1FDB620300CDC186 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 				D1EAB15E1FDB620300CDC186 /* GameScene.swift */,
 				D1EAB1601FDB620300CDC186 /* GameViewController.swift */,
 				21080E73200D0CEE00C89907 /* LevelSelectViewController.swift */,
-				D1DA16282012B89000B56070 /* bgMusic3.mp3 */,
+				D1DA16302012DBC600B56070 /* bgMusic4.mp3 */,
 				D1DA16292012B89000B56070 /* click.mp3 */,
 				D1DA162C2012C0EA00B56070 /* click2.mp3 */,
 				D1DA162E2012D66700B56070 /* error.mp3 */,
@@ -269,11 +269,11 @@
 				D1EAB15B1FDB620300CDC186 /* GameScene.sks in Resources */,
 				21F39C5D20095FC70008B32B /* gold.wav in Resources */,
 				D12171801FE84ADD0056DDE3 /* MyParticle.sks in Resources */,
-				D1DA162A2012B89100B56070 /* bgMusic3.mp3 in Resources */,
 				21F39C60200963960008B32B /* orbit_music.wav in Resources */,
 				D18A1ABF201137D70052CF14 /* LevelSelect.sks in Resources */,
 				21C8E0CB1FEB13AB00B3CC6C /* explotionWhite.sks in Resources */,
 				D1EAB1691FDB620300CDC186 /* LaunchScreen.storyboard in Resources */,
+				D1DA16312012DBC600B56070 /* bgMusic4.mp3 in Resources */,
 				D1DA162B2012B89100B56070 /* click.mp3 in Resources */,
 				D18A1AC92011912D0052CF14 /* newTrail2.sks in Resources */,
 				D12171811FE84ADD0056DDE3 /* Assets.xcassets in Resources */,
