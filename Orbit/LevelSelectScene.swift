@@ -203,9 +203,13 @@ class LevelSelectScene: SKScene {
                 
             }
             if name == "shop"{
-                self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
-                let scene = SKScene(fileNamed: "shop")
-                self.view?.presentScene(scene)
+                let sound = SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true)
+                self.run(SKAction.sequence([sound, SKAction.run {
+                    if let scene = SKScene(fileNamed: "shop") as? ShopScreen {
+                        scene.menuManager = self.menuManager
+                        self.view?.presentScene(scene, transition: SKTransition.fade(with: UIColor.lightGray, duration: 0.2))
+                    }
+                }]))
             }
             
         }

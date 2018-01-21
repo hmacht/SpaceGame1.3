@@ -108,22 +108,7 @@ class LevelMenuScene: SKScene {
                 self.menuManager?.didPressEndless(level: n)
             }
             
-            /*if name == "1"{
-                self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
-                self.menuManager?.didPressEndless(level: 1)
-            } else if name == "2" {
-                self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
-                self.menuManager?.didPressEndless(level: 2)
-            } else if name == "3" {
-                self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
-                self.menuManager?.didPressEndless(level: 3)
-            } else if name == "4" {
-                self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
-                self.menuManager?.didPressEndless(level: 4)
-            } else if name == "5" {
-                self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
-                self.menuManager?.didPressEndless(level: 5)
-            } else*/ if name == "back" {
+            if name == "back" {
                 self.run(SKAction.playSoundFileNamed("click2.mp3", waitForCompletion: true))
                 if let scene = SKScene(fileNamed: "LevelSelect") as? LevelSelectScene {
                     scene.scaleMode = .aspectFill
