@@ -13,7 +13,7 @@ class LevelMenuScene: SKScene {
     var cPosX = -120
     var cPosY = 100
     var levelNum = 1
-    var levelsUnlocked = 5
+    var levelsUnlocked = 6
     var background = SKSpriteNode()
     var levelColors = ["Ellipse 8533", "Ellipse 8534", "Ellipse 8535", "Ellipse 8538"]
     var allTheLevels = [SKSpriteNode()]
@@ -105,10 +105,10 @@ class LevelMenuScene: SKScene {
         if let name = touchedNode.name{
             if let n = Int(name) {
                 self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
-                print("Play button click sound")
+                self.menuManager?.didPressEndless(level: n)
             }
             
-            if name == "1"{
+            /*if name == "1"{
                 self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
                 self.menuManager?.didPressEndless(level: 1)
             } else if name == "2" {
@@ -123,7 +123,7 @@ class LevelMenuScene: SKScene {
             } else if name == "5" {
                 self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
                 self.menuManager?.didPressEndless(level: 5)
-            } else if name == "back" {
+            } else*/ if name == "back" {
                 self.run(SKAction.playSoundFileNamed("click2.mp3", waitForCompletion: true))
                 if let scene = SKScene(fileNamed: "LevelSelect") as? LevelSelectScene {
                     scene.scaleMode = .aspectFill

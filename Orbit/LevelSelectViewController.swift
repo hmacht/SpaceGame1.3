@@ -38,6 +38,14 @@ class LevelSelectViewController: UIViewController, MenuManager {
             }
         }
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if let view = self.view as! SKView? {
+            if let scene = view.scene as? LevelSelectScene {
+                scene.updateGems()
+            }
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
