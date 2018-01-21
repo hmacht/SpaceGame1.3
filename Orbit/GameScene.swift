@@ -987,6 +987,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 restartbtn2.removeFromParent()
                 quitbtn.removeFromParent()
                 settingsbtn2.removeFromParent()
+                self.updateGems()
                 scene?.speed = 1
                 scene?.physicsWorld.speed = 1
                 self.gameManager?.returnToMenu()
@@ -998,6 +999,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 restartbtn2.removeFromParent()
                 quitbtn.removeFromParent()
                 settingsbtn2.removeFromParent()
+                self.updateGems()
                 scene?.speed = 1
                 scene?.physicsWorld.speed = 1
                 gemScore.text = "0"

@@ -47,6 +47,7 @@ class LevelSelectScene: SKScene {
     var endlessBtn = SKSpriteNode()
     var planetHome = SKSpriteNode()
     var shopBtn = SKSpriteNode()
+    var gemsText = SKLabelNode()
     
     func createtwinkle() {
         let twinkleHome = SKSpriteNode(imageNamed: differentTwinkles[Int(arc4random_uniform(3))])
@@ -148,6 +149,20 @@ class LevelSelectScene: SKScene {
         titleLabel.fontName = "Bebas Neue"
         titleLabel.fontColor = SKColor(red: 21/255.0, green: 31/255.0, blue: 56/255.0, alpha: 1)
         //self.addChild(titleLabel)
+        
+        let nGems = String(UserDefaults.standard.integer(forKey: "Gems"))
+        gemsText = SKLabelNode(text: nGems)
+        gemsText.fontColor = .black
+        gemsText.fontName = "Bebas Neue"
+        gemsText.fontSize = 70
+        gemsText.verticalAlignmentMode = .center
+        gemsText.position = CGPoint(x: self.size.width/2 - 75, y: self.size.height/2 - 75)
+        self.addChild(gemsText)
+        
+        let gemsImage = SKSpriteNode(imageNamed: "gem")
+        gemsImage.position = CGPoint(x: -gemsText.frame.size.width/2 - 25, y: 0)
+        gemsImage.setScale(1.5)
+        gemsText.addChild(gemsImage)
     }
     
     override func didMove(to view: SKView) {
@@ -201,7 +216,8 @@ class LevelSelectScene: SKScene {
         }
     }
     
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+    func updateGems() {
+        let nGems = String(UserDefaults.standard.integer(forKey: "Gems"))
+        gemsText.text = nGems
     }
 }
