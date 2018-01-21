@@ -67,13 +67,15 @@ class ShopScreen: SKScene {
         gemsText.fontName = "Bebas Neue"
         gemsText.fontSize = 70
         gemsText.verticalAlignmentMode = .center
-        gemsText.position = CGPoint(x: self.size.width/2 - 120, y: self.size.height/2 - 75)
+        gemsText.position = CGPoint(x: self.size.width/2 - 75, y: self.size.height/2 - 50)
         self.addChild(gemsText)
         
         let gemsImage = SKSpriteNode(imageNamed: "gem")
         gemsImage.position = CGPoint(x: -gemsText.frame.size.width/2 - 25, y: 0)
         gemsImage.setScale(1.5)
         gemsText.addChild(gemsImage)
+        
+        gemsText.setScale(0.6)
         
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -96,6 +98,7 @@ class ShopScreen: SKScene {
                         self.boxIsReadyToOpen = true
                     }
                     UserDefaults.standard.set(currentGems - 100, forKey: "Gems")
+                    self.scrollDownGemsText()
                 }else{
                     self.run(SKAction.playSoundFileNamed("wood-5.wav", waitForCompletion: true))
                     print("Want to buy more gems?")
@@ -132,5 +135,11 @@ class ShopScreen: SKScene {
     func updateGems() {
         let nGems = String(UserDefaults.standard.integer(forKey: "Gems"))
         gemsText.text = nGems
+    }
+    
+    func scrollDownGemsText() {
+        self.run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 0.015), SKAction.run({
+            self.gemsText.text = String(Int(self.gemsText.text!)! - 1)
+        })]), count: 100))
     }
 }

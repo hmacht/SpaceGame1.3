@@ -166,10 +166,9 @@ class LevelSelectScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        print("This Number", UserDefaults.standard.integer(forKey: "Gems"))
+        
         let musicAction = SKAction.repeatForever(SKAction.playSoundFileNamed("bgMusic3.mp3", waitForCompletion: true))
         if self.playBgMusic {
-            print("Playing bgMusic")
             self.run(musicAction, withKey: "bgMusic")
         }
         createTheHomeScreen()
