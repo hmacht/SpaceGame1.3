@@ -28,7 +28,7 @@ class Level3Scene: GameScene {
         self.addChild(finish)
         
         // First sun
-        let sun = Sun(imageName: "Moon")
+        let sun = Sun(imageName: "Group 419")
         sun.position = CGPoint.zero
         self.addChild(sun)
         
@@ -46,7 +46,7 @@ class Level3Scene: GameScene {
         planet2.orbit(path: circle2.cgPath, speed: 4)
         
         // Second sun
-        let sun2 = Sun(imageName: "Moon")
+        let sun2 = Sun(imageName: "Group 419")
         sun2.position = CGPoint(x: 0, y: self.size.height/2)
         self.addChild(sun2)
         

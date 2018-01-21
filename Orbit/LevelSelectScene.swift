@@ -113,7 +113,7 @@ class LevelSelectScene: SKScene {
         shopBtn.setScale(2)
         shopBtn.position = CGPoint(x: -107, y: -60)
         shopBtn.zPosition = 300
-        shopBtn.name = "LB"
+        shopBtn.name = "shop"
         self.addChild(shopBtn)
         
         settingsBtn = SKSpriteNode(imageNamed: "settings")
@@ -187,6 +187,12 @@ class LevelSelectScene: SKScene {
                 clickedPlay = true
                 
             }
+            if name == "shop"{
+                self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                let scene = SKScene(fileNamed: "shop")
+                self.view?.presentScene(scene)
+            }
+            
         }
     }
 

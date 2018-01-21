@@ -23,7 +23,7 @@ class Level5Scene: GameScene {
         self.addChild(finish)
         
         // First sun
-        let sun = Sun(imageName: "Moon")
+        let sun = Sun(imageName: "Group 419")
         sun.position = CGPoint.zero
         self.addChild(sun)
         
@@ -34,7 +34,7 @@ class Level5Scene: GameScene {
         planet2.orbit(path: circle2.cgPath, speed: 2.5)
         
         // Second sun
-        let sun2 = Sun(imageName: "Moon")
+        let sun2 = Sun(imageName: "Group 419")
         sun2.position = CGPoint(x: -self.size.width/2 + 50, y: self.size.height/2 * 0.75)
         self.addChild(sun2)
         
@@ -46,7 +46,7 @@ class Level5Scene: GameScene {
         planet3.orbit(path: circle3.cgPath, speed: 2)
         
         
-        let sun3 = Sun(imageName: "Moon")
+        let sun3 = Sun(imageName: "Group 419")
         sun3.position = CGPoint(x: self.size.width/2 - 50, y: sun2.position.y)
         self.addChild(sun3)
         
@@ -55,7 +55,7 @@ class Level5Scene: GameScene {
         let circle4 = UIBezierPath(center: sun3.position, radius: 300)
         planet4.orbit(path: circle4.cgPath, speed: 2.5)
         
-        let sun4 = Sun(imageName: "Moon")
+        let sun4 = Sun(imageName: "Group 419")
         sun4.position = CGPoint(x: 0, y: sun3.position.y + 500)
         self.addChild(sun4)
         

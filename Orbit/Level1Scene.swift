@@ -25,7 +25,7 @@ class Level1Scene: GameScene {
         self.addChild(finish)
         
         // First sun
-        let sun = Sun(imageName: "Moon")
+        let sun = Sun(imageName: "Group 419")
         sun.position = CGPoint.zero
         self.addChild(sun)
         

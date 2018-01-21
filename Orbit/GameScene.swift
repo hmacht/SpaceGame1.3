@@ -135,6 +135,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var onlyOnce = 1
     var differentColorGems = ["Group 216","Group 304","Group 305"]
     var randomGemColor = arc4random_uniform(3)
+    var displayEndBoxOnce = 0
     
     // Whether or not in normal game mode or in level
     var inLevel = false
@@ -883,14 +884,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if firstbody.categoryBitMask == physicsCatagory.usersShip && secondbody.categoryBitMask == physicsCatagory.finishLine || firstbody.categoryBitMask == physicsCatagory.finishLine && secondbody.categoryBitMask == physicsCatagory.usersShip {
             
-            let yPos = usersShip.position.y + self.size.height * 0.75
-            creatEndScrene(yPos: yPos)
-            dieShipAnimation()
-            endofGameNoDelay()
-            print("Level complete")
-            gameOver = true
-            //usersShip.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 80))
-            cameraNode?.run(SKAction.moveTo(y: yPos, duration: 0.8))
+            if displayEndBoxOnce == 0 {
+                let yPos = usersShip.position.y + self.size.height * 0.75
+                creatEndScrene(yPos: yPos)
+                dieShipAnimation()
+                endofGameNoDelay()
+                print("Level complete")
+                gameOver = true
+                //usersShip.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 80))
+                cameraNode?.run(SKAction.moveTo(y: yPos, duration: 0.8))
+                displayEndBoxOnce = 1
+            }
+            
             
         }
     }
@@ -1053,7 +1058,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if name == "reatarLevel"{
                 if endOGameDelayIsDone{
                     self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                    
+                    displayEndBoxOnce = 0
                     goToGameScene()
+                    
+                    endRestart.removeFromParent()
+                    endBox.removeFromParent()
+                    endStar.removeFromParent()
+                    endNext.removeFromParent()
+                    endQuit.removeFromParent()
+                    endTime.removeFromParent()
+                    endGems.removeFromParent()
+                    
+                   
                     endOGameDelayIsDone = false
                 }
             }
