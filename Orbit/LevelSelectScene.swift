@@ -156,7 +156,7 @@ class LevelSelectScene: SKScene {
         gemsText.fontName = "Bebas Neue"
         gemsText.fontSize = 70
         gemsText.verticalAlignmentMode = .center
-        gemsText.position = CGPoint(x: self.size.width/2 - 75, y: self.size.height/2 - 75)
+        gemsText.position = CGPoint(x: self.size.width/2 - 120, y: self.size.height/2 - 75)
         self.addChild(gemsText)
         
         let gemsImage = SKSpriteNode(imageNamed: "gem")
@@ -166,6 +166,7 @@ class LevelSelectScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
+        print("This Number", UserDefaults.standard.integer(forKey: "Gems"))
         let musicAction = SKAction.repeatForever(SKAction.playSoundFileNamed("bgMusic3.mp3", waitForCompletion: true))
         if self.playBgMusic {
             print("Playing bgMusic")

@@ -14,6 +14,7 @@ class ShopScreen: SKScene {
     var baseBox = SKSpriteNode()
     var openBox = SKSpriteNode()
     var purchaseBtn = SKSpriteNode()
+    var gemsText = SKLabelNode()
     
     var boxIsReadyToOpen = false
     
@@ -34,6 +35,7 @@ class ShopScreen: SKScene {
         let actionSeq = SKAction.sequence(actionsArray);
         layer.run(actionSeq);
     }
+    
     
     override func didMove(to view: SKView) {
         
@@ -59,6 +61,20 @@ class ShopScreen: SKScene {
         backBtn2.name = "back2"
         self.addChild(backBtn2)
         
+        let nGems = String(UserDefaults.standard.integer(forKey: "Gems"))
+        gemsText = SKLabelNode(text: nGems)
+        gemsText.fontColor = .black
+        gemsText.fontName = "Bebas Neue"
+        gemsText.fontSize = 70
+        gemsText.verticalAlignmentMode = .center
+        gemsText.position = CGPoint(x: self.size.width/2 - 120, y: self.size.height/2 - 75)
+        self.addChild(gemsText)
+        
+        let gemsImage = SKSpriteNode(imageNamed: "gem")
+        gemsImage.position = CGPoint(x: -gemsText.frame.size.width/2 - 25, y: 0)
+        gemsImage.setScale(1.5)
+        gemsText.addChild(gemsImage)
+        
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch:UITouch = touches.first!
@@ -66,16 +82,25 @@ class ShopScreen: SKScene {
         let touchedNode = self.atPoint(positionInScene)
         
         if let name = touchedNode.name{
+            let currentGems = UserDefaults.standard.integer(forKey: "Gems")
+            
             if name == "purchase" {
-                self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
-                openBox.run(SKAction.move(to: CGPoint(x: 0, y: 0) , duration: 1.0))
-                openBox.run(SKAction.scale(to: 2, duration: 1.0))
-                purchaseBtn.run(SKAction.scale(to: 0, duration: 0.8))
-                baseBox.run(SKAction.scale(to: 0, duration: 0.8))
-                let delayInSeconds = 1.0
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
-                    self.boxIsReadyToOpen = true
+                if currentGems > 100 {
+                    self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                    openBox.run(SKAction.move(to: CGPoint(x: 0, y: 0) , duration: 1.0))
+                    openBox.run(SKAction.scale(to: 2, duration: 1.0))
+                    purchaseBtn.run(SKAction.scale(to: 0, duration: 0.8))
+                    baseBox.run(SKAction.scale(to: 0, duration: 0.8))
+                    let delayInSeconds = 1.0
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
+                        self.boxIsReadyToOpen = true
+                    }
+                    UserDefaults.standard.set(currentGems - 100, forKey: "Gems")
+                }else{
+                    self.run(SKAction.playSoundFileNamed("wood-5.wav", waitForCompletion: true))
+                    print("Want to buy more gems?")
                 }
+                
                 
             }
             if name == "back2" {
@@ -103,5 +128,9 @@ class ShopScreen: SKScene {
             }
             
         }
+    }
+    func updateGems() {
+        let nGems = String(UserDefaults.standard.integer(forKey: "Gems"))
+        gemsText.text = nGems
     }
 }
