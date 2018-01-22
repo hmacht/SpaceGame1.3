@@ -15,6 +15,8 @@ class ShopScreen: SKScene {
     var openBox = SKSpriteNode()
     var purchaseBtn = SKSpriteNode()
     var gemsText = SKLabelNode()
+    var avalibleShips = ["Group 477", "Group 479", "Group 480", "Group 481", "Group 483"]
+    var shipWon = SKSpriteNode()
     
     var boxIsReadyToOpen = false
     
@@ -38,6 +40,11 @@ class ShopScreen: SKScene {
     
     
     override func didMove(to view: SKView) {
+        
+        shipWon = SKSpriteNode(imageNamed: avalibleShips[Int(arc4random_uniform(UInt32(avalibleShips.count)))])
+        shipWon.position = CGPoint(x: 0, y: 0)
+        shipWon.zPosition = 10
+        
         
         
         baseBox = SKSpriteNode(imageNamed: "Group 439")
@@ -127,6 +134,7 @@ class ShopScreen: SKScene {
                 boxExplotion.targetNode = self.scene
                 boxExplotion.zPosition = 20
                 self.addChild(boxExplotion)
+                self.addChild(self.shipWon)
                 self.boxIsReadyToOpen = false
             }
             

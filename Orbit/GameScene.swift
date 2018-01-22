@@ -377,6 +377,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         usersShip.physicsBody?.affectedByGravity = true
         usersShip.physicsBody?.isDynamic = true
         
+        /*
+        let smokeTrail4 = SKEmitterNode(fileNamed: "Blue")!
+        smokeTrail4.targetNode = self.scene
+        smokeTrail4.name = "Smoke4"
+        smokeTrail4.zPosition = 20
+        //smokeTrail4.numParticlesToEmit = 1
+        usersShip.addChild(smokeTrail4)
+        //smokeTrail4.isHidden = true
+        */
+ 
+        
         let smokeTrail = SKEmitterNode(fileNamed: "newTrail")!
         smokeTrail.targetNode = self.scene
         smokeTrail.name = "Smoke"
@@ -400,8 +411,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         smokeTrail3.numParticlesToEmit = 1
         usersShip.addChild(smokeTrail3)
         smokeTrail3.isHidden = true
-        
+ 
         self.addChild(usersShip)
+ 
     }
     
     func explode(){

@@ -166,7 +166,6 @@ class LevelSelectScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        
         let musicAction = SKAction.repeatForever(SKAction.playSoundFileNamed("bgMusic3.mp3", waitForCompletion: true))
         if self.playBgMusic {
             self.run(musicAction, withKey: "bgMusic")
