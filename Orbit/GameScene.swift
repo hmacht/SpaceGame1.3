@@ -263,7 +263,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         theGem.physicsBody?.contactTestBitMask = physicsCatagory.theGem | physicsCatagory.usersShip
         theGem.physicsBody?.affectedByGravity = false
         theGem.physicsBody?.isDynamic = false
-        self.addChild(theGem)
+        if !gameOver {
+            self.addChild(theGem)
+        }
     }
     
     func createAsteroid(startPointY: CGFloat? = nil, endPointY: CGFloat? = nil) {
@@ -468,7 +470,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return CGPoint(x: CGFloat(x)+center.x, y: CGFloat(y)+center.y)
     }
     
-    func endofGameNoDelay(){
+    func endofGameNoDelay(win: Bool? = false) {
         if endOnce == 1 {
             print("Game Over")
             
@@ -746,11 +748,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
-    func dieShipAnimation() {
+    func dieShipAnimation(win: Bool = false) {
         
         usersShip.removeFromParent()
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
-        self.run(SKAction.playSoundFileNamed("DeathSound.wav", waitForCompletion: true))
+        if win {
+            self.run(SKAction.playSoundFileNamed("WinSoundOrbit.mp3", waitForCompletion: true))
+        } else {
+            self.run(SKAction.playSoundFileNamed("DeathSound.wav", waitForCompletion: true))
+        }
         shakeCamera(layer: theGem, duration: 0.5)
         shakeCamera(layer: planetPath, duration: 0.5)
         shakeCamera(layer: sun, duration: 0.5)
@@ -887,7 +893,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if displayEndBoxOnce == 0 {
                 let yPos = usersShip.position.y + self.size.height * 0.75
                 creatEndScrene(yPos: yPos)
-                dieShipAnimation()
+                dieShipAnimation(win: true)
                 endofGameNoDelay()
                 print("Level complete")
                 gameOver = true

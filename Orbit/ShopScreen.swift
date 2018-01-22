@@ -15,6 +15,7 @@ class ShopScreen: SKScene {
     var openBox = SKSpriteNode()
     var purchaseBtn = SKSpriteNode()
     var gemsText = SKLabelNode()
+    let boxPrice = 100
     
     var boxIsReadyToOpen = false
     
@@ -87,7 +88,7 @@ class ShopScreen: SKScene {
             let currentGems = UserDefaults.standard.integer(forKey: "Gems")
             
             if name == "purchase" {
-                if currentGems > 100 {
+                if currentGems >= self.boxPrice {
                     self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
                     openBox.run(SKAction.move(to: CGPoint(x: 0, y: 0) , duration: 1.0))
                     openBox.run(SKAction.scale(to: 2, duration: 1.0))
@@ -97,7 +98,7 @@ class ShopScreen: SKScene {
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
                         self.boxIsReadyToOpen = true
                     }
-                    UserDefaults.standard.set(currentGems - 100, forKey: "Gems")
+                    UserDefaults.standard.set(currentGems - self.boxPrice, forKey: "Gems")
                     self.scrollDownGemsText()
                 }else{
                     self.run(SKAction.playSoundFileNamed("wood-5.wav", waitForCompletion: true))
@@ -140,6 +141,6 @@ class ShopScreen: SKScene {
     func scrollDownGemsText() {
         self.run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 0.015), SKAction.run({
             self.gemsText.text = String(Int(self.gemsText.text!)! - 1)
-        })]), count: 100))
+        })]), count: self.boxPrice))
     }
 }

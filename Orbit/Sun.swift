@@ -30,4 +30,12 @@ class Sun: SKSpriteNode {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    func addOrbitingPlanet(radius: CGFloat, planetImage: String, speed: TimeInterval) {
+        let planet = Planet(imageName: planetImage)
+        self.parent?.addChild(planet)
+        let orbit = UIBezierPath(center: self.position, radius: radius)
+        planet.orbit(path: orbit.cgPath, speed: speed)
+        
+    }
 }
