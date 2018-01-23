@@ -13,7 +13,7 @@ class LevelMenuScene: SKScene {
     var cPosX = -120
     var cPosY = 100
     var levelNum = 1
-    var levelsUnlocked = 6
+    var levelsUnlocked = 7
     var background = SKSpriteNode()
     var levelColors = ["Ellipse 8533", "Ellipse 8534", "Ellipse 8535", "Ellipse 8538"]
     var allTheLevels = [SKSpriteNode()]
@@ -43,6 +43,7 @@ class LevelMenuScene: SKScene {
                     //levelLab.position = CGPoint(x: cPosX, y: cPosY - 15)
                     levelLab.position = CGPoint(x: 0, y: -0.75 * 15)
                     levelLab.isUserInteractionEnabled = false
+                    levelLab.name = "\(levelNum)"
                     levelLab.fontName = "Bebas Neue"
                     //levelLab.setScale(0)
                     levelLab.fontSize = 30
