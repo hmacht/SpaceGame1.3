@@ -162,6 +162,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         endNext = SKSpriteNode(imageNamed: "Group 526")
         endNext.setScale(0)
+        endNext.name = "endNext"
         endNext.position = CGPoint(x: 0, y: 0)
         endNext.zPosition = 900
         endBG.addChild(endNext)
@@ -818,9 +819,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         usersShip.removeFromParent()
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         if win {
-            if died == false {
-                self.run(SKAction.playSoundFileNamed("WinSoundOrbit.mp3", waitForCompletion: true))
-            }
+            self.run(SKAction.playSoundFileNamed("WinSoundOrbit.mp3", waitForCompletion: true))
         } else {
             self.run(SKAction.playSoundFileNamed("DeathSound.wav", waitForCompletion: true))
         }
@@ -890,7 +889,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         endQuit.run(SKAction.scale(to: 1, duration: 0.5))
         endRestart.run(SKAction.scale(to: 1, duration: 0.5))
         endSkip.run(SKAction.scale(to: 1, duration: 0.5))
-        dieShipAnimation(win: true)
+        dieShipAnimation()
         endofGameNoDelay()
         gameOver = true
         displayEndBoxOnce = 1
@@ -987,18 +986,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if displayEndBoxOnce == 0 {
                 restartBtn.removeFromParent()
+                dieShipAnimation(win: true)
+                endofGameNoDelay()
                 let yPos = usersShip.position.y //+ self.size.height * 0.75
                 creatEndScrene(yPos: yPos)
                 endstore.run(SKAction.scale(to: 1, duration: 0.5))
                 endQuit.run(SKAction.scale(to: 1, duration: 0.5))
                 endNext.run(SKAction.scale(to: 1, duration: 0.5))
                 endRestart.run(SKAction.scale(to: 1, duration: 0.5))
-                dieShipAnimation(win: true)
-                endofGameNoDelay()
-                print("Level complete")
                 gameOver = true
-                //usersShip.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 80))
-                //cameraNode?.run(SKAction.moveTo(y: yPos, duration: 0.8))
                 displayEndBoxOnce = 1
             }
             
@@ -1119,6 +1115,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 usersShip.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
                 usersShip.position = CGPoint(x: 0, y: 100)
                 
+            }
+            
+            if name == "endNext" {
+                let fadeAction = SKAction.run {
+                    self.endBG.zPosition = 901
+                    self.endBG.run(SKAction.fadeAlpha(to: 1, duration: 0.3))
+                }
+                let clickAction = SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: false)
+                self.run(SKAction.sequence([clickAction, fadeAction, SKAction.run({
+                    self.gameManager?.nextLevel()
+                })]))
             }
         }
         

@@ -12,6 +12,7 @@ import GameplayKit
 
 protocol GameManager {
     func returnToMenu()
+    func nextLevel()
 }
 
 class GameViewController: UIViewController, GameManager {
@@ -49,6 +50,19 @@ class GameViewController: UIViewController, GameManager {
     
     func returnToMenu() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    func nextLevel() {
+        self.selectedLevel += 1
+        if let view = self.view as? SKView {
+            if let scene = SKScene(fileNamed: "Level\(self.selectedLevel)") as? GameScene {
+                // Set the scale mode to scale to fit the window
+                scene.gameManager = self
+                scene.scaleMode = .aspectFill
+                // Present the scene
+                view.presentScene(scene)
+            }
+        }
     }
 
     override var shouldAutorotate: Bool {
