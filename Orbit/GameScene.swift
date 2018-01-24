@@ -58,6 +58,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var endBG = SKSpriteNode()
     var endstore = SKSpriteNode()
     var endCompleteLab = SKSpriteNode()
+    var endSkip = SKSpriteNode()
     
     
     
@@ -141,6 +142,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var differentColorGems = ["Group 216","Group 304","Group 305"]
     var randomGemColor = arc4random_uniform(3)
     var displayEndBoxOnce = 0
+    var died = true
     
     // Whether or not in normal game mode or in level
     var inLevel = false
@@ -150,47 +152,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     func creatEndScrene(yPos: CGFloat){
-        /*
-        endBox = SKSpriteNode(imageNamed: "endofLevelBox")
-        endBox.setScale(2)
-        endBox.position = CGPoint(x: 0, y: yPos)
-        self.addChild(endBox)
-        
-        endTime = SKLabelNode(fontNamed: "Bebas Neue")
-        endTime.text = "1:38"
-        endTime.fontSize = 150
-        endTime.fontColor = SKColor.black
-        endTime.alpha = 1
-        endTime.zPosition = 2
-        endTime.position = CGPoint(x: 0, y: 30)
-        endBox.addChild(endTime)
-        
-        endGems = SKLabelNode(fontNamed: "Bebas Neue")
-        endGems.text = "+ \(score) Gems"
-        endGems.fontSize = 40
-        endGems.fontColor = SKColor.black
-        endGems.alpha = 1
-        endGems.zPosition = 3
-        endGems.position = CGPoint(x: 0, y: -10)
-        endBox.addChild(endGems)
-        var starPosX = -50
-        for i in 1...3{
-            endStar = SKSpriteNode(imageNamed: "Path 1238")
-            endStar.setScale(1)
-            endStar.zPosition = 4
-            endStar.position = CGPoint(x: starPosX, y: -50)
-            endBox.addChild(endStar)
-            starPosX = starPosX + 50
-            
-        }
-        
-        endRestart = SKSpriteNode(imageNamed: "Group 435")
-        endRestart.setScale(1.3)
-        endRestart.name = "reatarLevel"
-        endRestart.position = CGPoint(x: 0, y: -140)
-        endRestart.zPosition = 5
-        endBox.addChild(endRestart)
- */
         
         endBG = SKSpriteNode(imageNamed: "Rectangle 1806")
         endBG.setScale(2)
@@ -239,6 +200,48 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         
+    }
+    func createDiedScreen(yPos2: CGFloat){
+        endBG = SKSpriteNode(imageNamed: "Rectangle 1806")
+        endBG.setScale(2)
+        endBG.position = CGPoint(x: 0, y: yPos2)
+        endBG.zPosition = 850
+        endBG.alpha = 0.9
+        self.addChild(endBG)
+        
+        endRestart = SKSpriteNode(imageNamed: "Group 4350")
+        endRestart.setScale(0)
+        endRestart.position = CGPoint(x: 0, y: 0)
+        endRestart.zPosition = 900
+        endRestart.name = "reatarLevel"
+        endBG.addChild(endRestart)
+        
+        endCompleteLab = SKSpriteNode(imageNamed: "Game over")
+        endCompleteLab.setScale(1)
+        endCompleteLab.position = CGPoint(x: 0, y: 200)
+        endCompleteLab.zPosition = 900
+        endBG.addChild(endCompleteLab)
+        
+        endQuit = SKSpriteNode(imageNamed: "Group 545")
+        endQuit.setScale(0)
+        endQuit.name = "endquit"
+        endQuit.position = CGPoint(x: 0, y: -200)
+        endQuit.zPosition = 900
+        endBG.addChild(endQuit)
+        
+        endSkip = SKSpriteNode(imageNamed: "Group 554")
+        endSkip.setScale(0)
+        endSkip.name = "skip"
+        endSkip.position = CGPoint(x: -80, y: -200)
+        endSkip.zPosition = 900
+        endBG.addChild(endSkip)
+        
+        endstore = SKSpriteNode(imageNamed: "Group 546")
+        endstore.setScale(0)
+        endstore.name = "endstore"
+        endstore.position = CGPoint(x: 80, y: -200)
+        endstore.zPosition = 900
+        endBG.addChild(endstore)
     }
     func createHelper() {
         moonHelper.position = CGPoint(x: 0, y: 0)
@@ -432,40 +435,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         usersShip.physicsBody?.affectedByGravity = true
         usersShip.physicsBody?.isDynamic = true
         
-        /*
-        let smokeTrail4 = SKEmitterNode(fileNamed: "Blue")!
-        smokeTrail4.targetNode = self.scene
-        smokeTrail4.name = "Smoke4"
-        smokeTrail4.zPosition = 20
-        //smokeTrail4.numParticlesToEmit = 1
-        usersShip.addChild(smokeTrail4)
-        //smokeTrail4.isHidden = true
-        */
- 
+        
         
         let smokeTrail = SKEmitterNode(fileNamed: "newTrail")!
         smokeTrail.targetNode = self.scene
         smokeTrail.name = "Smoke"
         smokeTrail.zPosition = 20
-        smokeTrail.numParticlesToEmit = 1
+        //smokeTrail.numParticlesToEmit = 1
         usersShip.addChild(smokeTrail)
-        smokeTrail.isHidden = true
+        //smokeTrail.isHidden = true
         
         let smokeTrail2 = SKEmitterNode(fileNamed: "newTrail2")!
         smokeTrail2.targetNode = self.scene
         smokeTrail2.name = "Smoke2"
         smokeTrail2.zPosition = 21
-        smokeTrail2.numParticlesToEmit = 1
+        //smokeTrail2.numParticlesToEmit = 1
         usersShip.addChild(smokeTrail2)
-        smokeTrail2.isHidden = true
+        //smokeTrail2.isHidden = true
         
         let smokeTrail3 = SKEmitterNode(fileNamed: "newTrail3")!
         smokeTrail3.targetNode = self.scene
         smokeTrail3.name = "Smoke3"
         smokeTrail3.zPosition = 20
-        smokeTrail3.numParticlesToEmit = 1
+        //smokeTrail3.numParticlesToEmit = 1
         usersShip.addChild(smokeTrail3)
-        smokeTrail3.isHidden = true
+        //smokeTrail3.isHidden = true
+ 
+
  
         self.addChild(usersShip)
  
@@ -509,12 +505,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createyears(){
-        numberofYears = SKLabelNode(fontNamed: "Bebas Neue")
-        numberofYears.text = "You gathered \(score) gems"
-        numberofYears.fontSize = 40
+        numberofYears = SKLabelNode(fontNamed: "Book")
+        //numberofYears.font
+        
+        numberofYears.text = "+\(score) GEMS"
+        numberofYears.fontSize = 30
         numberofYears.fontColor = SKColor.black
-        numberofYears.zPosition = 150
+        numberofYears.zPosition = 900
         numberofYears.alpha = 0
+        numberofYears.position = CGPoint(x: 0, y: 250)
     }
     
     func randomPointOnCircle(radius:Float, center:CGPoint) -> CGPoint {
@@ -547,7 +546,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.timer1.invalidate()
             self.sun.run(SKAction.scale(to: 0, duration: 1))
             if !inLevel {
-                self.numberofYears.text = "You gathered \(self.score) gems"
+                self.numberofYears.text = "+\(score) GEMS"
             }
             restartBtn.alpha = 0.5
             self.addChild(restartBtn)
@@ -555,13 +554,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 restartBtn.position = CGPoint(x: 0, y: c.position.y - 200)
             }
             theGem.removeFromParent()
+            self.numberofYears.run(SKAction.fadeAlpha(to: 1, duration: 0.2))
             let delayInSeconds = 1.0
             gemScore.removeFromParent()
             if !inLevel {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
                     self.numberofYears.alpha = 0
                     self.addChild(self.numberofYears)
-                    self.numberofYears.run(SKAction.fadeAlpha(to: 1, duration: 1))
+                    
                 }
             }
             endOnce = 0
@@ -818,7 +818,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         usersShip.removeFromParent()
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         if win {
-            self.run(SKAction.playSoundFileNamed("WinSoundOrbit.mp3", waitForCompletion: true))
+            if died == false {
+                self.run(SKAction.playSoundFileNamed("WinSoundOrbit.mp3", waitForCompletion: true))
+            }
         } else {
             self.run(SKAction.playSoundFileNamed("DeathSound.wav", waitForCompletion: true))
         }
@@ -872,6 +874,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
     }
+    func levelDeathAnimation(){
+        restartBtn.removeFromParent()
+        died = true
+        if inLevel {
+            let ypos2 = usersShip.position.y
+            createDiedScreen(yPos2: ypos2)
+        }else{
+            let ypos2 = 0
+            createDiedScreen(yPos2: CGFloat(Int(ypos2)))
+        }
+        
+        
+        endstore.run(SKAction.scale(to: 1, duration: 0.5))
+        endQuit.run(SKAction.scale(to: 1, duration: 0.5))
+        endRestart.run(SKAction.scale(to: 1, duration: 0.5))
+        endSkip.run(SKAction.scale(to: 1, duration: 0.5))
+        dieShipAnimation(win: true)
+        endofGameNoDelay()
+        gameOver = true
+        displayEndBoxOnce = 1
+    }
     
     
     
@@ -890,6 +913,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             print("planet")
             endofGameNoDelay()
             dieShipAnimation()
+            if displayEndBoxOnce == 0 {
+                
+                levelDeathAnimation()
+            }
         }
         
         if firstbody.categoryBitMask == physicsCatagory.usersShip && secondbody.categoryBitMask == physicsCatagory.theGem || firstbody.categoryBitMask == physicsCatagory.theGem && secondbody.categoryBitMask == physicsCatagory.usersShip{
@@ -921,6 +948,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             dieShipAnimation()
             endofGameNoDelay()
+            if displayEndBoxOnce == 0 {
+                levelDeathAnimation()
+            }
         }
         
         if firstbody.categoryBitMask == physicsCatagory.usersShip && secondbody.categoryBitMask == physicsCatagory.sun || secondbody.categoryBitMask == physicsCatagory.usersShip && firstbody.categoryBitMask == physicsCatagory.sun {
@@ -1150,7 +1180,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     endstore.removeFromParent()
                     endBG.removeFromParent()
                     endCompleteLab.removeFromParent()
-                    
+                    died = false
                     
                    
                     endOGameDelayIsDone = false
