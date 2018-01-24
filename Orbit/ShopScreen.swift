@@ -15,6 +15,7 @@ class ShopScreen: SKScene {
     var openBox = SKSpriteNode()
     var purchaseBtn = SKSpriteNode()
     var gemsText = SKLabelNode()
+    let boxPrice = 100
     var avalibleShips = ["Group 477", "Group 479", "Group 480", "Group 481", "Group 483"]
     var shipWon = SKSpriteNode()
     

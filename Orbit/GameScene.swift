@@ -48,12 +48,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     //endofGame
     var endBox = SKSpriteNode()
-    var endRestart = SKSpriteNode()
-    var endNext = SKSpriteNode()
-    var endQuit = SKSpriteNode()
     var endTime = SKLabelNode()
     var endStar = SKSpriteNode()
     var endGems = SKLabelNode()
+    
+    var endRestart = SKSpriteNode()
+    var endNext = SKSpriteNode()
+    var endQuit = SKSpriteNode()
+    var endBG = SKSpriteNode()
+    var endstore = SKSpriteNode()
+    var endCompleteLab = SKSpriteNode()
+    
     
     
     // lables
@@ -145,6 +150,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     func creatEndScrene(yPos: CGFloat){
+        /*
         endBox = SKSpriteNode(imageNamed: "endofLevelBox")
         endBox.setScale(2)
         endBox.position = CGPoint(x: 0, y: yPos)
@@ -184,6 +190,53 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         endRestart.position = CGPoint(x: 0, y: -140)
         endRestart.zPosition = 5
         endBox.addChild(endRestart)
+ */
+        
+        endBG = SKSpriteNode(imageNamed: "Rectangle 1806")
+        endBG.setScale(2)
+        endBG.position = CGPoint(x: 0, y: yPos)
+        endBG.zPosition = 850
+        endBG.alpha = 0.9
+        self.addChild(endBG)
+        
+        endNext = SKSpriteNode(imageNamed: "Group 526")
+        endNext.setScale(0)
+        endNext.position = CGPoint(x: 0, y: 0)
+        endNext.zPosition = 900
+        endBG.addChild(endNext)
+        
+        endCompleteLab = SKSpriteNode(imageNamed: "Completed")
+        endCompleteLab.setScale(1)
+        endCompleteLab.position = CGPoint(x: 0, y: 200)
+        endCompleteLab.zPosition = 900
+        endBG.addChild(endCompleteLab)
+        
+        endQuit = SKSpriteNode(imageNamed: "Group 545")
+        endQuit.setScale(0)
+        endQuit.name = "endquit"
+        endQuit.position = CGPoint(x: 0, y: -200)
+        endQuit.zPosition = 900
+        endBG.addChild(endQuit)
+        
+        endRestart = SKSpriteNode(imageNamed: "Group 544")
+        endRestart.setScale(0)
+        endRestart.name = "reatarLevel"
+        endRestart.position = CGPoint(x: -80, y: -200)
+        endRestart.zPosition = 900
+        endBG.addChild(endRestart)
+        
+        endstore = SKSpriteNode(imageNamed: "Group 546")
+        endstore.setScale(0)
+        endstore.name = "endstore"
+        endstore.position = CGPoint(x: 80, y: -200)
+        endstore.zPosition = 900
+        endBG.addChild(endstore)
+        
+        
+        
+        
+        
+        
         
         
     }
@@ -903,14 +956,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if firstbody.categoryBitMask == physicsCatagory.usersShip && secondbody.categoryBitMask == physicsCatagory.finishLine || firstbody.categoryBitMask == physicsCatagory.finishLine && secondbody.categoryBitMask == physicsCatagory.usersShip {
             
             if displayEndBoxOnce == 0 {
-                let yPos = usersShip.position.y + self.size.height * 0.75
+                restartBtn.removeFromParent()
+                let yPos = usersShip.position.y //+ self.size.height * 0.75
                 creatEndScrene(yPos: yPos)
+                endstore.run(SKAction.scale(to: 1, duration: 0.5))
+                endQuit.run(SKAction.scale(to: 1, duration: 0.5))
+                endNext.run(SKAction.scale(to: 1, duration: 0.5))
+                endRestart.run(SKAction.scale(to: 1, duration: 0.5))
                 dieShipAnimation(win: true)
                 endofGameNoDelay()
                 print("Level complete")
                 gameOver = true
                 //usersShip.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 80))
-                cameraNode?.run(SKAction.moveTo(y: yPos, duration: 0.8))
+                //cameraNode?.run(SKAction.moveTo(y: yPos, duration: 0.8))
                 displayEndBoxOnce = 1
             }
             
@@ -1089,6 +1147,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     endQuit.removeFromParent()
                     endTime.removeFromParent()
                     endGems.removeFromParent()
+                    endstore.removeFromParent()
+                    endBG.removeFromParent()
+                    endCompleteLab.removeFromParent()
+                    
                     
                    
                     endOGameDelayIsDone = false
