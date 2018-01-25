@@ -39,5 +39,8 @@ class Level6Scene: GameScene {
                 self.addChild(finishLine)
             }
         }
+        
+        self.gemPos = [CGPoint(x: 0, y: -250), CGPoint(x: 0, y: 600), CGPoint(x: 300, y: 750)]
+        self.createGemsForLevel(scene: self)
     }
 }

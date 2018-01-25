@@ -23,6 +23,7 @@
 		2122220C200C047700587A09 /* Asteroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2122220B200C047700587A09 /* Asteroid.swift */; };
 		2122220E200C0B4900587A09 /* Sun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2122220D200C0B4900587A09 /* Sun.swift */; };
 		21222210200C0D2400587A09 /* Planet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2122220F200C0D2400587A09 /* Planet.swift */; };
+		212786D7201A6A8300AD7311 /* RockExplosion copy.sks in Resources */ = {isa = PBXBuildFile; fileRef = 212786D6201A6A8300AD7311 /* RockExplosion copy.sks */; };
 		2158470220118A9E00891A44 /* LevelMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2158470120118A9E00891A44 /* LevelMenuScene.swift */; };
 		2158470420118B7800891A44 /* LevelMenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2158470320118B7800891A44 /* LevelMenuScene.sks */; };
 		2160E1DC2014095000967E16 /* Level4Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2160E1DB2014095000967E16 /* Level4Scene.swift */; };
@@ -34,6 +35,7 @@
 		2170361520169D7B00270D17 /* WinSoundOrbit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 2170361420169D7B00270D17 /* WinSoundOrbit.mp3 */; };
 		217036172016A21B00270D17 /* Level7Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217036162016A21B00270D17 /* Level7Scene.swift */; };
 		217036192016A48B00270D17 /* Level7.sks in Resources */ = {isa = PBXBuildFile; fileRef = 217036182016A48B00270D17 /* Level7.sks */; };
+		217CA4B8201A9291005F0898 /* Gem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 217CA4B7201A9291005F0898 /* Gem.swift */; };
 		21B275A7200ECCF9005AB6BD /* Level3.sks in Resources */ = {isa = PBXBuildFile; fileRef = 21B275A6200ECCF9005AB6BD /* Level3.sks */; };
 		21B275A9200ECD0D005AB6BD /* Level3Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B275A8200ECD0D005AB6BD /* Level3Scene.swift */; };
 		21BB3B691FEB524D00967D80 /* AsteroidExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 21BB3B681FEB524D00967D80 /* AsteroidExplosion.sks */; };
@@ -85,6 +87,7 @@
 		2122220B200C047700587A09 /* Asteroid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asteroid.swift; sourceTree = "<group>"; };
 		2122220D200C0B4900587A09 /* Sun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sun.swift; sourceTree = "<group>"; };
 		2122220F200C0D2400587A09 /* Planet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Planet.swift; sourceTree = "<group>"; };
+		212786D6201A6A8300AD7311 /* RockExplosion copy.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "RockExplosion copy.sks"; sourceTree = "<group>"; };
 		2158470120118A9E00891A44 /* LevelMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelMenuScene.swift; sourceTree = "<group>"; };
 		2158470320118B7800891A44 /* LevelMenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelMenuScene.sks; sourceTree = "<group>"; };
 		2160E1DB2014095000967E16 /* Level4Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level4Scene.swift; sourceTree = "<group>"; };
@@ -96,6 +99,7 @@
 		2170361420169D7B00270D17 /* WinSoundOrbit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = WinSoundOrbit.mp3; sourceTree = "<group>"; };
 		217036162016A21B00270D17 /* Level7Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level7Scene.swift; sourceTree = "<group>"; };
 		217036182016A48B00270D17 /* Level7.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level7.sks; sourceTree = "<group>"; };
+		217CA4B7201A9291005F0898 /* Gem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gem.swift; sourceTree = "<group>"; };
 		21B275A6200ECCF9005AB6BD /* Level3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level3.sks; sourceTree = "<group>"; };
 		21B275A8200ECD0D005AB6BD /* Level3Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level3Scene.swift; sourceTree = "<group>"; };
 		21BB3B681FEB524D00967D80 /* AsteroidExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AsteroidExplosion.sks; sourceTree = "<group>"; };
@@ -121,8 +125,6 @@
 		D1A8DF01201550A8004AA7D3 /* Blue.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Blue.sks; sourceTree = "<group>"; };
 		D1A8DF0920198618004AA7D3 /* RockExplosion copy.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = "RockExplosion copy.sks"; sourceTree = "<group>"; };
 		D1BA75801FE32A8800AA6A64 /* Smoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Smoke.sks; sourceTree = "<group>"; };
-		D1DA162E2012D66700B56070 /* error.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = error.mp3; sourceTree = "<group>"; };
-		D1DA16302012DBC600B56070 /* bgMusic4.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgMusic4.mp3; sourceTree = "<group>"; };
 		D1EAB1551FDB620300CDC186 /* Orbit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Orbit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1EAB1581FDB620300CDC186 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1EAB15A1FDB620300CDC186 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -178,8 +180,6 @@
 				D1EAB15E1FDB620300CDC186 /* GameScene.swift */,
 				D1EAB1601FDB620300CDC186 /* GameViewController.swift */,
 				21080E73200D0CEE00C89907 /* LevelSelectViewController.swift */,
-				D1DA16302012DBC600B56070 /* bgMusic4.mp3 */,
-				D1DA162E2012D66700B56070 /* error.mp3 */,
 				D1EAB1621FDB620300CDC186 /* Main.storyboard */,
 				D1EAB1671FDB620300CDC186 /* LaunchScreen.storyboard */,
 				D1EAB16A1FDB620300CDC186 /* Info.plist */,
@@ -201,6 +201,7 @@
 				211A65572012BF16007F7786 /* DeathSound.wav */,
 				211A65592012EC4C007F7786 /* click2.mp3 */,
 				21F39C5F200963950008B32B /* orbit_music.wav */,
+				212786D6201A6A8300AD7311 /* RockExplosion copy.sks */,
 				21F39C6220096A410008B32B /* orbit_music2.wav */,
 				2170361420169D7B00270D17 /* WinSoundOrbit.mp3 */,
 				D18A1AC42011912C0052CF14 /* asteroidtrail.sks */,
@@ -234,6 +235,7 @@
 				D192237820142BE1006E2F03 /* ShopScreen.swift */,
 				217036162016A21B00270D17 /* Level7Scene.swift */,
 				217036182016A48B00270D17 /* Level7.sks */,
+				217CA4B7201A9291005F0898 /* Gem.swift */,
 			);
 			path = Orbit;
 			sourceTree = "<group>";
@@ -305,6 +307,7 @@
 				211A65582012BF16007F7786 /* DeathSound.wav in Resources */,
 				D12171831FE84B090056DDE3 /* Explotion.sks in Resources */,
 				211A65542012B917007F7786 /* bgMusic3.mp3 in Resources */,
+				212786D7201A6A8300AD7311 /* RockExplosion copy.sks in Resources */,
 				D1EAB1641FDB620300CDC186 /* Main.storyboard in Resources */,
 				211A655A2012EC4C007F7786 /* click2.mp3 in Resources */,
 				D18A1AC82011912D0052CF14 /* asteroidtrail.sks in Resources */,
@@ -363,6 +366,7 @@
 				D1EAB1611FDB620300CDC186 /* GameViewController.swift in Sources */,
 				21222210200C0D2400587A09 /* Planet.swift in Sources */,
 				21B275A9200ECD0D005AB6BD /* Level3Scene.swift in Sources */,
+				217CA4B8201A9291005F0898 /* Gem.swift in Sources */,
 				21080E74200D0CEE00C89907 /* LevelSelectViewController.swift in Sources */,
 				D1EAB1591FDB620300CDC186 /* AppDelegate.swift in Sources */,
 				2122220C200C047700587A09 /* Asteroid.swift in Sources */,
@@ -503,7 +507,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 38ZEQFSP28;
+				DEVELOPMENT_TEAM = SWYGWFGR5M;
 				INFOPLIST_FILE = Orbit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -519,7 +523,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 38ZEQFSP28;
+				DEVELOPMENT_TEAM = SWYGWFGR5M;
 				INFOPLIST_FILE = Orbit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

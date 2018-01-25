@@ -45,22 +45,25 @@ class Level7Scene: GameScene {
         sun5.position = CGPoint(x: 0, y: 1800)
         self.addChild(sun5)
         
-        sun5.addOrbitingPlanet(radius: 200, planetImage: "Ellipse 8533", speed: 2)
+        sun5.addOrbitingPlanet(radius: 175, planetImage: "Ellipse 8533", speed: 2)
         
         let sun6 = Sun(imageName: "Group 419")
         sun6.position = CGPoint(x: self.size.width/2, y: 1800)
         self.addChild(sun6)
         
-        sun6.addOrbitingPlanet(radius: 150, planetImage: "planet", speed: 1.9)
+        sun6.addOrbitingPlanet(radius: 125, planetImage: "planet", speed: 1.9)
         
         let sun7 = Sun(imageName: "Group 419")
         sun7.position = CGPoint(x: -self.size.width/2, y: 1800)
         self.addChild(sun7)
         
-        sun7.addOrbitingPlanet(radius: 150, planetImage: "planet", speed: 2.3)
+        sun7.addOrbitingPlanet(radius: 125, planetImage: "planet", speed: 2.3)
         
         let finishLine = FinishLine(color: UIColor(red: 0, green: 222/255, blue: 0, alpha: 0.4), size: CGSize(width: self.size.width, height: 100))
         finishLine.position = CGPoint(x: 0, y: 2100)
         self.addChild(finishLine)
+        
+        self.gemPos = [CGPoint(x: 50, y: 250), CGPoint(x: sun3.position.x + 110, y: sun3.position.y), CGPoint(x: sun5.position.x, y: sun5.position.y - 110)]
+        self.createGemsForLevel(scene: self)
     }
 }

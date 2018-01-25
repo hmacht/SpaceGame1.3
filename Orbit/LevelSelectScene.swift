@@ -76,9 +76,10 @@ class LevelSelectScene: SKScene {
     }
     
     func createHelper() {
-        moonHelper.position = CGPoint(x: Int(self.size.width / 2) - 180, y: (-1 * Int(self.size.height / 2)) + 150)
+        moonHelper.position = planetPath.position
         self.addChild(moonHelper)
         moonHelper.run(SKAction.repeatForever(SKAction.rotate(byAngle: 10, duration: 5)))
+        
     }
     
     func createTheHomeScreen(){
@@ -131,7 +132,7 @@ class LevelSelectScene: SKScene {
         //self.addChild(homeShip)
         
         createPlanetPath()
-        planetPath.position = CGPoint(x: Int(self.size.width / 2) - 180, y: (-1 * Int(self.size.height / 2)) + 150)
+        planetPath.position = CGPoint(x: self.size.width / 2 - 180, y: -self.size.height / 2 + 150)
         planetPath.zRotation = 250
         
         createHelper()
@@ -141,10 +142,10 @@ class LevelSelectScene: SKScene {
         planetHome.position = CGPoint(x: -1 * planetPath.size.width / 2, y: 0)
         moonHelper.addChild(planetHome)
         
-        let titleLabel = SKLabelNode(text: "Orbit")
-        titleLabel.position = CGPoint(x: 0, y: playBtn.position
-        .y + 200)
-        titleLabel.fontSize = 100
+        let titleLabel = SKLabelNode(text: "rbit")
+        titleLabel.position = CGPoint(x: 145, y: playBtn.position
+        .y + 115)
+        titleLabel.fontSize = 75
         titleLabel.setScale(2)
         titleLabel.fontName = "Bebas Neue"
         titleLabel.fontColor = SKColor(red: 21/255.0, green: 31/255.0, blue: 56/255.0, alpha: 1)
@@ -163,6 +164,10 @@ class LevelSelectScene: SKScene {
         gemsImage.position = CGPoint(x: -gemsText.frame.size.width/2 - 25, y: 0)
         gemsImage.setScale(1.5)
         gemsText.addChild(gemsImage)
+        
+        let sun = Sun(imageName: "Group 419")
+        sun.position = CGPoint(x: self.size.width/4, y: -self.size.height/3 - 75)
+        self.addChild(sun)
     }
     
     override func didMove(to view: SKView) {
@@ -172,6 +177,7 @@ class LevelSelectScene: SKScene {
         }
         createTheHomeScreen()
         timer3 = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: "update3", userInfo: nil, repeats: true)
+        
     }
     
     @objc func update3() {

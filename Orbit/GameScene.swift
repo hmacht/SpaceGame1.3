@@ -147,6 +147,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // Whether or not in normal game mode or in level
     var inLevel = false
     var cameraNode: SKCameraNode?
+    var level = 0
+    var gems = [0, 0, 0]
+    var gemPos = [CGPoint]()
+    var gemSprites = [SKSpriteNode]()
+    var currentGemProgress = [0, 0, 0]
     
     // Functions
     
@@ -582,7 +587,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         timer1 = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: "update1", userInfo: nil, repeats: true)
         if !inLevel {
             self.sun.run(SKAction.scale(to: 2, duration: 1))
+        } else {
+            for g in self.gemSprites {
+                if let _ = g.parent {
+                    g.removeFromParent()
+                }
+            }
+            self.createGemsForLevel(scene: self)
         }
+        
+        self.gems = [0, 0, 0]
         score = 0
         hitAlready = 1
         gemScore.text = "\(score)"
@@ -778,6 +792,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.setupBackgroundMusic()
         
+        if let gemProgress = UserDefaults.standard.array(forKey: "Level\(self.level)") as? [Int] {
+            self.currentGemProgress = gemProgress
+        }
+        
         timer1 = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: "update1", userInfo: nil, repeats: true)
         timer2 = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: "update2", userInfo: nil, repeats: true)
     }
@@ -919,28 +937,52 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if firstbody.categoryBitMask == physicsCatagory.usersShip && secondbody.categoryBitMask == physicsCatagory.theGem || firstbody.categoryBitMask == physicsCatagory.theGem && secondbody.categoryBitMask == physicsCatagory.usersShip{
-            print("G1")
-            //self.score = self.score + 1
-            self.playSound(s: "gold.wav", waitForEnd: true)
-            score = score + 1
-            gemScore.text = "\(score)"
-            theGem.physicsBody = nil
-            theGem.run(SKAction.scale(to: 3, duration: 0.5))
-            theGem.run(SKAction.move(to: CGPoint(x: gemScore.position.x, y: gemScore.position.y) , duration: 1))
-            let delayInSeconds = 0.5
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
-                self.theGem.run(SKAction.scale(to: 0, duration: 0.5))
+            
+            var gem: Gem = Gem()
+            if firstbody.categoryBitMask == physicsCatagory.theGem {
+                gem = firstbody.node! as! Gem
+            } else {
+                gem = secondbody.node! as! Gem
             }
-            let delayInSeconds2 = 1.0
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds2) {
-                self.theGem.removeFromParent()
-                self.createGem()
-                //self.gemScore.text = "\(self.score)"
-                let grow = SKAction.scale(to: 1.3, duration: 0.5)
-                let shrink = SKAction.scale(to: 1, duration: 0.5)
-                self.gemScore.run(SKAction.sequence([grow, shrink]))
+            if !gem.touched {
+                self.playSound(s: "gold.wav", waitForEnd: true)
+                gem.touched = true
             }
-            itsRun = true
+            
+            if !inLevel {
+                score = score + 1
+                gemScore.text = "\(score)"
+                theGem.physicsBody = nil
+                theGem.run(SKAction.scale(to: 3, duration: 0.5))
+                theGem.run(SKAction.move(to: CGPoint(x: gemScore.position.x, y: gemScore.position.y) , duration: 1))
+                let delayInSeconds = 0.5
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
+                    self.theGem.run(SKAction.scale(to: 0, duration: 0.5))
+                }
+                let delayInSeconds2 = 1.0
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds2) {
+                    self.theGem.removeFromParent()
+                    self.createGem()
+                    //self.gemScore.text = "\(self.score)"
+                    let grow = SKAction.scale(to: 1.3, duration: 0.5)
+                    let shrink = SKAction.scale(to: 1, duration: 0.5)
+                    self.gemScore.run(SKAction.sequence([grow, shrink]))
+                }
+                itsRun = true
+            } else {
+                // We are in level
+                var gem = SKNode()
+                if firstbody.categoryBitMask == physicsCatagory.theGem {
+                    gem = firstbody.node!
+                } else {
+                    gem = secondbody.node!
+                }
+                let grow = SKAction.scale(to: 1.4, duration: 0.4)
+                let shrink = SKAction.scale(to: 0, duration: 0.5)
+                let n = gem.name!
+                gem.run(SKAction.sequence([grow, shrink, SKAction.removeFromParent()]))
+                self.gems[Int(n)!] = 1
+            }
         }
         
         if firstbody.categoryBitMask == physicsCatagory.usersShip && secondbody.categoryBitMask == physicsCatagory.asteroid || secondbody.categoryBitMask == physicsCatagory.usersShip && firstbody.categoryBitMask == physicsCatagory.asteroid {
@@ -985,6 +1027,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if firstbody.categoryBitMask == physicsCatagory.usersShip && secondbody.categoryBitMask == physicsCatagory.finishLine || firstbody.categoryBitMask == physicsCatagory.finishLine && secondbody.categoryBitMask == physicsCatagory.usersShip {
             
             if displayEndBoxOnce == 0 {
+                
+                for i in 0...self.gems.count - 1 {
+                    if self.gems[i] == 1 {
+                        self.currentGemProgress[i] = 1
+                    }
+                }
+                UserDefaults.standard.set(self.currentGemProgress, forKey: "Level\(self.level)")
+                
                 restartBtn.removeFromParent()
                 dieShipAnimation(win: true)
                 endofGameNoDelay()
@@ -1114,6 +1164,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 usersShip.zRotation = 0
                 usersShip.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
                 usersShip.position = CGPoint(x: 0, y: 100)
+                
+                if inLevel {
+                    self.gems = [0, 0, 0]
+                    for g in self.gemSprites {
+                        if let _ = g.parent {
+                            g.removeFromParent()
+                        }
+                    }
+                    self.createGemsForLevel(scene: self)
+                }
                 
             }
             
@@ -1351,7 +1411,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func setupBackgroundMusic() {
         let audioNode = SKAudioNode(fileNamed: "orbit_music2.wav")
         //self.addChild(audioNode)
-        
     }
     
+    func createGemsForLevel(scene: SKScene) {
+        if gemPos.count >= 1 {
+            for i in 0...gemPos.count-1 {
+                let gem = Gem(imageName: "gem")
+                gem.position = gemPos[i]
+                gem.name = String(i)
+                self.addChild(gem)
+                self.gemSprites.append(gem)
+            
+                if self.currentGemProgress[i] == 1 {
+                    gem.alpha = 0.5
+                }
+            }
+        }
+    }
 }

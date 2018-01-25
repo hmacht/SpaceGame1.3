@@ -39,6 +39,9 @@ class Level2Scene: GameScene {
         // Level has camera
         self.enableCameraFollow()
         
+        self.gemPos = [CGPoint(x: 0, y: 300), CGPoint(x: 0, y: -300), CGPoint(x: 200, y: 500)]
+        self.createGemsForLevel(scene: self)
+        
     }
     
     override func update(_ currentTime: TimeInterval) {
