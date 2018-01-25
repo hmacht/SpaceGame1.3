@@ -35,6 +35,7 @@ class GameViewController: UIViewController, GameManager {
             if let scene = SKScene(fileNamed: s) as? GameScene {
                 // Set the scale mode to scale to fit the window
                 scene.gameManager = self
+                scene.level = self.selectedLevel
                 scene.scaleMode = .aspectFill
                 // Present the scene
                 view.presentScene(scene)
@@ -58,6 +59,7 @@ class GameViewController: UIViewController, GameManager {
             if let scene = SKScene(fileNamed: "Level\(self.selectedLevel)") as? GameScene {
                 // Set the scale mode to scale to fit the window
                 scene.gameManager = self
+                scene.level = self.selectedLevel
                 scene.scaleMode = .aspectFill
                 // Present the scene
                 view.presentScene(scene)

@@ -57,6 +57,8 @@ class Level3Scene: GameScene {
         let circle3 = UIBezierPath(center: sun2.position, radius: 200)
         planet3.orbit(path: circle3.cgPath, speed: 2)
         
+        self.gemPos = [CGPoint(x: 200, y: 300), CGPoint(x: -250, y: self.size.height/2), CGPoint(x: 0, y: finish.position.y - 200)]
+        self.createGemsForLevel(scene: self)
     }
 }
 

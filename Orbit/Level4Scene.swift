@@ -56,6 +56,8 @@ class Level4Scene: GameScene {
         let circle4 = UIBezierPath(center: sun3.position, radius: 300)
         planet4.orbit(path: circle4.cgPath, speed: 2.5)
         
+        self.gemPos = [CGPoint(x: -200, y: 300), CGPoint(x: 250, y: self.size.height/2), CGPoint(x: sun3.position.x + 125, y: sun3.position.y)]
+        self.createGemsForLevel(scene: self)
     }
     
     override func update(_ currentTime: TimeInterval) {
