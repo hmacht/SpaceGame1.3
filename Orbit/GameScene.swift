@@ -315,16 +315,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         randomGemColor = arc4random_uniform(3)
         print(Int(randomGemColor))
-        theGem = SKSpriteNode(imageNamed: differentColorGems[Int(randomGemColor)])
-        theGem.setScale(2)
+        theGem = Gem(imageName: differentColorGems[Int(randomGemColor)])
         theGem.position = CGPoint(x: posx, y: posy)
-        theGem.zPosition = 85
-        theGem.physicsBody = SKPhysicsBody(circleOfRadius: theGem.size.width / 2.0)
-        theGem.physicsBody?.categoryBitMask = physicsCatagory.theGem
-        theGem.physicsBody?.collisionBitMask = 0
-        theGem.physicsBody?.contactTestBitMask = physicsCatagory.theGem | physicsCatagory.usersShip
-        theGem.physicsBody?.affectedByGravity = false
-        theGem.physicsBody?.isDynamic = false
         if !gameOver {
             self.addChild(theGem)
         }
