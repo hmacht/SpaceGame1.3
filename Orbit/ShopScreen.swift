@@ -33,6 +33,8 @@ class ShopScreen: SKScene {
     var allTheLevels = [SKSpriteNode()]
     var allTheLevelsLabs = [SKLabelNode()]
     var whatToBuy = Int()
+    var shipsUnlocked = [Int()]
+    var selector = SKSpriteNode()
     
     
     var boxIsReadyToOpen = false
@@ -57,29 +59,39 @@ class ShopScreen: SKScene {
     func createAllLevels(){
         for j in 1...4{
             for i in 1...3{
-                if levelNum <= levelsUnlocked{
-                    let levelBtn = SKSpriteNode(imageNamed: levelColors[i - 1])
-                    levelBtn.position = CGPoint(x: cPosX, y: cPosY)
-                    levelBtn.name = "\(levelNum)"
-                    levelBtn.setScale(0)
-                    allTheLevels.append(levelBtn)
-                    
-                    //print(levelBtn.name)
-                    self.addChild(levelBtn)
-                } else {
-                    let levelBtnLocked = SKSpriteNode(imageNamed: "Group 555")
-                    levelBtnLocked.position = CGPoint(x: cPosX, y: cPosY)
-                    levelBtnLocked.name = "\(levelNum)"
-                    levelBtnLocked.setScale(0)
-                    allTheLevels.append(levelBtnLocked)
-                    self.addChild(levelBtnLocked)
-                }
+                
+                let levelBtnLocked = SKSpriteNode(imageNamed: "Group 555")
+                levelBtnLocked.position = CGPoint(x: cPosX, y: cPosY)
+                levelBtnLocked.name = "\(levelNum)"
+                levelBtnLocked.setScale(0)
+                allTheLevels.append(levelBtnLocked)
+                self.addChild(levelBtnLocked)
+                
                 cPosX = cPosX + 120
                 levelNum = levelNum + 1
             }
             cPosY = cPosY - 120
             cPosX = -120
         }
+    }
+    func moveSelector(theParent: SKSpriteNode){
+        selector = SKSpriteNode(imageNamed: "Group 519")
+        selector.position = CGPoint(x: 30, y: -30)
+        selector.setScale(1)
+        theParent.addChild(selector)
+    }
+    func showUnlocked(){
+        print("unlockFunc")
+        print(shipsUnlocked)
+        for i in 1...(shipsUnlocked.count - 1){
+            print("i:\(i)")
+            print("shipsUnlocked[i]:\(shipsUnlocked[i])")
+            if shipsUnlocked[i] == i{
+                allTheLevels[i].texture = SKTexture(imageNamed: levelColors[i - 1])
+                print(allTheLevels[i].texture)
+            }
+        }
+        
     }
     func buyAnimation(what: SKSpriteNode){
         shakeCamera(layer: what, duration: 0.5)
@@ -148,12 +160,6 @@ class ShopScreen: SKScene {
         buyBtn.removeFromParent()
         xOutBtn.removeFromParent()
     }
-    func scaleInPopUp(){
-        
-        
-        
-        
-    }
     func createCreateandStuff(){
         
         shipWon = SKSpriteNode(imageNamed: avalibleShips[Int(arc4random_uniform(UInt32(avalibleShips.count)))])
@@ -201,19 +207,40 @@ class ShopScreen: SKScene {
     
     
     override func didMove(to view: SKView) {
+        
+        
+        
+        print("the start")
+        
+        if let shipsUnlockedSave = UserDefaults.standard.array(forKey: "uShips") as? [Int]{
+            
+            print("helloooooooo")
+            shipsUnlocked = shipsUnlockedSave
+        }
+        if shipsUnlocked.count == 1{
+            shipsUnlocked.append(1)
+        }
+        
+        
+        
         createCreateandStuff()
         createAllLevels()
         for i in 1...allTheLevels.count {
             allTheLevels[i - 1].run(SKAction.scale(to: 1.3, duration: 0.32))
             
         }
+        showUnlocked()
+        print("-------------")
+        print(shipsUnlocked)
         
+        moveSelector(theParent: allTheLevels[1])
         
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch:UITouch = touches.first!
         let positionInScene = touch.location(in: self)
         let touchedNode = self.atPoint(positionInScene)
+        let sprite = touchedNode as! SKSpriteNode
         
         if let name = touchedNode.name{
             let currentGems = UserDefaults.standard.integer(forKey: "Gems")
@@ -248,12 +275,18 @@ class ShopScreen: SKScene {
             }
             for i in 1...allTheLevels.count {
                 if name == "\(i)" {
-                    if levelsUnlocked < 3 {
-                        whatToBuy = i
-                        boxPrice = 100 * i
-                        createPopUp()
-                        
+                    if String(describing: sprite.texture!) == "<SKTexture> 'Group 555' (245 x 245)"{
+                        if levelsUnlocked < 3 {
+                            whatToBuy = i
+                            boxPrice = 100 * i
+                            createPopUp()
+                            
+                        }
+                    }else{
+                        selector.removeFromParent()
+                        moveSelector(theParent: sprite)
                     }
+                    
                 }
             }
             if name == "buy" {
@@ -261,22 +294,27 @@ class ShopScreen: SKScene {
                     self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
                     UserDefaults.standard.set(currentGems - self.boxPrice, forKey: "Gems")
                     self.scrollDownGemsText()
+                    shipsUnlocked.append(whatToBuy)
+                    UserDefaults.standard.set(shipsUnlocked, forKey: "uShips")
+                    print(shipsUnlocked)
+                    buyAnimation(what: allTheLevels[whatToBuy])
+                    removePopUp()
+                    let delayInSeconds2 = 0.5
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds2) {
+                        self.allTheLevels[self.whatToBuy].texture = SKTexture(imageNamed: self.levelColors[self.whatToBuy - 1])
+                    }
                 }else{
                     self.run(SKAction.playSoundFileNamed("wood-5.wav", waitForCompletion: true))
                     print("Want to buy more gems?")
                 }
-                removePopUp()
-                buyAnimation(what: allTheLevels[whatToBuy])
-                let delayInSeconds2 = 0.5
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds2) {
-                    self.allTheLevels[self.whatToBuy].texture = SKTexture(imageNamed: self.levelColors[self.whatToBuy - 1])
-                }
+                
+                
             }
             if name == "close" {
                 removePopUp()
             }
             
-    
+            
         }
         if boxIsReadyToOpen{
             
