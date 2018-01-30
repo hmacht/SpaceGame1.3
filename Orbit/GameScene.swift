@@ -153,6 +153,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gemSprites = [SKSpriteNode]()
     var currentGemProgress = [0, 0, 0]
     
+    var selectedShip = "myShip"
+    
     // Functions
     
     
@@ -419,7 +421,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createShip() {
-        usersShip = SKSpriteNode(imageNamed: "myShip")
+        usersShip = SKSpriteNode(imageNamed: self.selectedShip)
         //usersShip.setScale(2)
         usersShip.size.width = 42
         usersShip.size.height = 38
@@ -765,9 +767,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(field)
         
         
+        
+        if let selected = UserDefaults.standard.string(forKey: "selectedShip") {
+            self.selectedShip = selected
+        } else {
+            self.selectedShip = "myShip"
+        }
+        
         playBtnIsClicked()
-        
-        
         
         fuelBar.strokeColor = UIColor.black
         fuelBar.lineWidth = 5
@@ -790,7 +797,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         timer1 = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: "update1", userInfo: nil, repeats: true)
         timer2 = Timer.scheduledTimer(timeInterval: 2.5, target: self, selector: "update2", userInfo: nil, repeats: true)
+        
+        if inLevel {
+            self.createBottomBoundary()
+        }
     }
+    
+    func createBottomBoundary() {
+        let line = SKShapeNode(rect: CGRect(x: -self.size.width/2, y: 0, width: self.size.width, height: 10))
+        line.fillColor = UIColor.black
+        line.strokeColor = UIColor.black
+        line.position = CGPoint(x: 0, y: -self.size.height/2 - 10)
+        self.addChild(line)
+    }
+    
     @objc func update2() {
         if gameOver == false{
             createdottedPath()
@@ -1105,7 +1125,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         usersShip.size.height = 43
-        usersShip.texture = SKTexture(imageNamed:"myShip2")
+        if self.selectedShip == "myShip" {
+            usersShip.texture = SKTexture(imageNamed:"myShip2")
+        }
         let touch:UITouch = touches.first!
         let positionInScene = touch.location(in: self)
         let touchedNode = self.atPoint(positionInScene)
@@ -1264,7 +1286,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         touchingScreen = false
-        usersShip.texture = SKTexture(imageNamed:"myShip")
+        if self.selectedShip == "myShip" {
+            usersShip.texture = SKTexture(imageNamed:"myShip")
+        }
         
         if let smoke = usersShip.childNode(withName: "Smoke") as? SKEmitterNode {
             smoke.isHidden = true
@@ -1329,6 +1353,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if usersShip.position.y < -self.size.height/2  && !gameOver {
                 dieShipAnimation()
                 endofGameNoDelay()
+                levelDeathAnimation()
             }
         }
         

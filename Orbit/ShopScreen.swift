@@ -36,6 +36,12 @@ class ShopScreen: SKScene {
     var shipsUnlocked = [Int()]
     var selector = SKSpriteNode()
     
+    var shipOptions = ["myShip", "Group 474", "Group 472", "Group 469", "Group 470", "Group 476"]
+    var unlockedShips = [String]()
+    var selectedShip = ""
+    var selectedSprite = SKNode()
+    var pendingShipBuy = ""
+    
     
     var boxIsReadyToOpen = false
     
@@ -57,38 +63,64 @@ class ShopScreen: SKScene {
         layer.run(actionSeq);
     }
     func createAllLevels(){
-        for j in 1...4{
-            for i in 1...3{
-                
-                let levelBtnLocked = SKSpriteNode(imageNamed: "Group 555")
-                levelBtnLocked.position = CGPoint(x: cPosX, y: cPosY)
-                levelBtnLocked.name = "\(levelNum)"
-                levelBtnLocked.setScale(0)
-                allTheLevels.append(levelBtnLocked)
-                self.addChild(levelBtnLocked)
-                
-                cPosX = cPosX + 120
-                levelNum = levelNum + 1
+        for j in 0...3 {
+            for i in 0...2 {
+                let index = 3 * j + i
+                if index < self.shipOptions.count {
+                    if self.unlockedShips.contains(self.shipOptions[index]) {
+                        let ship = SKSpriteNode(imageNamed: self.shipOptions[index])
+                        ship.position = CGPoint(x: cPosX, y: cPosY)
+                        ship.setScale(0.1)
+                        ship.name = self.shipOptions[index]
+                        self.addChild(ship)
+                        
+                        let circle = SKShapeNode(circleOfRadius: 50 / 1.75)
+                        circle.position = CGPoint(x: 0, y: 0)
+                        circle.strokeColor = .black
+                        circle.lineWidth = 8 / 1.75
+                        circle.name = "circle"
+                        ship.addChild(circle)
+                        
+                        if self.selectedShip == self.shipOptions[index] {
+                            circle.strokeColor = UIColor(red: 0, green: 222/255, blue: 0, alpha: 0.4)
+                            self.selectedSprite = ship
+                        }
+                        self.allTheLevels.append(ship)
+                    } else {
+                        let levelBtnLocked = SKSpriteNode(imageNamed: "Group 555")
+                        levelBtnLocked.position = CGPoint(x: cPosX, y: cPosY)
+                        levelBtnLocked.name = "\(self.shipOptions[index])/locked/\(index)"
+                        levelBtnLocked.setScale(0)
+                        allTheLevels.append(levelBtnLocked)
+                        self.addChild(levelBtnLocked)
+                    }
+                    cPosX = cPosX + 120
+                    levelNum = levelNum + 1
+                }
             }
             cPosY = cPosY - 120
             cPosX = -120
         }
     }
-    func moveSelector(theParent: SKSpriteNode){
+    func moveSelector(theParent: SKNode) {
+        self.selector.removeFromParent()
         selector = SKSpriteNode(imageNamed: "Group 519")
         selector.position = CGPoint(x: 30, y: -30)
+        selector.zPosition = 100
         selector.setScale(1)
         theParent.addChild(selector)
     }
     func showUnlocked(){
         print("unlockFunc")
         print(shipsUnlocked)
-        for i in 1...(shipsUnlocked.count - 1){
-            print("i:\(i)")
-            print("shipsUnlocked[i]:\(shipsUnlocked[i])")
-            if shipsUnlocked[i] == i{
-                allTheLevels[i].texture = SKTexture(imageNamed: levelColors[i - 1])
-                print(allTheLevels[i].texture)
+        if shipsUnlocked.count > 0 {
+            for i in 1...(shipsUnlocked.count - 1){
+                print("i:\(i)")
+                print("shipsUnlocked[i]:\(shipsUnlocked[i])")
+                if shipsUnlocked[i] == i{
+                    allTheLevels[i].texture = SKTexture(imageNamed: levelColors[i-1])
+                    print(allTheLevels[i].texture)
+                }
             }
         }
         
@@ -212,11 +244,28 @@ class ShopScreen: SKScene {
         
         print("the start")
         
-        if let shipsUnlockedSave = UserDefaults.standard.array(forKey: "uShips") as? [Int]{
+        if let shipsUnlockedSave = UserDefaults.standard.array(forKey: "uShips") as? [Int] {
             
-            print("helloooooooo")
+            //print("helloooooooo")
             shipsUnlocked = shipsUnlockedSave
         }
+        
+        if let unlocked = UserDefaults.standard.array(forKey: "unlockedShips") as? [String] {
+            self.unlockedShips = unlocked
+        } else {
+            self.unlockedShips = ["myShip"]
+            UserDefaults.standard.set(["myShip"], forKey: "unlockedShips")
+        }
+        
+        if let selected = UserDefaults.standard.string(forKey: "selectedShip") {
+            self.selectedShip = selected
+        } else {
+            UserDefaults.standard.set("myShip", forKey: "selectedShip")
+            self.selectedShip = "myShip"
+        }
+        
+        print(self.unlockedShips)
+        
         if shipsUnlocked.count == 1{
             shipsUnlocked.append(1)
         }
@@ -226,21 +275,26 @@ class ShopScreen: SKScene {
         createCreateandStuff()
         createAllLevels()
         for i in 1...allTheLevels.count {
-            allTheLevels[i - 1].run(SKAction.scale(to: 1.3, duration: 0.32))
+            if allTheLevels[i-1].xScale == 0 {
+                allTheLevels[i - 1].run(SKAction.scale(to: 1.3, duration: 0.32))
+            } else {
+                allTheLevels[i - 1].run(SKAction.scale(to: 1.75, duration: 0.32))
+            }
             
         }
-        showUnlocked()
-        print("-------------")
-        print(shipsUnlocked)
+        //showUnlocked()
+        //print("-------------")
+        //print(shipsUnlocked)
         
-        moveSelector(theParent: allTheLevels[1])
+        //moveSelector(theParent: allTheLevels[0])
         
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch:UITouch = touches.first!
         let positionInScene = touch.location(in: self)
         let touchedNode = self.atPoint(positionInScene)
-        let sprite = touchedNode as! SKSpriteNode
+        let sprite = touchedNode as! SKNode
+        
         
         if let name = touchedNode.name{
             let currentGems = UserDefaults.standard.integer(forKey: "Gems")
@@ -273,9 +327,11 @@ class ShopScreen: SKScene {
                     self.scene?.view?.presentScene(scene, transition: SKTransition.fade(with: UIColor.lightGray, duration: 0.2))
                 }
             }
+            /*
             for i in 1...allTheLevels.count {
                 if name == "\(i)" {
-                    if String(describing: sprite.texture!) == "<SKTexture> 'Group 555' (245 x 245)"{
+                    //if String(describing: sprite.texture!) == "<SKTexture> 'Group 555' (245 x 245)"{
+                    if true {
                         if levelsUnlocked < 3 {
                             whatToBuy = i
                             boxPrice = 100 * i
@@ -288,20 +344,70 @@ class ShopScreen: SKScene {
                     }
                     
                 }
+            }*/
+            if name.contains("locked") {
+                boxPrice = 100 * Int(name.components(separatedBy: "/")[2])!
+                self.pendingShipBuy = name.components(separatedBy: "/")[0]
+                self.whatToBuy = Int(name.components(separatedBy: "/")[2])!
+                createPopUp()
+            } else {
+                if let shape = sprite.childNode(withName: "circle") as? SKShapeNode {
+                    shape.strokeColor = UIColor(red: 0, green: 222/255, blue: 0, alpha: 0.4)
+                    if let c = self.selectedSprite.childNode(withName: "circle") as? SKShapeNode {
+                        c.strokeColor = UIColor.black
+                    }
+                    self.selectedSprite = sprite
+                    self.selectedShip = sprite.name!
+                    UserDefaults.standard.set(sprite.name!, forKey: "selectedShip")
+                } else {
+                    if let n = sprite.name {
+                        if n == "circle" {
+                            let s = sprite as! SKShapeNode
+                            s.strokeColor = UIColor(red: 0, green: 222/255, blue: 0, alpha: 0.4)
+                            if let c = self.selectedSprite.childNode(withName: "circle") as? SKShapeNode {
+                                c.strokeColor = UIColor.black
+                            }
+                            self.selectedSprite = s.parent!
+                            self.selectedShip = (s.parent?.name)!
+                            UserDefaults.standard.set(self.selectedShip, forKey: "selectedShip")
+                        }
+                    }
+                }
+                
             }
+            
+            
             if name == "buy" {
                 if currentGems >= self.boxPrice {
                     self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
                     UserDefaults.standard.set(currentGems - self.boxPrice, forKey: "Gems")
                     self.scrollDownGemsText()
-                    shipsUnlocked.append(whatToBuy)
-                    UserDefaults.standard.set(shipsUnlocked, forKey: "uShips")
+                    //shipsUnlocked.append(whatToBuy)
+                    self.unlockedShips.append(self.pendingShipBuy)
+                    //UserDefaults.standard.set(shipsUnlocked, forKey: "uShips")
+                    UserDefaults.standard.set(self.unlockedShips, forKey: "unlockedShips")
                     print(shipsUnlocked)
-                    buyAnimation(what: allTheLevels[whatToBuy])
+                    buyAnimation(what: allTheLevels[whatToBuy + 1])
                     removePopUp()
                     let delayInSeconds2 = 0.5
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds2) {
-                        self.allTheLevels[self.whatToBuy].texture = SKTexture(imageNamed: self.levelColors[self.whatToBuy - 1])
+                        
+                        let ship = SKSpriteNode(imageNamed: self.shipOptions[self.whatToBuy])
+                        ship.position = CGPoint(x: self.allTheLevels[self.whatToBuy + 1].position.x, y: self.allTheLevels[self.whatToBuy + 1].position.y)
+                        ship.setScale(1.75)
+                        ship.name = self.shipOptions[self.whatToBuy]
+                        self.addChild(ship)
+                        
+                        let circle = SKShapeNode(circleOfRadius: 50 / 1.75)
+                        circle.position = CGPoint(x: 0, y: 0)
+                        circle.strokeColor = .black
+                        circle.lineWidth = 8 / 1.75
+                        circle.name = "circle"
+                        ship.addChild(circle)
+                        
+                        let n = self.allTheLevels[self.whatToBuy + 1]
+                        //self.allTheLevels[self.whatToBuy] = ship
+                        n.removeFromParent()
                     }
                 }else{
                     self.run(SKAction.playSoundFileNamed("wood-5.wav", waitForCompletion: true))
@@ -311,6 +417,7 @@ class ShopScreen: SKScene {
                 
             }
             if name == "close" {
+                self.run(SKAction.playSoundFileNamed("click2.mp3", waitForCompletion: true))
                 removePopUp()
             }
             
@@ -345,3 +452,4 @@ class ShopScreen: SKScene {
         })]), count: self.boxPrice))
     }
 }
+

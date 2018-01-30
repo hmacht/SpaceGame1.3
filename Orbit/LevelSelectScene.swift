@@ -178,6 +178,11 @@ class LevelSelectScene: SKScene {
         createTheHomeScreen()
         timer3 = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: "update3", userInfo: nil, repeats: true)
         
+        if let _ = UserDefaults.standard.string(forKey: "selectedShip") {
+            
+        } else {
+            UserDefaults.standard.set("myShip", forKey: "selectedShip")
+        }
     }
     
     @objc func update3() {
