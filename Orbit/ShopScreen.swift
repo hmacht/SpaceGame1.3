@@ -281,11 +281,6 @@ class ShopScreen: SKScene {
                 self.allTheLevels[i - 1].run(SKAction.scale(to: 1.75, duration: 0.32))
             }
         }
-        //showUnlocked()
-        //print("-------------")
-        //print(shipsUnlocked)
-        
-        //moveSelector(theParent: allTheLevels[0])
         
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
