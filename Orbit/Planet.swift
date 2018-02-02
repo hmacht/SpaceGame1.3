@@ -35,6 +35,16 @@ class Planet: SKSpriteNode {
         let circularMove = SKAction.follow(path, asOffset: false, orientToPath: false, duration: speed)
         self.run(SKAction.repeatForever(circularMove))
     }
+    
+    func addOrbitingPlanet(radius: CGFloat, planetImage: String, speed: TimeInterval) -> Planet {
+        let planet = Planet(imageName: planetImage)
+        planet.setScale(1)
+        self.addChild(planet)
+        let orbit = UIBezierPath(center: CGPoint.zero, radius: radius)
+        planet.orbit(path: orbit.cgPath, speed: speed)
+        
+        return planet
+    }
 }
 
 extension UIBezierPath {

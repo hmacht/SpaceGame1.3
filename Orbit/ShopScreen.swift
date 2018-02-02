@@ -275,18 +275,12 @@ class ShopScreen: SKScene {
         createCreateandStuff()
         createAllLevels()
         for i in 1...allTheLevels.count {
-            if allTheLevels[i-1].xScale == 0 {
-                allTheLevels[i - 1].run(SKAction.scale(to: 1.3, duration: 0.32))
+            if self.allTheLevels[i-1].xScale == 0 {
+                self.allTheLevels[i - 1].run(SKAction.scale(to: 1.3, duration: 0.32))
             } else {
-                allTheLevels[i - 1].run(SKAction.scale(to: 1.75, duration: 0.32))
+                self.allTheLevels[i - 1].run(SKAction.scale(to: 1.75, duration: 0.32))
             }
-            
         }
-        //showUnlocked()
-        //print("-------------")
-        //print(shipsUnlocked)
-        
-        //moveSelector(theParent: allTheLevels[0])
         
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -362,14 +356,16 @@ class ShopScreen: SKScene {
                 } else {
                     if let n = sprite.name {
                         if n == "circle" {
-                            let s = sprite as! SKShapeNode
-                            s.strokeColor = UIColor(red: 0, green: 222/255, blue: 0, alpha: 0.4)
-                            if let c = self.selectedSprite.childNode(withName: "circle") as? SKShapeNode {
-                                c.strokeColor = UIColor.black
+                            if self.selectedShip != sprite.parent?.name {
+                                let s = sprite as! SKShapeNode
+                                s.strokeColor = UIColor(red: 0, green: 222/255, blue: 0, alpha: 0.4)
+                                if let c = self.selectedSprite.childNode(withName: "circle") as? SKShapeNode {
+                                    c.strokeColor = UIColor.black
+                                }
+                                self.selectedSprite = s.parent!
+                                self.selectedShip = (s.parent?.name)!
+                                UserDefaults.standard.set(self.selectedShip, forKey: "selectedShip")
                             }
-                            self.selectedSprite = s.parent!
-                            self.selectedShip = (s.parent?.name)!
-                            UserDefaults.standard.set(self.selectedShip, forKey: "selectedShip")
                         }
                     }
                 }
