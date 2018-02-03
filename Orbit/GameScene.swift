@@ -107,6 +107,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let alertAsteroid = SKSpriteNode(imageNamed: "alert")
     var startGemsForAsteroid = 0
     var asteroidExplosion = SKEmitterNode(fileNamed: "RockExplosion")!
+    var numAsteroidsToSpawn = 1
     
     
     // For fuel
@@ -963,6 +964,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if !inLevel {
                 score = score + 1
+                self.numAsteroidsToSpawn = min(score / 3 + 1, 6)
                 gemScore.text = "\(score)"
                 theGem.physicsBody = nil
                 theGem.run(SKAction.scale(to: 3, duration: 0.5))
@@ -1368,7 +1370,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if gameOver == false && !inLevel {
             if timeSinceLastSpawn > self.timeInBetweenSpawns {
-                self.createAsteroid()
+                for i in 1...self.numAsteroidsToSpawn {
+                    self.createAsteroid()
+                }
                 self.timeSinceLastSpawn = 0
             }
         }
