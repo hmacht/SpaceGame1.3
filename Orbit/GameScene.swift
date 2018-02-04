@@ -1335,7 +1335,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if self.selectedShip == "myShip" {
-            usersShip.size.height = self.shipTexture.size().height * 2 - 5
+            usersShip.size.height = self.shipTexture.size().height * 2
         }
         self.removeAction(forKey: "rocketSound")
     }
@@ -1358,7 +1358,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if self.selectedShip == "myShip" {
-            usersShip.size.height = self.shipTexture.size().height * 2 - 5
+            usersShip.size.height = self.shipTexture.size().height * 2
         }
         self.removeAction(forKey: "rocketSound")
     }
