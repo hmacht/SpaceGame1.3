@@ -779,7 +779,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         BG.position = CGPoint(x: 0, y: 0)
         BG.size.width = self.size.width
         BG.size.height = self.size.height
-        BG.zPosition = 0
+        BG.zPosition = -10
+        if !inLevel == false {
+            BG.size.height = 200000
+        
+        }
         self.addChild(BG)
         
         

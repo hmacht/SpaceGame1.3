@@ -68,6 +68,8 @@
 		D192237720142B64006E2F03 /* shop.sks in Resources */ = {isa = PBXBuildFile; fileRef = D192237620142B64006E2F03 /* shop.sks */; };
 		D192237920142BE1006E2F03 /* ShopScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D192237820142BE1006E2F03 /* ShopScreen.swift */; };
 		D1959D3020263372006510E8 /* shipDeath.sks in Resources */ = {isa = PBXBuildFile; fileRef = D1959D2F20263371006510E8 /* shipDeath.sks */; };
+		D1959D3220277FE4006510E8 /* Level13Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1959D3120277FE4006510E8 /* Level13Scene.swift */; };
+		D1959D3420278005006510E8 /* Level13.sks in Resources */ = {isa = PBXBuildFile; fileRef = D1959D3320278005006510E8 /* Level13.sks */; };
 		D19B63581FE6D9D400577B0B /* RocketThrust.wav in Resources */ = {isa = PBXBuildFile; fileRef = D19B63561FE6D8E600577B0B /* RocketThrust.wav */; };
 		D1A8DF02201550A8004AA7D3 /* Blue.sks in Resources */ = {isa = PBXBuildFile; fileRef = D1A8DF01201550A8004AA7D3 /* Blue.sks */; };
 		D1BA75811FE32A8800AA6A64 /* Smoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = D1BA75801FE32A8800AA6A64 /* Smoke.sks */; };
@@ -142,6 +144,8 @@
 		D192237620142B64006E2F03 /* shop.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = shop.sks; sourceTree = "<group>"; };
 		D192237820142BE1006E2F03 /* ShopScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopScreen.swift; sourceTree = "<group>"; };
 		D1959D2F20263371006510E8 /* shipDeath.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = shipDeath.sks; sourceTree = "<group>"; };
+		D1959D3120277FE4006510E8 /* Level13Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level13Scene.swift; sourceTree = "<group>"; };
+		D1959D3320278005006510E8 /* Level13.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level13.sks; sourceTree = "<group>"; };
 		D19B63561FE6D8E600577B0B /* RocketThrust.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RocketThrust.wav; sourceTree = "<group>"; };
 		D1A8DF01201550A8004AA7D3 /* Blue.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Blue.sks; sourceTree = "<group>"; };
 		D1BA75801FE32A8800AA6A64 /* Smoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Smoke.sks; sourceTree = "<group>"; };
@@ -266,6 +270,8 @@
 				2174059E2023DF1300C3BECB /* Level11.sks */,
 				218EAE6D2026AC1B000ED458 /* Level12Scene.swift */,
 				218EAE712026AE67000ED458 /* Level12.sks */,
+				D1959D3120277FE4006510E8 /* Level13Scene.swift */,
+				D1959D3320278005006510E8 /* Level13.sks */,
 			);
 			path = Orbit;
 			sourceTree = "<group>";
@@ -331,6 +337,7 @@
 			files = (
 				211A65532012B917007F7786 /* click1.mp3 in Resources */,
 				2167BD0120141BC10092544A /* Level6.sks in Resources */,
+				D1959D3420278005006510E8 /* Level13.sks in Resources */,
 				D19B63581FE6D9D400577B0B /* RocketThrust.wav in Resources */,
 				211A65562012BCAE007F7786 /* wood-5.wav in Resources */,
 				211A65582012BF16007F7786 /* DeathSound.wav in Resources */,
@@ -402,6 +409,7 @@
 				21080E6E200CFD2100C89907 /* AsteroidSpawner.swift in Sources */,
 				21080E76200D1B0100C89907 /* Level1Scene.swift in Sources */,
 				2160E1E020140C8800967E16 /* Level5Scene.swift in Sources */,
+				D1959D3220277FE4006510E8 /* Level13Scene.swift in Sources */,
 				218EAE6E2026AC1B000ED458 /* Level12Scene.swift in Sources */,
 				D1EAB1611FDB620300CDC186 /* GameViewController.swift in Sources */,
 				21222210200C0D2400587A09 /* Planet.swift in Sources */,
