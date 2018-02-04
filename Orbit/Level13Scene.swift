@@ -31,12 +31,16 @@ class Level13Scene: GameScene {
         let sun2 = Sun(imageName: "Ellipse 8950")
         sun2.position = CGPoint(x: 0, y: sun.position.y + 1000)
         self.addChild(sun2)
-        
+        // 2
         let p = sun2.addOrbitingPlanet(radius: 400, planetImage: PlanetNames.greenPlanet, speed: 2)
+        // 0.8
         let p2 = p.addOrbitingPlanet(radius: 100, planetImage: "planet", speed: 0.8)
         p2.setScale(0.8)
-        let p3 = p2.addOrbitingPlanet(radius: 80, planetImage: PlanetNames.redPlanet, speed: 0.4)
-        let p4 = p3.addOrbitingPlanet(radius: 50, planetImage: PlanetNames.yellowPlanet, speed: 0.3)
+        // 0.4
+        let p3 = p2.addOrbitingPlanet(radius: 50, planetImage: PlanetNames.redPlanet, speed: 0.4)
+        p3.setScale(0.7)
+        // 0.3
+        let p4 = p3.addOrbitingPlanet(radius: 40, planetImage: PlanetNames.yellowPlanet, speed: 0.3)
         p4.setScale(0.4)
         
         
@@ -51,11 +55,10 @@ class Level13Scene: GameScene {
         sun4.position = CGPoint(x: 350, y: sun2.position.y + 900)
         self.addChild(sun4)
         
-        sun4.addOrbitingPlanet(radius: 250, planetImage: PlanetNames.redPlanet, speed: 5.5)
+        sun4.addOrbitingPlanet(radius: 250, planetImage: PlanetNames.redPlanet, speed: 4.5)
         
-        
-        
-        
+        self.gemPos = [CGPoint(x: sun2.position.x, y: sun2.position.y + 115), CGPoint(x: sun4.position.x - 115, y: sun4.position.y), CGPoint(x: sun3.position.x, y: sun3.position.y + 115)]
+        self.createGemsForLevel(scene: self)
         
         let finish = FinishLine(color: UIColor(red: 0, green: 222/255, blue: 0, alpha: 0.4), size: CGSize(width: self.size.width, height: 100))
         finish.position = CGPoint(x: 0, y: sun4.position.y + 300)
