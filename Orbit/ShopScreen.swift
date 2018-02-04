@@ -443,7 +443,8 @@ class ShopScreen: SKScene {
     }
     
     func scrollDownGemsText() {
-        self.run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 0.015), SKAction.run({
+        
+        self.run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 1.0 / Double(self.boxPrice)), SKAction.run({
             self.gemsText.text = String(Int(self.gemsText.text!)! - 1)
         })]), count: self.boxPrice))
     }
