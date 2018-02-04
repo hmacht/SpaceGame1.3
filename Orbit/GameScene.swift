@@ -107,6 +107,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let alertAsteroid = SKSpriteNode(imageNamed: "alert")
     var startGemsForAsteroid = 0
     var asteroidExplosion = SKEmitterNode(fileNamed: "RockExplosion")!
+    var numAsteroidsToSpawn = 1
     
     
     // For fuel
@@ -154,7 +155,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var currentGemProgress = [0, 0, 0]
     
     var selectedShip = "myShip"
-    
+    var shipTexture = SKTexture()
     // Functions
     
     
@@ -422,9 +423,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func createShip() {
         usersShip = SKSpriteNode(imageNamed: self.selectedShip)
-        //usersShip.setScale(2)
-        usersShip.size.width = 42
-        usersShip.size.height = 38
+        self.shipTexture = SKTexture(imageNamed: self.selectedShip)
+        usersShip.size.width = self.shipTexture.size().width
+        usersShip.size.height = self.shipTexture.size().height
+        if self.selectedShip == "Group 470" {
+            usersShip.setScale(1.3)
+        } else {
+            usersShip.setScale(2)
+        }
         usersShip.position = CGPoint(x: 0, y: 100)
         usersShip.zPosition = 25
         usersShip.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed:"myShip"), size: usersShip.size)
@@ -544,17 +550,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.updateGems()
             pauseBtn.removeFromParent()
             gameOver = true
-            pauseBtn.removeFromParent()
             self.timer1.invalidate()
             self.sun.run(SKAction.scale(to: 0, duration: 1))
             if !inLevel {
                 self.numberofYears.text = "+\(score) GEMS"
             }
+            /*
             restartBtn.alpha = 0.5
             self.addChild(restartBtn)
             if let c = self.cameraNode {
                 restartBtn.position = CGPoint(x: 0, y: c.position.y - 200)
-            }
+            }*/
             theGem.removeFromParent()
             self.numberofYears.run(SKAction.fadeAlpha(to: 1, duration: 0.2))
             let delayInSeconds = 1.0
@@ -972,6 +978,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if !inLevel {
                 score = score + 1
+                self.numAsteroidsToSpawn = min(score / 3 + 1, 6)
                 gemScore.text = "\(score)"
                 theGem.physicsBody = nil
                 theGem.run(SKAction.scale(to: 3, duration: 0.5))
@@ -1051,11 +1058,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 
                 for i in 0...self.gems.count - 1 {
                     if self.gems[i] == 1 {
+                        if self.currentGemProgress[i] != 1 {
+                            self.score += 1
+                        }
                         self.currentGemProgress[i] = 1
                     }
                 }
                 UserDefaults.standard.set(self.currentGemProgress, forKey: "Level\(self.level)")
                 
+                self.updateGems()
+                self.score = 0
                 restartBtn.removeFromParent()
                 dieShipAnimation(win: true)
                 endofGameNoDelay()
@@ -1132,8 +1144,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         
-        
-        usersShip.size.height = 43
+        if self.selectedShip == "myShip" {
+            usersShip.size.height = self.shipTexture.size().height * 2 + 5
+        }
         if self.selectedShip == "myShip" {
             usersShip.texture = SKTexture(imageNamed:"myShip2")
         }
@@ -1170,6 +1183,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.updateGems()
                 scene?.speed = 1
                 scene?.physicsWorld.speed = 1
+                self.gameManager?.returnToMenu()
+            }
+            if name == "endquit" {
+                self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                self.updateGems()
                 self.gameManager?.returnToMenu()
             }
             if name == "restart2"{
@@ -1312,7 +1330,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             smoke.numParticlesToEmit = 1
         }
         
-        usersShip.size.height = 38
+        if self.selectedShip == "myShip" {
+            usersShip.size.height = self.shipTexture.size().height * 2 - 5
+        }
         self.removeAction(forKey: "rocketSound")
     }
     
@@ -1333,7 +1353,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             smoke.numParticlesToEmit = 1
         }
         
-        usersShip.size.height = 38
+        if self.selectedShip == "myShip" {
+            usersShip.size.height = self.shipTexture.size().height * 2 - 5
+        }
         self.removeAction(forKey: "rocketSound")
     }
     
@@ -1377,7 +1399,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if gameOver == false && !inLevel {
             if timeSinceLastSpawn > self.timeInBetweenSpawns {
-                self.createAsteroid()
+                for i in 1...self.numAsteroidsToSpawn {
+                    self.createAsteroid()
+                }
                 self.timeSinceLastSpawn = 0
             }
         }

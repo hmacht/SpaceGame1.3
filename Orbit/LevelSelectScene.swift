@@ -183,6 +183,7 @@ class LevelSelectScene: SKScene {
         } else {
             UserDefaults.standard.set("myShip", forKey: "selectedShip")
         }
+        
     }
     
     @objc func update3() {
