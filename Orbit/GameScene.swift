@@ -121,7 +121,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var circle = UIBezierPath()
     var circularMove = SKAction()
     var restartBtn = SKSpriteNode()
-    var whatAsteroid = ["Group 78","Group 80","Group 81"]
+    var whatAsteroid = ["Path -1","Path -2","Path 1004"]
     var timer1 = Timer()
     var timer2 = Timer()
     var TopoBtm = Int(arc4random_uniform(2))
@@ -139,7 +139,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var radianFactor = CGFloat(0.0174532925)
     var newRotationRadians = CGFloat()
     var onlyOnce = 1
-    var differentColorGems = ["Group 216","Group 304","Group 305"]
+    var differentColorGems = ["Group 653","Group 660","Group 661","Group 662"]
     var randomGemColor = arc4random_uniform(3)
     var displayEndBoxOnce = 0
     var died = true
@@ -210,11 +210,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     func createDiedScreen(yPos2: CGFloat){
-        endBG = SKSpriteNode(imageNamed: "Rectangle 1806")
+        //endBG = SKSpriteNode(imageNamed: "Rectangle 1806")
         endBG.setScale(2)
         endBG.position = CGPoint(x: 0, y: yPos2)
         endBG.zPosition = 850
-        endBG.alpha = 0.9
+        endBG.alpha = 1.0
         self.addChild(endBG)
         
         endRestart = SKSpriteNode(imageNamed: "Group 4350")
@@ -283,7 +283,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createRing() {
-        ringExplosion = SKSpriteNode(imageNamed: "ring")
+        ringExplosion = SKSpriteNode(imageNamed: "Ellipse 8965")
         ringExplosion.setScale(2)
         ringExplosion.position = CGPoint(x: 0, y: 0)
         ringExplosion.zPosition = 300
@@ -293,10 +293,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gemScore = SKLabelNode(fontNamed: "Bebas Neue")
         gemScore.text = "\(score)"
         gemScore.fontSize = 80
-        gemScore.fontColor = SKColor.black
+        gemScore.fontColor = SKColor.white
         gemScore.alpha = 1
         gemScore.zPosition = 130
-        gemScore.position = CGPoint(x: 220, y: 590)
+        gemScore.position = CGPoint(x: 0, y: -25)
         self.addChild(gemScore)
     }
         
@@ -389,7 +389,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         planetPath.physicsBody?.contactTestBitMask = physicsCatagory.planetPath | physicsCatagory.asteroid
         planetPath.physicsBody?.affectedByGravity = false
         planetPath.physicsBody?.isDynamic = false
-        self.addChild(planetPath)
+        //self.addChild(planetPath)
     }
     
     func createRestartbtn() {
@@ -415,7 +415,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func createSun() {
         
-        self.sun = Sun(imageName: "Group 287")
+        self.sun = Sun(imageName: "Ellipse 8950")
         sun.position = CGPoint(x: 0, y: 0)
         self.addChild(sun)
     }
@@ -468,10 +468,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func explode(){
-        explotion = SKEmitterNode(fileNamed: "Explotion")!
+        explotion = SKEmitterNode(fileNamed: "shipDeath")!
         explotion.name = "explotion"
-        explotion.zPosition = 20
-        explotion.position = CGPoint(x: 0, y: 400)
+        explotion.zPosition = 300
+        explotion.position = CGPoint(x: usersShip.position.x, y: usersShip.position.y)
+        self.addChild(explotion)
+        print("EXPLODED")
     }
     
     func explode1(){
@@ -494,7 +496,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createPlanet() {
-        let planet = Planet(imageName: "planet")
+        let planet = Planet(imageName: "Ellipse 8951")
         planet.position = CGPoint(x: 0, y: 0)
         
         self.addChild(planet)
@@ -629,7 +631,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             createGem()
             creategemScore()
             explode1()
-            explode()
+            
         }
         //moonHelper.run(SKAction.repeatForever(SKAction.rotate(byAngle: 10, duration: 5)))
         //self.addChild(self.alertAsteroid)
@@ -766,6 +768,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         field.strength = 0.6
         self.addChild(field)
         
+        let BG = SKSpriteNode(imageNamed: "BGGame")
+        BG.setScale(2)
+        BG.position = CGPoint(x: 0, y: 0)
+        BG.size.width = self.size.width
+        BG.size.height = self.size.height
+        BG.zPosition = 0
+        self.addChild(BG)
         
         
         if let selected = UserDefaults.standard.string(forKey: "selectedShip") {
@@ -845,7 +854,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     func dieShipAnimation(win: Bool = false) {
-        
+        explode()
         usersShip.removeFromParent()
         AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
         if win {
@@ -866,10 +875,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             hitAlready = 0
         }
         ringExplosion.position = CGPoint(x: usersShip.position.x, y: usersShip.position.y)
-        ringExplosion.run(SKAction.scale(to: 3, duration: 1))
-        let delayInSeconds4 = 0.5
+        ringExplosion.run(SKAction.scale(to: 3, duration: 0.5))
+        let delayInSeconds4 = 0.3
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds4) {
-            self.ringExplosion.run(SKAction.fadeAlpha(to: 0, duration: 0.5), completion: {
+            self.ringExplosion.run(SKAction.fadeAlpha(to: 0, duration: 0.2), completion: {
                 self.ringExplosion.removeFromParent()
             })
         }

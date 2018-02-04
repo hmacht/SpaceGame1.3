@@ -65,6 +65,7 @@
 		D18A1AC92011912D0052CF14 /* newTrail2.sks in Resources */ = {isa = PBXBuildFile; fileRef = D18A1AC52011912C0052CF14 /* newTrail2.sks */; };
 		D192237720142B64006E2F03 /* shop.sks in Resources */ = {isa = PBXBuildFile; fileRef = D192237620142B64006E2F03 /* shop.sks */; };
 		D192237920142BE1006E2F03 /* ShopScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D192237820142BE1006E2F03 /* ShopScreen.swift */; };
+		D1959D3020263372006510E8 /* shipDeath.sks in Resources */ = {isa = PBXBuildFile; fileRef = D1959D2F20263371006510E8 /* shipDeath.sks */; };
 		D19B63581FE6D9D400577B0B /* RocketThrust.wav in Resources */ = {isa = PBXBuildFile; fileRef = D19B63561FE6D8E600577B0B /* RocketThrust.wav */; };
 		D1A8DF02201550A8004AA7D3 /* Blue.sks in Resources */ = {isa = PBXBuildFile; fileRef = D1A8DF01201550A8004AA7D3 /* Blue.sks */; };
 		D1BA75811FE32A8800AA6A64 /* Smoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = D1BA75801FE32A8800AA6A64 /* Smoke.sks */; };
@@ -136,6 +137,7 @@
 		D18A1AC52011912C0052CF14 /* newTrail2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = newTrail2.sks; sourceTree = "<group>"; };
 		D192237620142B64006E2F03 /* shop.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = shop.sks; sourceTree = "<group>"; };
 		D192237820142BE1006E2F03 /* ShopScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopScreen.swift; sourceTree = "<group>"; };
+		D1959D2F20263371006510E8 /* shipDeath.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = shipDeath.sks; sourceTree = "<group>"; };
 		D19B63561FE6D8E600577B0B /* RocketThrust.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = RocketThrust.wav; sourceTree = "<group>"; };
 		D1A8DF01201550A8004AA7D3 /* Blue.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Blue.sks; sourceTree = "<group>"; };
 		D1BA75801FE32A8800AA6A64 /* Smoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Smoke.sks; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				D12171701FE770880056DDE3 /* HomeVC.swift */,
 				D121717E1FE84ADD0056DDE3 /* MyParticle.sks */,
 				D121717F1FE84ADD0056DDE3 /* Assets.xcassets */,
+				D1959D2F20263371006510E8 /* shipDeath.sks */,
 				21C8E0CA1FEB13AB00B3CC6C /* explotionWhite.sks */,
 				21BB3B681FEB524D00967D80 /* AsteroidExplosion.sks */,
 				210D61D71FEC7A4C00506C67 /* RockExplosion.sks */,
@@ -354,6 +357,7 @@
 				21C8E0CB1FEB13AB00B3CC6C /* explotionWhite.sks in Resources */,
 				D1A8DF02201550A8004AA7D3 /* Blue.sks in Resources */,
 				D1EAB1691FDB620300CDC186 /* LaunchScreen.storyboard in Resources */,
+				D1959D3020263372006510E8 /* shipDeath.sks in Resources */,
 				2174059B2023DBA800C3BECB /* Level10.sks in Resources */,
 				D18A1AC92011912D0052CF14 /* newTrail2.sks in Resources */,
 				D12171811FE84ADD0056DDE3 /* Assets.xcassets in Resources */,
