@@ -479,7 +479,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         explotion.zPosition = 300
         explotion.position = CGPoint(x: usersShip.position.x, y: usersShip.position.y)
         self.addChild(explotion)
-        print("EXPLODED")
     }
     
     func explode1(){
@@ -1307,7 +1306,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesMoved(touches, with: event)
         countTouch.append((event?.allTouches?.count)!)
-        //print(countTouch[countTouch.count - 1])
+        //print(countTouch[countTouch.count - 1])let sun5 = Sun(imageName: "Group 419")
+        
         if countTouch[countTouch.count - 1] == 2{
             launch = true
         }else{
