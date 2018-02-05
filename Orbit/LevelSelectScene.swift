@@ -27,7 +27,7 @@ class LevelSelectScene: SKScene {
     var timer3 = Timer()
     
     
-    
+    var hasTaped = false
     var clickedPlay = false
     
     
@@ -245,19 +245,66 @@ class LevelSelectScene: SKScene {
         gemsImage.setScale(2)
         gemsText.addChild(gemsImage)
         
-        
         shipShop = SKSpriteNode(imageNamed: "Group 679")
         shipShop.setScale(2)
         shipShop.position = CGPoint(x: self.size.width/2 - 130, y: self.size.height/2 - 75)
         shipShop.zPosition = 300
         shipShop.setScale(1.8)
+        shipShop.name = "shop"
         self.addChild(shipShop)
+        
+    }
+    
+    var endless = SKSpriteNode()
+    var divider = SKSpriteNode()
+    var levels = SKSpriteNode()
+    
+    func creatOptions(){
+        
+        
+        endless = SKSpriteNode(imageNamed: "ENDLESS-1")
+        endless.setScale(2)
+        endless.position = CGPoint(x: -100, y: -300)
+        endless.zPosition = 300
+        endless.setScale(2)
+        endless.name = "endlessMode"
+        endless.alpha = 0
+        self.addChild(endless)
+        
+        divider = SKSpriteNode(imageNamed: "Rectangle 1953")
+        divider.setScale(2)
+        divider.position = CGPoint(x: 0, y: -300)
+        divider.zPosition = 300
+        divider.size.height = 0
+        divider.setScale(2)
+        divider.name = "endlessMode"
+        self.addChild(divider)
+        
+        levels = SKSpriteNode(imageNamed: "LEVELS")
+        levels.setScale(2)
+        levels.position = CGPoint(x: 100, y: -300)
+        levels.zPosition = 300
+        levels.setScale(2)
+        levels.name = "endlessMode"
+        levels.alpha = 0
+        self.addChild(levels)
+        
+        
+        
+        divider.run(SKAction.resize(toHeight: 80, duration: 1))
+        endless.run(SKAction.fadeAlpha(to: 1, duration: 1))
+        levels.run(SKAction.fadeAlpha(to: 1, duration: 1))
         
         
         
     }
     
     override func didMove(to view: SKView) {
+        hasTaped = false
+        //levels.removeFromParent()
+        //endless.removeFromParent()
+        //divider.removeFromParent()
+        self.addChild(tapToStart)
         let musicAction = SKAction.repeatForever(SKAction.playSoundFileNamed("bgMusic3.mp3", waitForCompletion: true))
         if self.playBgMusic {
             self.run(musicAction, withKey: "bgMusic")
@@ -288,6 +335,30 @@ class LevelSelectScene: SKScene {
         let touch:UITouch = touches.first!
         let positionInScene = touch.location(in: self)
         let touchedNode = self.atPoint(positionInScene)
+        
+        if hasTaped == false{
+            tapToStart.removeFromParent()
+            creatOptions()
+            let delayInSeconds = 0.1
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
+                self.hasTaped = true
+            }
+            
+        }
+        if hasTaped{
+            if positionInScene.y > -400 && positionInScene.y < -200{
+                if positionInScene.x < 0{
+                    self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                    self.menuManager?.didPressEndless(level: 0)
+                }else{
+                    self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                    playBtn.run(SKAction.scale(to: 1.5, duration: 0.2))
+                    clickedPlay = true
+                }
+            }
+        }
+        
+        
         
         if let name = touchedNode.name{
             if name == "endless"{
