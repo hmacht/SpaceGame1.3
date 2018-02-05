@@ -170,12 +170,99 @@ class LevelSelectScene: SKScene {
         self.addChild(sun)
     }
     
+    
+    
+    var homeLogo = SKSpriteNode()
+    var about = SKSpriteNode()
+    var leaderboard = SKSpriteNode()
+    var settings = SKSpriteNode()
+    var tapToStart = SKSpriteNode()
+    var shipShop = SKSpriteNode()
+    var addGems = SKSpriteNode()
+   
+    
+    
+    
+    func createTheHomeScreen2(){
+        
+        let BG = SKSpriteNode(imageNamed: "BGGame")
+        BG.setScale(2)
+        BG.position = CGPoint(x: 0, y: 0)
+        BG.size.width = self.size.width
+        BG.size.height = self.size.height
+        BG.zPosition = -10
+        self.addChild(BG)
+        
+        homeLogo = SKSpriteNode(imageNamed: "Group 680")
+        homeLogo.setScale(2)
+        homeLogo.position = CGPoint(x: 0, y: 0)
+        homeLogo.zPosition = 300
+        self.addChild(homeLogo)
+        
+        createHelper()
+        planetHome = SKSpriteNode(imageNamed: "Ellipse 8969")
+        planetHome.setScale(2)
+        planetHome.zPosition = 500
+        planetHome.position = CGPoint(x: -230, y: 0)
+        moonHelper.addChild(planetHome)
+        
+        tapToStart = SKSpriteNode(imageNamed: "TAP TO START")
+        tapToStart.setScale(2)
+        tapToStart.position = CGPoint(x: 0, y: -300)
+        tapToStart.zPosition = 300
+        self.addChild(tapToStart)
+        
+        about = SKSpriteNode(imageNamed: "Group 654")
+        about.setScale(2)
+        about.position = CGPoint(x: -130, y: -450)
+        about.zPosition = 300
+        self.addChild(about)
+        
+        leaderboard = SKSpriteNode(imageNamed: "Group 655")
+        leaderboard.setScale(2)
+        leaderboard.position = CGPoint(x: 0, y: -450)
+        leaderboard.zPosition = 300
+        self.addChild(leaderboard)
+        
+        settings = SKSpriteNode(imageNamed: "Group 656")
+        settings.setScale(2)
+        settings.position = CGPoint(x: 130, y: -450)
+        settings.zPosition = 300
+        self.addChild(settings)
+        
+        
+        let nGems = String(UserDefaults.standard.integer(forKey: "Gems"))
+        gemsText = SKLabelNode(text: nGems)
+        gemsText.fontColor = .black
+        gemsText.fontName = "Bebas Neue"
+        gemsText.fontSize = 50
+        gemsText.verticalAlignmentMode = .center
+        gemsText.position = CGPoint(x: -self.size.width/2 + 230, y: self.size.height/2 - 75)
+        self.addChild(gemsText)
+        
+        let gemsImage = SKSpriteNode(imageNamed: "Group 677")
+        gemsImage.position = CGPoint(x: -130, y: 0)
+        gemsImage.setScale(2)
+        gemsText.addChild(gemsImage)
+        
+        
+        shipShop = SKSpriteNode(imageNamed: "Group 679")
+        shipShop.setScale(2)
+        shipShop.position = CGPoint(x: self.size.width/2 - 130, y: self.size.height/2 - 75)
+        shipShop.zPosition = 300
+        shipShop.setScale(1.8)
+        self.addChild(shipShop)
+        
+        
+        
+    }
+    
     override func didMove(to view: SKView) {
         let musicAction = SKAction.repeatForever(SKAction.playSoundFileNamed("bgMusic3.mp3", waitForCompletion: true))
         if self.playBgMusic {
             self.run(musicAction, withKey: "bgMusic")
         }
-        createTheHomeScreen()
+        createTheHomeScreen2()
         timer3 = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: "update3", userInfo: nil, repeats: true)
         
         if let _ = UserDefaults.standard.string(forKey: "selectedShip") {
@@ -193,7 +280,7 @@ class LevelSelectScene: SKScene {
             posX = CGFloat(ranPosx.nextInt())
             posY = CGFloat(ranPosy.nextInt())
             
-            createtwinkle()
+            //createtwinkle()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
