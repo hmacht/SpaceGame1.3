@@ -61,6 +61,8 @@
 		21F39C5D20095FC70008B32B /* gold.wav in Resources */ = {isa = PBXBuildFile; fileRef = 21F39C5C20095FC60008B32B /* gold.wav */; };
 		21F39C60200963960008B32B /* orbit_music.wav in Resources */ = {isa = PBXBuildFile; fileRef = 21F39C5F200963950008B32B /* orbit_music.wav */; };
 		21F39C6320096A410008B32B /* orbit_music2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 21F39C6220096A410008B32B /* orbit_music2.wav */; };
+		21FB8F14202B9487000A31A3 /* Level17Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FB8F13202B9487000A31A3 /* Level17Scene.swift */; };
+		21FB8F16202B981D000A31A3 /* Level17.sks in Resources */ = {isa = PBXBuildFile; fileRef = 21FB8F15202B981D000A31A3 /* Level17.sks */; };
 		D11ED31C1FF5BA3400D74B7A /* planetToPos.sks in Resources */ = {isa = PBXBuildFile; fileRef = D11ED31B1FF5BA3400D74B7A /* planetToPos.sks */; };
 		D12171711FE770880056DDE3 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12171701FE770880056DDE3 /* HomeVC.swift */; };
 		D12171801FE84ADD0056DDE3 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = D121717E1FE84ADD0056DDE3 /* MyParticle.sks */; };
@@ -143,6 +145,8 @@
 		21F39C5C20095FC60008B32B /* gold.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gold.wav; sourceTree = "<group>"; };
 		21F39C5F200963950008B32B /* orbit_music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = orbit_music.wav; sourceTree = "<group>"; };
 		21F39C6220096A410008B32B /* orbit_music2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = orbit_music2.wav; sourceTree = "<group>"; };
+		21FB8F13202B9487000A31A3 /* Level17Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level17Scene.swift; sourceTree = "<group>"; };
+		21FB8F15202B981D000A31A3 /* Level17.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level17.sks; sourceTree = "<group>"; };
 		D11ED31B1FF5BA3400D74B7A /* planetToPos.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = planetToPos.sks; sourceTree = "<group>"; };
 		D12171701FE770880056DDE3 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		D121717E1FE84ADD0056DDE3 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
@@ -290,6 +294,8 @@
 				21C3E0E0202A8302001E76B2 /* Level15.sks */,
 				2174B434202A8F92004B9508 /* Level16Scene.swift */,
 				21632B61202A937B005DAA13 /* Level16.sks */,
+				21FB8F13202B9487000A31A3 /* Level17Scene.swift */,
+				21FB8F15202B981D000A31A3 /* Level17.sks */,
 			);
 			path = Orbit;
 			sourceTree = "<group>";
@@ -395,6 +401,7 @@
 				D12171811FE84ADD0056DDE3 /* Assets.xcassets in Resources */,
 				218EAE722026AE67000ED458 /* Level12.sks in Resources */,
 				21080E72200D01A400C89907 /* Level1.sks in Resources */,
+				21FB8F16202B981D000A31A3 /* Level17.sks in Resources */,
 				21B275A7200ECCF9005AB6BD /* Level3.sks in Resources */,
 				2168ACB320292FD500575706 /* Level14.sks in Resources */,
 				21632B62202A937B005DAA13 /* Level16.sks in Resources */,
@@ -432,6 +439,7 @@
 				21080E6E200CFD2100C89907 /* AsteroidSpawner.swift in Sources */,
 				21080E76200D1B0100C89907 /* Level1Scene.swift in Sources */,
 				2160E1E020140C8800967E16 /* Level5Scene.swift in Sources */,
+				21FB8F14202B9487000A31A3 /* Level17Scene.swift in Sources */,
 				2174B435202A8F92004B9508 /* Level16Scene.swift in Sources */,
 				D1959D3220277FE4006510E8 /* Level13Scene.swift in Sources */,
 				218EAE6E2026AC1B000ED458 /* Level12Scene.swift in Sources */,
