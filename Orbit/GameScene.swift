@@ -141,7 +141,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var radianFactor = CGFloat(0.0174532925)
     var newRotationRadians = CGFloat()
     var onlyOnce = 1
-    var differentColorGems = ["Group 653","Group 660","Group 661","Group 662"]
+    var differentColorGems = ["Group 650","Group 650","Group 650"]
     var randomGemColor = arc4random_uniform(3)
     var displayEndBoxOnce = 0
     var died = true
@@ -417,7 +417,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func createSun() {
         
-        self.sun = Sun(imageName: "Ellipse 8950")
+        self.sun = Sun(imageName: "Group 683")
         sun.position = CGPoint(x: 0, y: 0)
         self.addChild(sun)
     }
@@ -502,9 +502,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createPlanet() {
-        let planet = Planet(imageName: "Ellipse 8951")
+        let planet = Planet(imageName: "Group 684")
         planet.position = CGPoint(x: 0, y: 0)
-        
+        planet.zRotation = 50
         self.addChild(planet)
         
         circle = UIBezierPath(roundedRect: CGRect(x: self.frame.midX - 260, y: self.frame.midY - 260, width: 525, height: 525), cornerRadius: 300)
@@ -759,6 +759,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         
         // Get rid of camera
+        
         self.camera = nil
         self.backgroundColor = UIColor(red: 237/255, green: 248/255, blue: 255/255, alpha: 1)
         
@@ -774,7 +775,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         field.strength = 0.6
         self.addChild(field)
         
-        let BG = SKSpriteNode(imageNamed: "BGGame")
+        let BG = SKSpriteNode(imageNamed: "Rectangle 1783")
         BG.setScale(2)
         BG.position = CGPoint(x: 0, y: 0)
         BG.size.width = self.size.width

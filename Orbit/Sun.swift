@@ -2,7 +2,7 @@
 //  Sun.swift
 //  Orbit
 //
-//  Created by Toby Kreiman on 1/14/18.
+//  Created by Henry Macht and Toby Kreiman on 1/14/18.
 //  Copyright © 2018 10-12. All rights reserved.
 //
 
@@ -15,7 +15,7 @@ class Sun: SKSpriteNode {
         
         self.setScale(2)
         self.zPosition = 80
-        self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width / 2.0)
+        self.physicsBody = SKPhysicsBody(texture: SKTexture(imageNamed:"Group 683"), size: self.size)
         self.physicsBody?.categoryBitMask = physicsCatagory.sun
         self.physicsBody?.collisionBitMask = physicsCatagory.sun | physicsCatagory.usersShip | physicsCatagory.asteroid
         self.physicsBody?.contactTestBitMask = physicsCatagory.sun | physicsCatagory.usersShip | physicsCatagory.asteroid
