@@ -28,6 +28,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gameManager: GameManager?
     
     // Variables
+    
 
     
     //Graphics
