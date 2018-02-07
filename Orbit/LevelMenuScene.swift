@@ -13,7 +13,7 @@ class LevelMenuScene: SKScene {
     var cPosX = -120
     var cPosY = 100
     var levelNum = 1
-    var levelsUnlocked = 17
+    var levelsUnlocked = 18
     var background = SKSpriteNode()
     var levelColors = ["Ellipse 8533", "Ellipse 8534", "Ellipse 8535", "Ellipse 8538"]
     var allTheLevels = [SKSpriteNode()]
