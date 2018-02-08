@@ -49,7 +49,7 @@ class Level2Scene: GameScene {
         let deltaTime = currentTime - lastUpdateTime
         self.timeSinceLastSpawn += CGFloat(deltaTime)
 
-        if self.timeSinceLastSpawn > self.timeInBetweenSpawns {
+        if self.timeSinceLastSpawn > self.timeInBetweenSpawns && self.scene!.speed > CGFloat(0) {
             self.timeSinceLastSpawn = 0
             self.createAsteroid(startPointY: usersShip.position.y + 375 + CGFloat(arc4random_uniform(100)), endPointY: nil)
         }

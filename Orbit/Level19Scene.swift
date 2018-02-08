@@ -87,7 +87,7 @@ class Level19Scene: GameScene {
         let deltaTime = currentTime - lastUpdateTime
         self.timeSinceLastSpawn += CGFloat(deltaTime)
         
-        if self.timeSinceLastSpawn > self.timeInBetweenSpawns {
+        if self.timeSinceLastSpawn > self.timeInBetweenSpawns && self.scene!.speed > CGFloat(0) {
             for i in 0...4 {
                 let wait = SKAction.wait(forDuration: 4.0 / Double(arc4random_uniform(5) + 1))
                 

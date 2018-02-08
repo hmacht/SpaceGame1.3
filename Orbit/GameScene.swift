@@ -1432,8 +1432,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.timeSinceLastSpawn += CGFloat(deltaTime)
         }
         
-        
-        if gameOver == false && !inLevel {
+        if gameOver == false && !inLevel && self.scene!.speed > CGFloat(0) {
             if timeSinceLastSpawn > self.timeInBetweenSpawns {
                 for i in 1...self.numAsteroidsToSpawn {
                     self.createAsteroid()
