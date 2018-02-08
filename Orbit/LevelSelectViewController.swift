@@ -44,6 +44,11 @@ class LevelSelectViewController: UIViewController, MenuManager {
             if let scene = view.scene as? LevelSelectScene {
                 scene.updateGems()
             }
+            
+            if let scene = view.scene as? LevelMenuScene {
+                scene.removeAllChildren()
+                scene.didMove(to: view)
+            }
         }
     }
 

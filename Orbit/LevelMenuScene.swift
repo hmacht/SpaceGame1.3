@@ -11,9 +11,9 @@ import SpriteKit
 class LevelMenuScene: SKScene {
     var menuManager: MenuManager?
     var cPosX = -120
-    var cPosY = 100
+    var cPosY = 150
     var levelNum = 1
-    var levelsUnlocked = 20
+    var levelsUnlocked = 1
     var background = SKSpriteNode()
     var levelColors = ["Ellipse 8533", "Ellipse 8534", "Ellipse 8535", "Ellipse 8538"]
     var allTheLevels = [SKSpriteNode()]
@@ -29,13 +29,33 @@ class LevelMenuScene: SKScene {
     
     func createAllLevels(){
         for j in 1...5{
-            for i in 1...4{
+            for i in 1...4 {
+                var unlockedGems = [0, 0, 0]
+                if let g = UserDefaults.standard.array(forKey: "Level\(levelNum)") as? [Int] {
+                    unlockedGems = g
+                    levelsUnlocked = levelNum + 1
+                }
                 if levelNum <= levelsUnlocked{
                     let levelBtn = SKSpriteNode(imageNamed: levelColors[Int(arc4random_uniform(4))])
                     levelBtn.position = CGPoint(x: cPosX, y: cPosY)
                     levelBtn.name = "\(levelNum)"
                     levelBtn.setScale(0)
                     allTheLevels.append(levelBtn)
+                    
+                    
+                    let angleOfGemPos = [Double.pi * 3 / 4, Double.pi/2, Double.pi/4]
+                    
+                    for a in 0...angleOfGemPos.count-1 {
+                        let emptyGem = SKSpriteNode(imageNamed: "EmptyGem")
+                        emptyGem.position = CGPoint(x: CGFloat(cos(angleOfGemPos[a])) * 25, y: CGFloat(sin(angleOfGemPos[a])) * 25)
+                        emptyGem.setScale(0.4)
+                        levelBtn.addChild(emptyGem)
+                        
+                        if unlockedGems[a] == 1 {
+                            emptyGem.texture = SKTexture(imageNamed: "gem")
+                        }
+                    }
+                    
                     
                     //print(levelBtn.name)
                     self.addChild(levelBtn)
@@ -60,7 +80,7 @@ class LevelMenuScene: SKScene {
                 cPosX = cPosX + 80
                 levelNum = levelNum + 1
             }
-            cPosY = cPosY - 80
+            cPosY = cPosY - 100
             cPosX = -120
         }
     }
@@ -81,6 +101,12 @@ class LevelMenuScene: SKScene {
     
     
     override func didMove(to view: SKView) {
+        
+        cPosX = -120
+        cPosY = 150
+        self.levelNum = 1
+        self.levelsUnlocked = 1
+        
         createBG()
         createAllLevels()
         openScene()
