@@ -21,6 +21,7 @@ public struct physicsCatagory {
     static let asteroid: UInt32 = 0x1 << 10
     static let planetPath: UInt32 = 0x1 << 11
     static let finishLine: UInt32 = 0x1 << 12
+    static let shockWave: UInt32 = 0x1 << 13
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -604,6 +605,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         usersShip.position = CGPoint(x: 0, y: 100)
         usersShip.zRotation = 0
         self.addChild(usersShip)
+        
+        // Ring for killing nearby asteroids
+        let ring = SKSpriteNode(imageNamed: "ring")
+        ring.zPosition = usersShip.zPosition + 10
+        ring.physicsBody = SKPhysicsBody(circleOfRadius: ring.size.width)
+        ring.physicsBody?.categoryBitMask = physicsCatagory.shockWave
+        ring.physicsBody?.collisionBitMask = physicsCatagory.shockWave | physicsCatagory.asteroid
+        ring.physicsBody?.contactTestBitMask = physicsCatagory.shockWave | physicsCatagory.asteroid
+        ring.physicsBody?.affectedByGravity = false
+        ring.physicsBody?.isDynamic = false
+        ring.setScale(0)
+        ring.position = usersShip.position
+        self.addChild(ring)
+        
+        let scale = SKAction.scale(to: 3, duration: 1)
+        let fade = SKAction.fadeAlpha(to: 0, duration: 1.3)
+        ring.run(SKAction.sequence([SKAction.group([scale, fade]), SKAction.removeFromParent()]))
+        
         endOnce = 1
         self.fuel = self.initialFuel
         self.fuelMask.color = UIColor(red: 255/255, green: 194/255, blue: 0, alpha: 1)
@@ -1045,6 +1064,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if firstbody.categoryBitMask == physicsCatagory.asteroid && secondbody.categoryBitMask == physicsCatagory.planet || firstbody.categoryBitMask == physicsCatagory.planet && secondbody.categoryBitMask == physicsCatagory.asteroid {
+            
+            if firstbody.categoryBitMask == physicsCatagory.asteroid {
+                self.addAsteroidExplosion(point: firstbody.node!.position, node: firstbody.node!)
+                firstbody.node?.removeFromParent()
+            } else {
+                self.addAsteroidExplosion(point: secondbody.node!.position, node: secondbody.node!)
+                secondbody.node?.removeFromParent()
+            }
+        }
+        
+        if firstbody.categoryBitMask == physicsCatagory.asteroid && secondbody.categoryBitMask == physicsCatagory.shockWave || firstbody.categoryBitMask == physicsCatagory.shockWave && secondbody.categoryBitMask == physicsCatagory.asteroid {
             
             if firstbody.categoryBitMask == physicsCatagory.asteroid {
                 self.addAsteroidExplosion(point: firstbody.node!.position, node: firstbody.node!)

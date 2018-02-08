@@ -29,8 +29,8 @@ class Asteroid: SKSpriteNode {
         self.zPosition = 100
         self.physicsBody = SKPhysicsBody(circleOfRadius: self.radius)
         self.physicsBody?.categoryBitMask = physicsCatagory.asteroid
-        self.physicsBody?.collisionBitMask = physicsCatagory.asteroid | physicsCatagory.usersShip | physicsCatagory.planet
-        self.physicsBody?.contactTestBitMask = physicsCatagory.asteroid | physicsCatagory.usersShip | physicsCatagory.planet | physicsCatagory.planetPath
+        self.physicsBody?.collisionBitMask = physicsCatagory.asteroid | physicsCatagory.usersShip | physicsCatagory.planet | physicsCatagory.shockWave
+        self.physicsBody?.contactTestBitMask = physicsCatagory.asteroid | physicsCatagory.usersShip | physicsCatagory.planet | physicsCatagory.planetPath | physicsCatagory.shockWave
         self.physicsBody?.affectedByGravity = true
         self.physicsBody?.isDynamic = true
         
