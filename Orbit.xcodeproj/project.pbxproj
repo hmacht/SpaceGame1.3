@@ -61,6 +61,8 @@
 		21C3E0DF202A8116001E76B2 /* Level15Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21C3E0DE202A8116001E76B2 /* Level15Scene.swift */; };
 		21C3E0E1202A8302001E76B2 /* Level15.sks in Resources */ = {isa = PBXBuildFile; fileRef = 21C3E0E0202A8302001E76B2 /* Level15.sks */; };
 		21C8E0CB1FEB13AB00B3CC6C /* explotionWhite.sks in Resources */ = {isa = PBXBuildFile; fileRef = 21C8E0CA1FEB13AB00B3CC6C /* explotionWhite.sks */; };
+		21E6339A202CE3F8005983A4 /* Level20Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E63399202CE3F8005983A4 /* Level20Scene.swift */; };
+		21E6339C202CE707005983A4 /* Level20.sks in Resources */ = {isa = PBXBuildFile; fileRef = 21E6339B202CE707005983A4 /* Level20.sks */; };
 		21F39C592007FC8B0008B32B /* AsteroidDie.sks in Resources */ = {isa = PBXBuildFile; fileRef = 21F39C582007FC8B0008B32B /* AsteroidDie.sks */; };
 		21F39C5D20095FC70008B32B /* gold.wav in Resources */ = {isa = PBXBuildFile; fileRef = 21F39C5C20095FC60008B32B /* gold.wav */; };
 		21F39C60200963960008B32B /* orbit_music.wav in Resources */ = {isa = PBXBuildFile; fileRef = 21F39C5F200963950008B32B /* orbit_music.wav */; };
@@ -149,6 +151,8 @@
 		21C3E0DE202A8116001E76B2 /* Level15Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level15Scene.swift; sourceTree = "<group>"; };
 		21C3E0E0202A8302001E76B2 /* Level15.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level15.sks; sourceTree = "<group>"; };
 		21C8E0CA1FEB13AB00B3CC6C /* explotionWhite.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = explotionWhite.sks; sourceTree = "<group>"; };
+		21E63399202CE3F8005983A4 /* Level20Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level20Scene.swift; sourceTree = "<group>"; };
+		21E6339B202CE707005983A4 /* Level20.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level20.sks; sourceTree = "<group>"; };
 		21F39C582007FC8B0008B32B /* AsteroidDie.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = AsteroidDie.sks; sourceTree = "<group>"; };
 		21F39C5C20095FC60008B32B /* gold.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gold.wav; sourceTree = "<group>"; };
 		21F39C5F200963950008B32B /* orbit_music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = orbit_music.wav; sourceTree = "<group>"; };
@@ -308,6 +312,8 @@
 				21AF4F07202BB109001CC41C /* Level18.sks */,
 				214D9E78202BE5F100C5BB4C /* Level19Scene.swift */,
 				214D9E7A202BF84500C5BB4C /* Level19.sks */,
+				21E63399202CE3F8005983A4 /* Level20Scene.swift */,
+				21E6339B202CE707005983A4 /* Level20.sks */,
 			);
 			path = Orbit;
 			sourceTree = "<group>";
@@ -398,6 +404,7 @@
 				21C3E0E1202A8302001E76B2 /* Level15.sks in Resources */,
 				D1EAB15B1FDB620300CDC186 /* GameScene.sks in Resources */,
 				21F39C5D20095FC70008B32B /* gold.wav in Resources */,
+				21E6339C202CE707005983A4 /* Level20.sks in Resources */,
 				210ECF662027A8AA000E9C31 /* shipDeath.sks in Resources */,
 				D12171801FE84ADD0056DDE3 /* MyParticle.sks in Resources */,
 				2160E1DE20140AA600967E16 /* Level4.sks in Resources */,
@@ -456,6 +463,7 @@
 				2160E1E020140C8800967E16 /* Level5Scene.swift in Sources */,
 				21FB8F14202B9487000A31A3 /* Level17Scene.swift in Sources */,
 				2174B435202A8F92004B9508 /* Level16Scene.swift in Sources */,
+				21E6339A202CE3F8005983A4 /* Level20Scene.swift in Sources */,
 				D1959D3220277FE4006510E8 /* Level13Scene.swift in Sources */,
 				218EAE6E2026AC1B000ED458 /* Level12Scene.swift in Sources */,
 				D1EAB1611FDB620300CDC186 /* GameViewController.swift in Sources */,

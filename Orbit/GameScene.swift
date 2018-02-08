@@ -174,7 +174,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         endNext.name = "endNext"
         endNext.position = CGPoint(x: 0, y: 0)
         endNext.zPosition = 900
-        endBG.addChild(endNext)
+        if self.level % 20 != 0 {
+            endBG.addChild(endNext)
+        }
         
         endCompleteLab = SKSpriteNode(imageNamed: "Completed")
         endCompleteLab.setScale(1)
@@ -604,7 +606,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gemScore.text = "\(score)"
         usersShip.position = CGPoint(x: 0, y: 100)
         usersShip.zRotation = 0
-        self.addChild(usersShip)
         
         // Ring for killing nearby asteroids
         let ring = SKSpriteNode(imageNamed: "ring")
@@ -618,8 +619,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ring.setScale(0)
         ring.position = usersShip.position
         self.addChild(ring)
+        self.addChild(usersShip)
         
-        let scale = SKAction.scale(to: 3, duration: 1)
+        let scale = SKAction.scale(to: 3.5, duration: 1)
         let fade = SKAction.fadeAlpha(to: 0, duration: 1.3)
         ring.run(SKAction.sequence([SKAction.group([scale, fade]), SKAction.removeFromParent()]))
         
