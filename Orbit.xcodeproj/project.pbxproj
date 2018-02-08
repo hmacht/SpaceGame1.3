@@ -29,6 +29,8 @@
 		2142A7C120228D72004C47A7 /* Level9.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2142A7C020228D72004C47A7 /* Level9.sks */; };
 		21439211201BEDEA0019003A /* Level8.sks in Resources */ = {isa = PBXBuildFile; fileRef = 21439210201BEDEA0019003A /* Level8.sks */; };
 		21439213201BEE050019003A /* Level8Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21439212201BEE050019003A /* Level8Scene.swift */; };
+		214D9E79202BE5F100C5BB4C /* Level19Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214D9E78202BE5F100C5BB4C /* Level19Scene.swift */; };
+		214D9E7B202BF84500C5BB4C /* Level19.sks in Resources */ = {isa = PBXBuildFile; fileRef = 214D9E7A202BF84500C5BB4C /* Level19.sks */; };
 		2158470220118A9E00891A44 /* LevelMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2158470120118A9E00891A44 /* LevelMenuScene.swift */; };
 		2158470420118B7800891A44 /* LevelMenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2158470320118B7800891A44 /* LevelMenuScene.sks */; };
 		2160E1DC2014095000967E16 /* Level4Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2160E1DB2014095000967E16 /* Level4Scene.swift */; };
@@ -115,6 +117,8 @@
 		2142A7C020228D72004C47A7 /* Level9.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level9.sks; sourceTree = "<group>"; };
 		21439210201BEDEA0019003A /* Level8.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level8.sks; sourceTree = "<group>"; };
 		21439212201BEE050019003A /* Level8Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level8Scene.swift; sourceTree = "<group>"; };
+		214D9E78202BE5F100C5BB4C /* Level19Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level19Scene.swift; sourceTree = "<group>"; };
+		214D9E7A202BF84500C5BB4C /* Level19.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level19.sks; sourceTree = "<group>"; };
 		2158470120118A9E00891A44 /* LevelMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelMenuScene.swift; sourceTree = "<group>"; };
 		2158470320118B7800891A44 /* LevelMenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = LevelMenuScene.sks; sourceTree = "<group>"; };
 		2160E1DB2014095000967E16 /* Level4Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level4Scene.swift; sourceTree = "<group>"; };
@@ -302,6 +306,8 @@
 				21FB8F15202B981D000A31A3 /* Level17.sks */,
 				21AF4F05202BAEB0001CC41C /* Level18Scene.swift */,
 				21AF4F07202BB109001CC41C /* Level18.sks */,
+				214D9E78202BE5F100C5BB4C /* Level19Scene.swift */,
+				214D9E7A202BF84500C5BB4C /* Level19.sks */,
 			);
 			path = Orbit;
 			sourceTree = "<group>";
@@ -401,6 +407,7 @@
 				D18A1ABF201137D70052CF14 /* LevelSelect.sks in Resources */,
 				21C8E0CB1FEB13AB00B3CC6C /* explotionWhite.sks in Resources */,
 				D1A8DF02201550A8004AA7D3 /* Blue.sks in Resources */,
+				214D9E7B202BF84500C5BB4C /* Level19.sks in Resources */,
 				D1EAB1691FDB620300CDC186 /* LaunchScreen.storyboard in Resources */,
 				2174059B2023DBA800C3BECB /* Level10.sks in Resources */,
 				D18A1AC92011912D0052CF14 /* newTrail2.sks in Resources */,
@@ -428,6 +435,7 @@
 			files = (
 				21080E7A200D33ED00C89907 /* Level2Scene.swift in Sources */,
 				D18A1AC1201138190052CF14 /* LevelSelectScene.swift in Sources */,
+				214D9E79202BE5F100C5BB4C /* Level19Scene.swift in Sources */,
 				2167BCFF20141A690092544A /* Level6Scene.swift in Sources */,
 				2158470220118A9E00891A44 /* LevelMenuScene.swift in Sources */,
 				21C3E0DF202A8116001E76B2 /* Level15Scene.swift in Sources */,
