@@ -1180,13 +1180,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         
+        if let _ = UIImage(named: "\(self.selectedShip)2") {
+            usersShip.size.height = self.shipTexture.size().height * usersShip.xScale + 5
+            self.usersShip.texture = SKTexture(imageNamed: "\(self.selectedShip)2")
+        }
         
-        if self.selectedShip == "myShip" {
-            usersShip.size.height = self.shipTexture.size().height * 2 + 5
-        }
-        if self.selectedShip == "myShip" {
-            usersShip.texture = SKTexture(imageNamed:"myShip2")
-        }
+        
         let touch:UITouch = touches.first!
         let positionInScene = touch.location(in: self)
         let touchedNode = self.atPoint(positionInScene)
@@ -1351,9 +1350,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         touchingScreen = false
-        if self.selectedShip == "myShip" {
-            usersShip.texture = SKTexture(imageNamed:"myShip")
-        }
+        
+        self.usersShip.texture = SKTexture(imageNamed: self.selectedShip)
         
         if let smoke = usersShip.childNode(withName: "Smoke") as? SKEmitterNode {
             smoke.isHidden = true
@@ -1368,15 +1366,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             smoke.numParticlesToEmit = 1
         }
         
-        if self.selectedShip == "myShip" {
-            usersShip.size.height = self.shipTexture.size().height * 2
-        }
+        
+        usersShip.size.height = self.shipTexture.size().height * usersShip.xScale
+        
         self.removeAction(forKey: "rocketSound")
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         touchingScreen = false
-        usersShip.texture = SKTexture(imageNamed:"myShip")
+        self.usersShip.texture = SKTexture(imageNamed: self.selectedShip)
         
         if let smoke = usersShip.childNode(withName: "Smoke") as? SKEmitterNode {
             smoke.isHidden = true
@@ -1391,9 +1389,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             smoke.numParticlesToEmit = 1
         }
         
-        if self.selectedShip == "myShip" {
-            usersShip.size.height = self.shipTexture.size().height * 2
-        }
+        
+        usersShip.size.height = self.shipTexture.size().height * usersShip.xScale
+        
         self.removeAction(forKey: "rocketSound")
     }
     
