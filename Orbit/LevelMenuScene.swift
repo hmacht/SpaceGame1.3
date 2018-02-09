@@ -10,7 +10,7 @@ import SpriteKit
 
 class LevelMenuScene: SKScene {
     var menuManager: MenuManager?
-    var cPosX = -120
+    var cPosX = -135
     var cPosY = 150
     var levelNum = 1
     var levelsUnlocked = 1
@@ -43,11 +43,11 @@ class LevelMenuScene: SKScene {
                     allTheLevels.append(levelBtn)
                     
                     
-                    let angleOfGemPos = [Double.pi * 3 / 4, Double.pi/2, Double.pi/4]
+                    let angleOfGemPos = [Double.pi * 3 / 2 - 2 / 3 * Double.pi, Double.pi * 3 / 2 + 2 / 3 * Double.pi, Double.pi * 3 / 2]
                     
                     for a in 0...angleOfGemPos.count-1 {
                         let emptyGem = SKSpriteNode(imageNamed: "EmptyGem")
-                        emptyGem.position = CGPoint(x: CGFloat(cos(angleOfGemPos[a])) * 25, y: CGFloat(sin(angleOfGemPos[a])) * 25)
+                        emptyGem.position = CGPoint(x: CGFloat(cos(angleOfGemPos[a])) * 22.5, y: CGFloat(sin(angleOfGemPos[a])) * 22.5)
                         emptyGem.setScale(0.4)
                         levelBtn.addChild(emptyGem)
                         
@@ -77,11 +77,11 @@ class LevelMenuScene: SKScene {
                     allTheLevels.append(levelBtnLocked)
                     self.addChild(levelBtnLocked)
                 }
-                cPosX = cPosX + 80
+                cPosX = cPosX + 90
                 levelNum = levelNum + 1
             }
             cPosY = cPosY - 100
-            cPosX = -120
+            cPosX = -135
         }
     }
     
@@ -102,7 +102,7 @@ class LevelMenuScene: SKScene {
     
     override func didMove(to view: SKView) {
         
-        cPosX = -120
+        cPosX = -135
         cPosY = 150
         self.levelNum = 1
         self.levelsUnlocked = 1
