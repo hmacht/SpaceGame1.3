@@ -307,7 +307,7 @@ class LevelSelectScene: SKScene {
         //endless.removeFromParent()
         //divider.removeFromParent()
         self.addChild(tapToStart)
-        let musicAction = SKAction.repeatForever(SKAction.playSoundFileNamed("bgMusic3.mp3", waitForCompletion: true))
+        let musicAction = SKAction.repeatForever(SKAction.playSoundFileNamed("OrbitBGMusic.mp3", waitForCompletion: true))
         if self.playBgMusic {
             self.run(musicAction, withKey: "bgMusic")
         }
