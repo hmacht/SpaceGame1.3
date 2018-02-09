@@ -295,10 +295,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gemScore = SKLabelNode(fontNamed: "Bebas Neue")
         gemScore.text = "\(score)"
         gemScore.fontSize = 80
-        gemScore.fontColor = SKColor.white
+        gemScore.fontColor = SKColor.black
         gemScore.alpha = 1
         gemScore.zPosition = 130
-        gemScore.position = CGPoint(x: 0, y: -25)
+        gemScore.position = CGPoint(x: self.size.width/2 - 120, y: self.size.height/2 - 80)
         self.addChild(gemScore)
     }
         
@@ -381,8 +381,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createPlanetPath() {
-        planetPath = SKSpriteNode(imageNamed: "Group 206")
-        planetPath.setScale(1.7)
+        planetPath = SKSpriteNode(imageNamed: "Ellipse 8996")
+        planetPath.setScale(1.8)
         planetPath.position = CGPoint(x: 0, y: 0)
         planetPath.zPosition = 15
         planetPath.physicsBody = SKPhysicsBody(circleOfRadius: planetPath.size.width / 2.0)
@@ -391,7 +391,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         planetPath.physicsBody?.contactTestBitMask = physicsCatagory.planetPath | physicsCatagory.asteroid
         planetPath.physicsBody?.affectedByGravity = false
         planetPath.physicsBody?.isDynamic = false
-        //self.addChild(planetPath)
+        self.addChild(planetPath)
     }
     
     func createRestartbtn() {
@@ -417,7 +417,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func createSun() {
         
-        self.sun = Sun(imageName: "Group 683")
+        self.sun = Sun(imageName: "newMoon")
         sun.position = CGPoint(x: 0, y: 0)
         self.addChild(sun)
     }
@@ -502,7 +502,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func createPlanet() {
-        let planet = Planet(imageName: "Group 684")
+        let planet = Planet(imageName: "Ellipse 8969")
         planet.position = CGPoint(x: 0, y: 0)
         planet.zRotation = 50
         self.addChild(planet)
@@ -695,9 +695,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func createPlanetTest() {
         // This planet has the ability to go into on to the orbit
-        let planet = SKSpriteNode(imageNamed: "planet")
+        let planet = SKSpriteNode(imageNamed: "Ellipse 8996")
         planet.setScale(2)
-        planet.position = CGPoint(x: 0, y: planetPath.size.height / 2)
+        planet.position = CGPoint(x: 0, y: 0)
         planet.zPosition = 50
         moonHelper.addChild(planet)
     }

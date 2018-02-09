@@ -62,7 +62,7 @@ class LevelSelectScene: SKScene {
     }
     
     func createPlanetPath() {
-        planetPath = SKSpriteNode(imageNamed: "Group 206")
+        planetPath = SKSpriteNode(imageNamed: "Ellipse 8996")
         planetPath.setScale(1.7)
         planetPath.position = CGPoint(x: 0, y: 0)
         planetPath.zPosition = 15
@@ -136,7 +136,7 @@ class LevelSelectScene: SKScene {
         planetPath.zRotation = 250
         
         createHelper()
-        planetHome = SKSpriteNode(imageNamed: "planet")
+        planetHome = SKSpriteNode(imageNamed: "Ellipse 8969")
         planetHome.setScale(2)
         planetHome.zPosition = 500
         planetHome.position = CGPoint(x: -1 * planetPath.size.width / 2, y: 0)
@@ -155,19 +155,20 @@ class LevelSelectScene: SKScene {
         gemsText = SKLabelNode(text: nGems)
         gemsText.fontColor = .black
         gemsText.fontName = "Bebas Neue"
-        gemsText.fontSize = 70
+        gemsText.fontSize = 50
         gemsText.verticalAlignmentMode = .center
-        gemsText.position = CGPoint(x: self.size.width/2 - 120, y: self.size.height/2 - 75)
+        gemsText.horizontalAlignmentMode = .left
+        gemsText.position = CGPoint(x: -self.size.width/2 + 130, y: self.size.height/2 - 75)
         self.addChild(gemsText)
         
-        let gemsImage = SKSpriteNode(imageNamed: "gem")
-        gemsImage.position = CGPoint(x: -gemsText.frame.size.width/2 - 25, y: 0)
-        gemsImage.setScale(1.5)
+        let gemsImage = SKSpriteNode(imageNamed: "Group 677")
+        gemsImage.position = CGPoint(x: -20, y: 0)
+        gemsImage.setScale(2)
         gemsText.addChild(gemsImage)
         
         let sun = Sun(imageName: "Group 419")
         sun.position = CGPoint(x: self.size.width/4, y: -self.size.height/3 - 75)
-        self.addChild(sun)
+        //self.addChild(sun)
     }
     
     
@@ -300,6 +301,7 @@ class LevelSelectScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
+        UserDefaults.standard.set(99999999, forKey: "Gems")
         hasTaped = false
         //levels.removeFromParent()
         //endless.removeFromParent()
@@ -309,7 +311,7 @@ class LevelSelectScene: SKScene {
         if self.playBgMusic {
             self.run(musicAction, withKey: "bgMusic")
         }
-        createTheHomeScreen2()
+        createTheHomeScreen()
         timer3 = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: "update3", userInfo: nil, repeats: true)
         
         if let _ = UserDefaults.standard.string(forKey: "selectedShip") {
@@ -335,7 +337,7 @@ class LevelSelectScene: SKScene {
         let touch:UITouch = touches.first!
         let positionInScene = touch.location(in: self)
         let touchedNode = self.atPoint(positionInScene)
-        
+        /*
         if hasTaped == false{
             tapToStart.removeFromParent()
             creatOptions()
@@ -357,6 +359,7 @@ class LevelSelectScene: SKScene {
                 }
             }
         }
+ */
         
         
         
