@@ -8,10 +8,25 @@
 
 import SpriteKit
 
+public struct SunNames {
+    static let redSun = "Group 749"
+    static let yellowSun = "Group 747"
+    static let greenSun = "Group 750"
+    static let whiteSun = "Group 746"
+    static let blueSun = "Group 748"
+    static let blackSun = "Group 743"
+    static let blackSun2 = "Group 744"
+    static let blackSun3 = "Group 745"
+    static let firstSun = "Group 419"
+    static let firstGreenSun = "Group 287"
+    static let sunNames = [SunNames.redSun, SunNames.greenSun, SunNames.yellowSun, SunNames.whiteSun, SunNames.blueSun, SunNames.blackSun, SunNames.blackSun2, SunNames.blackSun3, SunNames.firstSun, SunNames.firstGreenSun]
+}
+
 class Sun: SKSpriteNode {
     
     convenience init(imageName: String) {
-        self.init(imageNamed: imageName)
+        
+        self.init(imageNamed: SunNames.sunNames[Int(arc4random_uniform(UInt32(SunNames.sunNames.count)))])
         
         self.setScale(2)
         self.zPosition = 80

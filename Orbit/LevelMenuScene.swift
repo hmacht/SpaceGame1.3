@@ -42,7 +42,7 @@ class LevelMenuScene: SKScene {
                     levelBtn.setScale(0)
                     allTheLevels.append(levelBtn)
                     
-                    
+                    /*
                     let angleOfGemPos = [Double.pi * 3 / 2 - 2 / 3 * Double.pi, Double.pi * 3 / 2 + 2 / 3 * Double.pi, Double.pi * 3 / 2]
                     
                     for a in 0...angleOfGemPos.count-1 {
@@ -54,6 +54,15 @@ class LevelMenuScene: SKScene {
                         if unlockedGems[a] == 1 {
                             emptyGem.texture = SKTexture(imageNamed: "gem")
                         }
+                    }*/
+                    if unlockedGems.reduce(0, +) == 3 {
+                        let crown = SKSpriteNode(imageNamed: "crown")
+                        let x = cos(Double.pi / 2)
+                        let y = sin(Double.pi / 2)
+                        crown.setScale(1.1)
+                        crown.position = CGPoint(x: x * 32, y: y * 32)
+                        crown.zRotation = CGFloat(Double.pi * 0)
+                        levelBtn.addChild(crown)
                     }
                     
                     
