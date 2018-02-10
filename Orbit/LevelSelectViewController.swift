@@ -8,6 +8,7 @@
 
 import UIKit
 import SpriteKit
+import AVFoundation
 
 protocol MenuManager {
     func didPressPlay()
@@ -18,6 +19,7 @@ protocol MenuManager {
 class LevelSelectViewController: UIViewController, MenuManager {
 
     var selectedLevel = 0
+    var bgSoundPlayer: AVAudioPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +42,25 @@ class LevelSelectViewController: UIViewController, MenuManager {
         }
     }
     
+    func playBGMusic() {
+        
+        let fileURL:URL = Bundle.main.url(forResource:"bgMusic3", withExtension: "mp3")!
+        
+        //basically, try to initialize the bgSoundPlayer with the contents of the URL
+        do {
+            bgSoundPlayer = try AVAudioPlayer(contentsOf: fileURL)
+        } catch _{
+            bgSoundPlayer = nil
+        }
+        
+        bgSoundPlayer?.volume = 0.75 //set the volume anywhere from 0 to 1
+        bgSoundPlayer?.numberOfLoops = -1 // -1 makes the player loop forever
+        bgSoundPlayer?.prepareToPlay() //prepare for playback by preloading its buffers.
+        bgSoundPlayer?.play() //actually play
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
+        self.playBGMusic()
         if let view = self.view as! SKView? {
             if let scene = view.scene as? LevelSelectScene {
                 scene.updateGems()
@@ -66,6 +86,7 @@ class LevelSelectViewController: UIViewController, MenuManager {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        bgSoundPlayer?.stop()
         let destination = segue.destination as! GameViewController
         destination.selectedLevel = self.selectedLevel
     }
