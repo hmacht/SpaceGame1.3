@@ -46,13 +46,13 @@ class LevelMenuScene: SKScene {
                     let angleOfGemPos = [Double.pi * 3 / 4, Double.pi/2, Double.pi/4]
                     
                     for a in 0...angleOfGemPos.count-1 {
-                        let emptyGem = SKSpriteNode(imageNamed: "EmptyGem")
+                        let emptyGem = SKSpriteNode(imageNamed: "Group 732")
                         emptyGem.position = CGPoint(x: CGFloat(cos(angleOfGemPos[a])) * 25, y: CGFloat(sin(angleOfGemPos[a])) * 25)
                         emptyGem.setScale(0.4)
                         levelBtn.addChild(emptyGem)
                         
                         if unlockedGems[a] == 1 {
-                            emptyGem.texture = SKTexture(imageNamed: "gem")
+                            emptyGem.texture = SKTexture(imageNamed: "Group 731")
                         }
                     }
                     
