@@ -35,7 +35,7 @@ class SettingsScreen: SKScene {
         twinkleHome.zPosition = 200
         twinkleHome.setScale(0)
         self.addChild(twinkleHome)
-        twinkleHome.run(SKAction.scale(to: 1.8, duration: 2.5))
+        twinkleHome.run(SKAction.scale(to: 1.4, duration: 2.5))
         let sequence = SKAction.sequence([SKAction.wait(forDuration: 3), SKAction.scale(to: 0, duration: 2.0)])
         twinkleHome.run(sequence)
     }

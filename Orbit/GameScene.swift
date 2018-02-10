@@ -142,7 +142,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var radianFactor = CGFloat(0.0174532925)
     var newRotationRadians = CGFloat()
     var onlyOnce = 1
-    var differentColorGems = ["Group 660","Group 660","Group 660"]
+    var differentColorGems = ["Group 650","Group 650","Group 650"]
     var randomGemColor = arc4random_uniform(3)
     var displayEndBoxOnce = 0
     var died = true
@@ -598,7 +598,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameOver = false
         timer1 = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: "update1", userInfo: nil, repeats: true)
         if !inLevel {
-            self.sun.run(SKAction.scale(to: 2, duration: 1))
+            self.sun.run(SKAction.scale(to: 1.5, duration: 1))
         } else {
             for g in self.gemSprites {
                 if let _ = g.parent {

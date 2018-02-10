@@ -19,7 +19,7 @@ public struct SunNames {
     static let blackSun3 = "Group 777"
     static let firstSun = "Group 419"
     static let firstGreenSun = "Group 287"
-    static let sunNames = [SunNames.redSun, SunNames.greenSun, SunNames.yellowSun, SunNames.whiteSun, SunNames.blueSun, SunNames.blackSun, SunNames.blackSun2, SunNames.blackSun3, SunNames.firstSun, SunNames.firstGreenSun]
+    static let sunNames = [/*SunNames.redSun, SunNames.greenSun, SunNames.yellowSun, SunNames.whiteSun, SunNames.blueSun,*/ SunNames.blackSun, SunNames.blackSun2, SunNames.blackSun3]
 }
 
 class Sun: SKSpriteNode {
