@@ -9,14 +9,14 @@
 import SpriteKit
 
 public struct SunNames {
-    static let redSun = "Group 749"
-    static let yellowSun = "Group 747"
-    static let greenSun = "Group 750"
-    static let whiteSun = "Group 746"
-    static let blueSun = "Group 748"
-    static let blackSun = "Group 743"
-    static let blackSun2 = "Group 744"
-    static let blackSun3 = "Group 745"
+    static let redSun = "Group 770"
+    static let yellowSun = "Group 761"
+    static let greenSun = "Group 773"
+    static let whiteSun = "Group 764"
+    static let blueSun = "Group 767"
+    static let blackSun = "Group 775"
+    static let blackSun2 = "Group 776"
+    static let blackSun3 = "Group 777"
     static let firstSun = "Group 419"
     static let firstGreenSun = "Group 287"
     static let sunNames = [SunNames.redSun, SunNames.greenSun, SunNames.yellowSun, SunNames.whiteSun, SunNames.blueSun, SunNames.blackSun, SunNames.blackSun2, SunNames.blackSun3, SunNames.firstSun, SunNames.firstGreenSun]
@@ -26,11 +26,25 @@ class Sun: SKSpriteNode {
     
     convenience init(imageName: String) {
         
-        self.init(imageNamed: SunNames.sunNames[Int(arc4random_uniform(UInt32(SunNames.sunNames.count)))])
+        let imageN = SunNames.sunNames[Int(arc4random_uniform(UInt32(SunNames.sunNames.count)))]
         
-        self.setScale(2)
+        self.init(imageNamed: imageN)
+        
+        var scale: CGFloat = 2
+        
+        if imageN != "Group 419" && imageN != "Group 287" {
+            scale *= 184 / 244
+        }
+        
+        self.setScale(scale)
+        var physicsBodyRadius = self.size.width / 2.0
+        
+        if imageN != "Group 419" && imageN != "Group 287" {
+            physicsBodyRadius = self.size.width / 2 - 15
+        }
+        
         self.zPosition = 80
-        self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width / 2.0)
+        self.physicsBody = SKPhysicsBody(circleOfRadius: physicsBodyRadius)
         self.physicsBody?.categoryBitMask = physicsCatagory.sun
         self.physicsBody?.collisionBitMask = physicsCatagory.sun | physicsCatagory.usersShip | physicsCatagory.asteroid
         self.physicsBody?.contactTestBitMask = physicsCatagory.sun | physicsCatagory.usersShip | physicsCatagory.asteroid

@@ -9,6 +9,7 @@
 import UIKit
 import SpriteKit
 import GameplayKit
+import AVFoundation
 
 protocol GameManager {
     func returnToMenu()
@@ -20,6 +21,7 @@ class GameViewController: UIViewController, GameManager {
     var selectedLevel = 0
     
     var sceneArray = ["GameScene"]
+    var bgSoundPlayer: AVAudioPlayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,8 +50,29 @@ class GameViewController: UIViewController, GameManager {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        playBGMusic()
+    }
+    
+    func playBGMusic() {
+        
+        let fileURL:URL = Bundle.main.url(forResource:"OrbitBGMusic", withExtension: "mp3")!
+        
+        //basically, try to initialize the bgSoundPlayer with the contents of the URL
+        do {
+            bgSoundPlayer = try AVAudioPlayer(contentsOf: fileURL)
+        } catch _{
+            bgSoundPlayer = nil
+        }
+        
+        bgSoundPlayer?.volume = 0.25 //set the volume anywhere from 0 to 1
+        bgSoundPlayer?.numberOfLoops = -1 // -1 makes the player loop forever
+        bgSoundPlayer?.prepareToPlay() //prepare for playback by preloading its buffers.
+        bgSoundPlayer?.play() //actually play
+    }
     
     func returnToMenu() {
+        bgSoundPlayer?.stop()
         self.navigationController?.popViewController(animated: true)
     }
     

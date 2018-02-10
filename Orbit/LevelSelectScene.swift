@@ -309,7 +309,7 @@ class LevelSelectScene: SKScene {
         self.addChild(tapToStart)
         let musicAction = SKAction.repeatForever(SKAction.playSoundFileNamed("OrbitBGMusic.mp3", waitForCompletion: true))
         if self.playBgMusic {
-            self.run(musicAction, withKey: "bgMusic")
+            //self.run(musicAction, withKey: "bgMusic")
         }
         createTheHomeScreen()
         timer3 = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: "update3", userInfo: nil, repeats: true)
