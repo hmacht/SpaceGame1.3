@@ -23,6 +23,7 @@ class LevelSelectViewController: UIViewController, MenuManager {
         super.viewDidLoad()
         
         self.navigationController?.isNavigationBarHidden = true
+        
         // Do any additional setup after loading the view.
         if let view = self.view as! SKView? {
             print("Hello")
