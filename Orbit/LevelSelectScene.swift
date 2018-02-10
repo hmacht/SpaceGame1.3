@@ -301,11 +301,9 @@ class LevelSelectScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        UserDefaults.standard.set(99999999, forKey: "Gems")
-        hasTaped = false
-        //levels.removeFromParent()
-        //endless.removeFromParent()
-        //divider.removeFromParent()
+        
+       
+        
         self.addChild(tapToStart)
         let musicAction = SKAction.repeatForever(SKAction.playSoundFileNamed("OrbitBGMusic.mp3", waitForCompletion: true))
         if self.playBgMusic {
@@ -329,7 +327,7 @@ class LevelSelectScene: SKScene {
             posX = CGFloat(ranPosx.nextInt())
             posY = CGFloat(ranPosy.nextInt())
             
-            //createtwinkle()
+            createtwinkle()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -382,6 +380,15 @@ class LevelSelectScene: SKScene {
                         self.view?.presentScene(scene, transition: SKTransition.fade(with: UIColor.lightGray, duration: 0.2))
                     }
                 }]))
+            }
+            if name == "settings"{
+                let sound = SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true)
+                self.run(SKAction.sequence([sound, SKAction.run {
+                    if let scene = SKScene(fileNamed: "settings") as? SettingsScreen {
+                        scene.menuManager = self.menuManager
+                        self.view?.presentScene(scene, transition: SKTransition.fade(with: UIColor.lightGray, duration: 0.2))
+                    }
+                    }]))
             }
             
         }

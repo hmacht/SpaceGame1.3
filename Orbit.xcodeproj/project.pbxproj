@@ -95,6 +95,8 @@
 		D1EAB1611FDB620300CDC186 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EAB1601FDB620300CDC186 /* GameViewController.swift */; };
 		D1EAB1641FDB620300CDC186 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1EAB1621FDB620300CDC186 /* Main.storyboard */; };
 		D1EAB1691FDB620300CDC186 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1EAB1671FDB620300CDC186 /* LaunchScreen.storyboard */; };
+		D7A20193202F5F4400E9E3ED /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A20192202F5F4400E9E3ED /* SettingsScreen.swift */; };
+		D7A20195202F5FF300E9E3ED /* settings.sks in Resources */ = {isa = PBXBuildFile; fileRef = D7A20194202F5FF300E9E3ED /* settings.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -188,6 +190,8 @@
 		D1EAB1631FDB620300CDC186 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D1EAB1681FDB620300CDC186 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D1EAB16A1FDB620300CDC186 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D7A20192202F5F4400E9E3ED /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
+		D7A20194202F5FF300E9E3ED /* settings.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = settings.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,6 +345,8 @@
 				D192237620142B64006E2F03 /* shop.sks */,
 				D192237820142BE1006E2F03 /* ShopScreen.swift */,
 				217CA4B7201A9291005F0898 /* Gem.swift */,
+				D7A20192202F5F4400E9E3ED /* SettingsScreen.swift */,
+				D7A20194202F5FF300E9E3ED /* settings.sks */,
 			);
 			path = Orbit;
 			sourceTree = "<group>";
@@ -416,6 +422,7 @@
 				212786D7201A6A8300AD7311 /* RockExplosion copy.sks in Resources */,
 				D1EAB1641FDB620300CDC186 /* Main.storyboard in Resources */,
 				211A655A2012EC4C007F7786 /* click2.mp3 in Resources */,
+				D7A20195202F5FF300E9E3ED /* settings.sks in Resources */,
 				D18A1AC82011912D0052CF14 /* asteroidtrail.sks in Resources */,
 				D11ED31C1FF5BA3400D74B7A /* planetToPos.sks in Resources */,
 				D1BA75811FE32A8800AA6A64 /* Smoke.sks in Resources */,
@@ -487,6 +494,7 @@
 				217405992023D7CF00C3BECB /* Level10Scene.swift in Sources */,
 				21080E70200CFFD500C89907 /* FinishLine.swift in Sources */,
 				21080E6E200CFD2100C89907 /* AsteroidSpawner.swift in Sources */,
+				D7A20193202F5F4400E9E3ED /* SettingsScreen.swift in Sources */,
 				21080E76200D1B0100C89907 /* Level1Scene.swift in Sources */,
 				2160E1E020140C8800967E16 /* Level5Scene.swift in Sources */,
 				21FB8F14202B9487000A31A3 /* Level17Scene.swift in Sources */,
@@ -639,7 +647,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SWYGWFGR5M;
+				DEVELOPMENT_TEAM = 38ZEQFSP28;
 				INFOPLIST_FILE = Orbit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -655,7 +663,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = SWYGWFGR5M;
+				DEVELOPMENT_TEAM = 38ZEQFSP28;
 				INFOPLIST_FILE = Orbit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

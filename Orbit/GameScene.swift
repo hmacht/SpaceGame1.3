@@ -142,7 +142,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var radianFactor = CGFloat(0.0174532925)
     var newRotationRadians = CGFloat()
     var onlyOnce = 1
-    var differentColorGems = ["Group 650","Group 650","Group 650"]
+    var differentColorGems = ["Group 660","Group 660","Group 660"]
     var randomGemColor = arc4random_uniform(3)
     var displayEndBoxOnce = 0
     var died = true
@@ -531,7 +531,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         numberofYears.fontColor = SKColor.black
         numberofYears.zPosition = 900
         numberofYears.alpha = 0
-        numberofYears.position = CGPoint(x: 0, y: 250)
+        numberofYears.position = CGPoint(x: 0, y: 300)
     }
     
     func randomPointOnCircle(radius:Float, center:CGPoint) -> CGPoint {
@@ -573,7 +573,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }*/
             theGem.removeFromParent()
             self.numberofYears.run(SKAction.fadeAlpha(to: 1, duration: 0.2))
-            let delayInSeconds = 1.0
+            let delayInSeconds = 0.1
             gemScore.removeFromParent()
             if !inLevel {
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
@@ -895,7 +895,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func dieShipAnimation(win: Bool = false) {
         explode()
         usersShip.removeFromParent()
-        AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        if UserDefaults.standard.bool(forKey: "vibrationOn") == true{
+            AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+        }
+        
         if win {
             self.run(SKAction.playSoundFileNamed("WinSoundOrbit.mp3", waitForCompletion: true))
         } else {
@@ -1329,6 +1332,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     endTime.removeFromParent()
                     endGems.removeFromParent()
                     endstore.removeFromParent()
+                    endSkip.removeFromParent()
                     endBG.removeFromParent()
                     endCompleteLab.removeFromParent()
                     died = false

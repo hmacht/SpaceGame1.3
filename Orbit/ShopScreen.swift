@@ -224,17 +224,20 @@ class ShopScreen: SKScene {
         gemsText = SKLabelNode(text: nGems)
         gemsText.fontColor = .black
         gemsText.fontName = "Bebas Neue"
-        gemsText.fontSize = 70
+        gemsText.fontSize = 50
         gemsText.verticalAlignmentMode = .center
-        gemsText.position = CGPoint(x: self.size.width/2 - 75, y: self.size.height/2 - 50)
+        gemsText.horizontalAlignmentMode = .left
+        gemsText.position = CGPoint(x: self.size.width/2 - 110, y: self.size.height/2 - 50)
         self.addChild(gemsText)
         
-        let gemsImage = SKSpriteNode(imageNamed: "gem")
-        gemsImage.position = CGPoint(x: -gemsText.frame.size.width/2 - 25, y: 0)
+        let gemsImage = SKSpriteNode(imageNamed: "Group 677")
+        gemsImage.position = CGPoint(x: -25, y: 0)
         gemsImage.setScale(1.5)
         gemsText.addChild(gemsImage)
         
         gemsText.setScale(0.6)
+        
+        
     }
     
     
