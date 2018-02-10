@@ -316,6 +316,8 @@ class LevelSelectScene: SKScene {
             
         } else {
             UserDefaults.standard.set("myShip", forKey: "selectedShip")
+            UserDefaults.standard.set(true, forKey: "soundOn")
+            UserDefaults.standard.set(true, forKey: "vibrationOn")
         }
         
     }

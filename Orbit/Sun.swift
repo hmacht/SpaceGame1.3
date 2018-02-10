@@ -19,7 +19,7 @@ public struct SunNames {
     static let blackSun3 = "Group 777"
     static let firstSun = "Group 419"
     static let firstGreenSun = "Group 287"
-    static let sunNames = [/*SunNames.redSun, SunNames.greenSun, SunNames.yellowSun, SunNames.whiteSun, SunNames.blueSun,*/ SunNames.blackSun, SunNames.blackSun2, SunNames.blackSun3]
+    static let sunNames = [SunNames.redSun, SunNames.greenSun, SunNames.yellowSun, SunNames.whiteSun, SunNames.blueSun, SunNames.blackSun, SunNames.blackSun2, SunNames.blackSun3]
 }
 
 class Sun: SKSpriteNode {
@@ -31,6 +31,7 @@ class Sun: SKSpriteNode {
         self.init(imageNamed: imageN)
         
         var scale: CGFloat = 2
+        
         
         if imageN != "Group 419" && imageN != "Group 287" {
             scale *= 184 / 244
@@ -50,6 +51,9 @@ class Sun: SKSpriteNode {
         self.physicsBody?.contactTestBitMask = physicsCatagory.sun | physicsCatagory.usersShip | physicsCatagory.asteroid
         self.physicsBody?.affectedByGravity = false
         self.physicsBody?.isDynamic = false
+        
+        let randRotation = Double(arc4random_uniform(360)) * Double.pi / 180
+        self.zRotation = CGFloat(randRotation)
     }
     
     override init(texture: SKTexture!, color: UIColor, size: CGSize) {

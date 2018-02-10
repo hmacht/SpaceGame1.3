@@ -51,7 +51,9 @@ class GameViewController: UIViewController, GameManager {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        playBGMusic()
+        if UserDefaults.standard.bool(forKey: "soundOn") {
+            playBGMusic()
+        }
     }
     
     func playBGMusic() {

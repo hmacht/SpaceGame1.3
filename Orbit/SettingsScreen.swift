@@ -42,8 +42,6 @@ class SettingsScreen: SKScene {
     
     override func didMove(to view: SKView) {
         
-        
-        
         let BG = SKSpriteNode(imageNamed: "Rectangle 1783")
         BG.setScale(2)
         BG.position = CGPoint(x: 0, y: 0)
@@ -127,10 +125,12 @@ class SettingsScreen: SKScene {
                     soundBtn.texture = SKTexture(imageNamed: "Group 780")
                     UserDefaults.standard.set(false, forKey: "soundOn")
                     isSoundOn = false
+                    self.menuManager?.stopMusic()
                 }else{
                     soundBtn.texture = SKTexture(imageNamed: "Group 778")
                     UserDefaults.standard.set(true, forKey: "soundOn")
                     isSoundOn = true
+                    self.menuManager?.startMusic()
                 }
                 
             }
