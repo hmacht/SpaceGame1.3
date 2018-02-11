@@ -365,17 +365,21 @@ class LevelSelectScene: SKScene {
         
         if let name = touchedNode.name{
             if name == "endless"{
-                self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                //self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                self.playSound(s: "click1.mp3", wait: true)
                 self.menuManager?.didPressEndless(level: 0)
             }
             if name == "play" {
-                self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                //self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                self.playSound(s: "click1.mp3", wait: true)
                 playBtn.run(SKAction.scale(to: 1.5, duration: 0.2))
                 clickedPlay = true
                 
             }
             if name == "shop"{
-                let sound = SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true)
+                let sound = SKAction.run({
+                    self.playSound(s: "click1.mp3", wait: true)
+                })
                 self.run(SKAction.sequence([sound, SKAction.run {
                     if let scene = SKScene(fileNamed: "shop") as? ShopScreen {
                         scene.menuManager = self.menuManager
@@ -384,7 +388,9 @@ class LevelSelectScene: SKScene {
                 }]))
             }
             if name == "settings"{
-                let sound = SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true)
+                let sound = SKAction.run({
+                    self.playSound(s: "click1.mp3", wait: true)
+                })
                 self.run(SKAction.sequence([sound, SKAction.run {
                     if let scene = SKScene(fileNamed: "settings") as? SettingsScreen {
                         scene.menuManager = self.menuManager
@@ -410,5 +416,11 @@ class LevelSelectScene: SKScene {
     func updateGems() {
         let nGems = String(UserDefaults.standard.integer(forKey: "Gems"))
         gemsText.text = nGems
+    }
+    
+    func playSound(s: String, wait: Bool) {
+        if UserDefaults.standard.bool(forKey: "soundOn") {
+            self.run(SKAction.playSoundFileNamed(s, waitForCompletion: wait))
+        }
     }
 }

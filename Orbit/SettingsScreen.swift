@@ -99,7 +99,8 @@ class SettingsScreen: SKScene {
         
         if let name = touchedNode.name{
             if name == "back2" {
-                self.run(SKAction.playSoundFileNamed("click2.mp3", waitForCompletion: true))
+                //self.run(SKAction.playSoundFileNamed("click2.mp3", waitForCompletion: true))
+                self.playSound(s: "click2.mp3", wait: true)
                 if let scene = SKScene(fileNamed: "LevelSelect") as? LevelSelectScene {
                     scene.scaleMode = .aspectFill
                     self.menuManager?.didReturnToMainMenu(scene: scene)
@@ -107,6 +108,7 @@ class SettingsScreen: SKScene {
                 }
             }
             if name == "vibration"{
+                self.playSound(s: "click1.mp3", wait: true)
                 if isvibrationsOn{
                     vibrationBtn.texture = SKTexture(imageNamed: "Group 781")
                     UserDefaults.standard.set(false, forKey: "vibrationOn")
@@ -132,8 +134,14 @@ class SettingsScreen: SKScene {
                     isSoundOn = true
                     self.menuManager?.startMusic()
                 }
-                
+                self.playSound(s: "click1.mp3", wait: true)
             }
+        }
+    }
+    
+    func playSound(s: String, wait: Bool) {
+        if UserDefaults.standard.bool(forKey: "soundOn") {
+            self.run(SKAction.playSoundFileNamed(s, waitForCompletion: wait))
         }
     }
 

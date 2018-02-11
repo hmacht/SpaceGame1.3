@@ -140,12 +140,14 @@ class LevelMenuScene: SKScene {
         
         if let name = touchedNode.name{
             if let n = Int(name) {
-                self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                //self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                self.playSound(s: "click1.mp3", wait: true)
                 self.menuManager?.didPressEndless(level: n)
             }
             
             if name == "back" {
-                self.run(SKAction.playSoundFileNamed("click2.mp3", waitForCompletion: true))
+                //self.run(SKAction.playSoundFileNamed("click2.mp3", waitForCompletion: true))
+                self.playSound(s: "click2.mp3", wait: true)
                 if let scene = SKScene(fileNamed: "LevelSelect") as? LevelSelectScene {
                     scene.scaleMode = .aspectFill
                     self.menuManager?.didReturnToMainMenu(scene: scene)
@@ -154,10 +156,17 @@ class LevelMenuScene: SKScene {
             }
             
             if name == "locked" {
-                self.run(SKAction.playSoundFileNamed("wood-5.wav", waitForCompletion: true))
+                //self.run(SKAction.playSoundFileNamed("wood-5.wav", waitForCompletion: true))
+                self.playSound(s: "wood-5.wav", wait: true)
             }
             
             
+        }
+    }
+    
+    func playSound(s: String, wait: Bool) {
+        if UserDefaults.standard.bool(forKey: "soundOn") {
+            self.run(SKAction.playSoundFileNamed(s, waitForCompletion: wait))
         }
     }
 }
