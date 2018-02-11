@@ -142,7 +142,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var radianFactor = CGFloat(0.0174532925)
     var newRotationRadians = CGFloat()
     var onlyOnce = 1
-    var differentColorGems = ["Group 650","Group 650","Group 650"]
+    var differentColorGems = ["Group 660","Group 660","Group 660"]
     var randomGemColor = arc4random_uniform(3)
     var displayEndBoxOnce = 0
     var died = true
@@ -630,7 +630,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(usersShip)
         
         let scale = SKAction.scale(to: 3.5, duration: 1)
-        let fade = SKAction.fadeAlpha(to: 0, duration: 1.3)
+        let fade = SKAction.fadeAlpha(to: 0, duration: 0.95)
         ring.run(SKAction.sequence([SKAction.group([scale, fade]), SKAction.removeFromParent()]))
         
         endOnce = 1
