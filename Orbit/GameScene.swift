@@ -900,9 +900,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if win {
-            self.run(SKAction.playSoundFileNamed("WinSoundOrbit.mp3", waitForCompletion: true))
+            //self.run(SKAction.playSoundFileNamed("WinSoundOrbit.mp3", waitForCompletion: true))
+            self.playSound(s: "WinSoundOrbit.mp3", waitForEnd: true)
         } else {
-            self.run(SKAction.playSoundFileNamed("DeathSound.wav", waitForCompletion: true))
+            //self.run(SKAction.playSoundFileNamed("DeathSound.wav", waitForCompletion: true))
+            self.playSound(s: "DeathSound.wav", waitForEnd: true)
         }
         shakeCamera(layer: theGem, duration: 0.5)
         shakeCamera(layer: planetPath, duration: 0.5)
@@ -1182,7 +1184,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         touchingScreen = true
         
         if gameOver == false {
-            if self.action(forKey: "rocketSound") == nil {
+            if self.action(forKey: "rocketSound") == nil && UserDefaults.standard.bool(forKey: "soundOn") {
                 let sequence = SKAction.sequence([SKAction.wait(forDuration: 0.02), SKAction.playSoundFileNamed("RocketThrust.wav", waitForCompletion: true)])
                 let sound = SKAction.repeatForever(sequence)
                 self.run(sound, withKey: "rocketSound")
@@ -1201,15 +1203,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let touchedNode = self.atPoint(positionInScene)
         
         if let name = touchedNode.name{
-            if name == "pausebtn"{
-                self.run(SKAction.playSoundFileNamed("click2.mp3", waitForCompletion: true))
+            if name == "pausebtn" {
+                //self.run(SKAction.playSoundFileNamed("click2.mp3", waitForCompletion: true))
+                self.playSound(s: "click2.mp3", waitForEnd: true)
                 pausedGame()
                 scene?.speed = 0
                 scene?.physicsWorld.speed = 0
             }
             
             if name == "continue"{
-                self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                //self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                self.playSound(s: "click1.mp3", waitForEnd: true)
                 pausedBg.removeFromParent()
                 continuebtn.removeFromParent()
                 restartbtn2.removeFromParent()
@@ -1220,7 +1224,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
             if name == "quit" {
-                self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                //self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                self.playSound(s: "click1.mp3", waitForEnd: true)
                 pausedBg.removeFromParent()
                 continuebtn.removeFromParent()
                 restartbtn2.removeFromParent()
@@ -1232,12 +1237,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.gameManager?.returnToMenu()
             }
             if name == "endquit" {
-                self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                //self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                self.playSound(s: "click1.mp3", waitForEnd: true)
                 self.updateGems()
                 self.gameManager?.returnToMenu()
             }
             if name == "restart2"{
-                self.run(SKAction.playSoundFileNamed("click2.mp3", waitForCompletion: true))
+                //self.run(SKAction.playSoundFileNamed("click2.mp3", waitForCompletion: true))
+                self.playSound(s: "click2.mp3", waitForEnd: true)
                 pausedBg.removeFromParent()
                 continuebtn.removeFromParent()
                 restartbtn2.removeFromParent()
@@ -1269,7 +1276,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.endBG.zPosition = 901
                     self.endBG.run(SKAction.fadeAlpha(to: 1, duration: 0.3))
                 }
-                let clickAction = SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: false)
+                //let clickAction = SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: false)
+                let clickAction = SKAction.run {
+                    self.playSound(s: "click1.mp3", waitForEnd: true)
+                }
                 self.run(SKAction.sequence([clickAction, fadeAction, SKAction.run({
                     self.gameManager?.nextLevel()
                 })]))
@@ -1310,7 +1320,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if let name = touchedNode.name{
             if name == "restartGame"{
                 if endOGameDelayIsDone{
-                    self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                    //self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                    self.playSound(s: "click1.mp3", waitForEnd: true)
                     goToGameScene()
                     endOGameDelayIsDone = false
                 }
@@ -1319,7 +1330,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if let name = touchedNode.name{
             if name == "reatarLevel"{
                 if endOGameDelayIsDone{
-                    self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                    //self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                    self.playSound(s: "click1.mp3", waitForEnd: true)
                     
                     displayEndBoxOnce = 0
                     goToGameScene()
@@ -1501,7 +1513,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func playSound(s: String, waitForEnd: Bool) {
-        self.run(SKAction.playSoundFileNamed(s, waitForCompletion: waitForEnd))
+        if UserDefaults.standard.bool(forKey: "soundOn") {
+            self.run(SKAction.playSoundFileNamed(s, waitForCompletion: waitForEnd))
+        }
     }
     
     func setupBackgroundMusic() {

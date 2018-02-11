@@ -298,7 +298,8 @@ class ShopScreen: SKScene {
             
             if name == "purchase" {
                 if currentGems >= self.boxPrice {
-                    self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                    //self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                    self.playSound(s: "click1.mp3", wait: true)
                     openBox.run(SKAction.move(to: CGPoint(x: 0, y: 0) , duration: 1.0))
                     openBox.run(SKAction.scale(to: 2, duration: 1.0))
                     purchaseBtn.run(SKAction.scale(to: 0, duration: 0.8))
@@ -310,14 +311,16 @@ class ShopScreen: SKScene {
                     UserDefaults.standard.set(currentGems - self.boxPrice, forKey: "Gems")
                     self.scrollDownGemsText()
                 }else{
-                    self.run(SKAction.playSoundFileNamed("wood-5.wav", waitForCompletion: true))
+                    //self.run(SKAction.playSoundFileNamed("wood-5.wav", waitForCompletion: true))
+                    self.playSound(s: "wood-5.wav", wait: true)
                     print("Want to buy more gems?")
                 }
                 
                 
             }
             if name == "back2" {
-                self.run(SKAction.playSoundFileNamed("click2.mp3", waitForCompletion: true))
+                //self.run(SKAction.playSoundFileNamed("click2.mp3", waitForCompletion: true))
+                self.playSound(s: "click2.mp3", wait: true)
                 if let scene = SKScene(fileNamed: "LevelSelect") as? LevelSelectScene {
                     scene.scaleMode = .aspectFill
                     self.menuManager?.didReturnToMainMenu(scene: scene)
@@ -378,7 +381,8 @@ class ShopScreen: SKScene {
             
             if name == "buy" {
                 if currentGems >= self.boxPrice {
-                    self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                    //self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
+                    self.playSound(s: "click1.mp3", wait: true)
                     UserDefaults.standard.set(currentGems - self.boxPrice, forKey: "Gems")
                     self.scrollDownGemsText()
                     //shipsUnlocked.append(whatToBuy)
@@ -409,14 +413,16 @@ class ShopScreen: SKScene {
                         n.removeFromParent()
                     }
                 }else{
-                    self.run(SKAction.playSoundFileNamed("wood-5.wav", waitForCompletion: true))
+                    //self.run(SKAction.playSoundFileNamed("wood-5.wav", waitForCompletion: true))
+                    self.playSound(s: "wood-5.wav", wait: true)
                     print("Want to buy more gems?")
                 }
                 
                 
             }
             if name == "close" {
-                self.run(SKAction.playSoundFileNamed("click2.mp3", waitForCompletion: true))
+                //self.run(SKAction.playSoundFileNamed("click2.mp3", waitForCompletion: true))
+                self.playSound(s: "click2.mp3", wait: true)
                 removePopUp()
             }
             
@@ -428,7 +434,8 @@ class ShopScreen: SKScene {
             
             let delayInSeconds = 1.0
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delayInSeconds) {
-                self.run(SKAction.playSoundFileNamed("DeathSound.wav", waitForCompletion: true))
+                //self.run(SKAction.playSoundFileNamed("DeathSound.wav", waitForCompletion: true))
+                self.playSound(s: "DeathSound.wav", wait: true)
                 self.openBox.removeFromParent()
                 let boxExplotion = SKEmitterNode(fileNamed: "AsteroidDie")!
                 boxExplotion.targetNode = self.scene
@@ -450,6 +457,12 @@ class ShopScreen: SKScene {
         self.run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 1.0 / Double(self.boxPrice)), SKAction.run({
             self.gemsText.text = String(Int(self.gemsText.text!)! - 1)
         })]), count: self.boxPrice))
+    }
+    
+    func playSound(s: String, wait: Bool) {
+        if UserDefaults.standard.bool(forKey: "soundOn") {
+            self.run(SKAction.playSoundFileNamed(s, waitForCompletion: wait))
+        }
     }
 }
 

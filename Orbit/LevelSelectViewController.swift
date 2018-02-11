@@ -14,6 +14,8 @@ protocol MenuManager {
     func didPressPlay()
     func didPressEndless(level: Int)
     func didReturnToMainMenu(scene: LevelSelectScene)
+    func stopMusic()
+    func startMusic()
 }
 
 class LevelSelectViewController: UIViewController, MenuManager {
@@ -23,6 +25,14 @@ class LevelSelectViewController: UIViewController, MenuManager {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let _ = UserDefaults.standard.string(forKey: "selectedShip") {
+            
+        } else {
+            UserDefaults.standard.set("myShip", forKey: "selectedShip")
+            UserDefaults.standard.set(true, forKey: "soundOn")
+            UserDefaults.standard.set(true, forKey: "vibrationOn")
+        }
         
         self.navigationController?.isNavigationBarHidden = true
         
@@ -59,8 +69,18 @@ class LevelSelectViewController: UIViewController, MenuManager {
         bgSoundPlayer?.play() //actually play
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    func stopMusic() {
+        bgSoundPlayer?.stop()
+    }
+    
+    func startMusic() {
         self.playBGMusic()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if UserDefaults.standard.bool(forKey: "soundOn") {
+            self.playBGMusic()
+        }
         if let view = self.view as! SKView? {
             if let scene = view.scene as? LevelSelectScene {
                 scene.updateGems()
