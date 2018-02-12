@@ -18,6 +18,7 @@ class LevelMenuScene: SKScene {
     var levelColors = ["Ellipse 8533", "Ellipse 8534", "Ellipse 8535", "Ellipse 8538"]
     var allTheLevels = [SKSpriteNode()]
     var allTheLevelsLabs = [SKLabelNode()]
+    var durationToOpen: TimeInterval = 1
     
     func createBG(){
         background = SKSpriteNode(imageNamed: "Rectangle 1806")
@@ -94,13 +95,13 @@ class LevelMenuScene: SKScene {
         }
     }
     
-    func openScene() {
+    func openScene(durationScale: TimeInterval) {
         for i in 1...allTheLevelsLabs.count {
-          allTheLevelsLabs[i - 1].run(SKAction.scale(to: 1, duration: 0.4))
+          allTheLevelsLabs[i - 1].run(SKAction.scale(to: 1, duration: 0.4 * durationScale))
         
         }
         for i in 1...allTheLevels.count {
-            allTheLevels[i - 1].run(SKAction.scale(to: 1.4, duration: 0.32))
+            allTheLevels[i - 1].run(SKAction.scale(to: 1.4, duration: 0.32 * durationScale))
             
         }
         
@@ -118,7 +119,7 @@ class LevelMenuScene: SKScene {
         
         createBG()
         createAllLevels()
-        openScene()
+        openScene(durationScale: self.durationToOpen)
         
         let levelSelection = SKLabelNode(text: "Galaxy One")
         levelSelection.position = CGPoint(x: 0, y: 230)

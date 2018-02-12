@@ -83,10 +83,14 @@ class LevelSelectViewController: UIViewController, MenuManager {
         }
         if let view = self.view as! SKView? {
             if let scene = view.scene as? LevelSelectScene {
+                scene.updateHighScore()
                 scene.updateGems()
             }
             
             if let scene = view.scene as? LevelMenuScene {
+                if scene.children.count > 0 {
+                    scene.durationToOpen = 0
+                }
                 scene.removeAllChildren()
                 scene.didMove(to: view)
             }

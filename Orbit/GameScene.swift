@@ -565,12 +565,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if !inLevel {
                 self.numberofYears.text = "+\(score) GEMS"
             }
-            /*
-            restartBtn.alpha = 0.5
-            self.addChild(restartBtn)
-            if let c = self.cameraNode {
-                restartBtn.position = CGPoint(x: 0, y: c.position.y - 200)
-            }*/
+            
             theGem.removeFromParent()
             self.numberofYears.run(SKAction.fadeAlpha(to: 1, duration: 0.2))
             let delayInSeconds = 0.1
@@ -588,6 +583,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func updateGems() {
         // Get gems for memory. If nothing stored, returns 0
+        if self.score > UserDefaults.standard.integer(forKey: "highScore") {
+            UserDefaults.standard.set(self.score, forKey: "highScore")
+        }
         let currentGems = UserDefaults.standard.integer(forKey: "Gems")
         UserDefaults.standard.set(currentGems + self.score, forKey: "Gems")
         //print("Total gems:", UserDefaults.standard.integer(forKey: "Gems"))
@@ -1239,7 +1237,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if name == "endquit" {
                 //self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
                 self.playSound(s: "click1.mp3", waitForEnd: true)
-                self.updateGems()
+                //self.updateGems()
                 self.gameManager?.returnToMenu()
             }
             if name == "restart2"{
