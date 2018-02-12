@@ -627,8 +627,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(ring)
         self.addChild(usersShip)
         
-        let scale = SKAction.scale(to: 3.5, duration: 1)
-        let fade = SKAction.fadeAlpha(to: 0, duration: 1.3)
+        let scale = SKAction.scale(to: 4.5, duration: 1)
+        let fade = SKAction.fadeAlpha(to: 0, duration: 1.15)
         ring.run(SKAction.sequence([SKAction.group([scale, fade]), SKAction.removeFromParent()]))
         
         endOnce = 1
