@@ -48,6 +48,7 @@ class LevelSelectScene: SKScene {
     var planetHome = SKSpriteNode()
     var shopBtn = SKSpriteNode()
     var gemsText = SKLabelNode()
+    var highScoreText = SKLabelNode()
     
     func createtwinkle() {
         let twinkleHome = SKSpriteNode(imageNamed: differentTwinkles[Int(arc4random_uniform(3))])
@@ -166,7 +167,23 @@ class LevelSelectScene: SKScene {
         gemsImage.setScale(2)
         gemsText.addChild(gemsImage)
         
-        let sun = Sun(imageName: "Group 419")
+        let highScore = UserDefaults.standard.integer(forKey: "highScore")
+        highScoreText = SKLabelNode(text: String(highScore))
+        highScoreText.fontColor = .black
+        highScoreText.fontName = "Bebas Neue"
+        highScoreText.fontSize = 50
+        highScoreText.verticalAlignmentMode = .center
+        highScoreText.horizontalAlignmentMode = .left
+        highScoreText.position = CGPoint(x: self.size.width/2 - 130, y: self.size.height/2 - 75)
+        self.addChild(highScoreText)
+        
+        let highScoreIcon = SKSpriteNode(imageNamed: "HighScore")
+        highScoreIcon.position = CGPoint(x: -highScoreText.frame.size.width/2 - 20, y: 0)
+        highScoreIcon.setScale(0.2)
+        highScoreText.addChild(highScoreIcon)
+        
+        
+        let sun = Sun(imageName: SunNames.blackSun)
         sun.position = CGPoint(x: self.size.width/4, y: -self.size.height/3 - 75)
         //self.addChild(sun)
     }
@@ -283,6 +300,10 @@ class LevelSelectScene: SKScene {
     func updateGems() {
         let nGems = String(UserDefaults.standard.integer(forKey: "Gems"))
         gemsText.text = nGems
+    }
+    
+    func updateHighScore() {
+        self.highScoreText.text = String(UserDefaults.standard.integer(forKey: "highScore"))
     }
     
     func playSound(s: String, wait: Bool) {
