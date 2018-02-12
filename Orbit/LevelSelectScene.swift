@@ -185,7 +185,7 @@ class LevelSelectScene: SKScene {
         
         let sun = Sun(imageName: SunNames.blackSun)
         sun.position = CGPoint(x: self.size.width/4, y: -self.size.height/3 - 75)
-        self.addChild(sun)
+        //self.addChild(sun)
     }
     
     
