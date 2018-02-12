@@ -1239,7 +1239,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if name == "endquit" {
                 //self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
                 self.playSound(s: "click1.mp3", waitForEnd: true)
-                self.updateGems()
+                //self.updateGems()
                 self.gameManager?.returnToMenu()
             }
             if name == "restart2"{

@@ -20,7 +20,7 @@ class LevelMenuScene: SKScene {
     var allTheLevelsLabs = [SKLabelNode()]
     
     func createBG(){
-        background = SKSpriteNode(imageNamed: "Rectangle 1806")
+        background = SKSpriteNode(imageNamed: "Rectangle 1783")
         background.size.width = self.size.width
         background.size.height = self.size.height
         background.zPosition = 0
