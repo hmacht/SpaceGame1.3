@@ -126,6 +126,18 @@ class LevelSelectScene: SKScene {
         settingsBtn.name = "settings"
         self.addChild(settingsBtn)
         
+        let tutorialButton = SKLabelNode(text: "Tutorial")
+        tutorialButton.position = CGPoint(x: -55 - settingsBtn.size.width/2, y: -220)
+        tutorialButton.verticalAlignmentMode = .center
+        tutorialButton.horizontalAlignmentMode = .left
+        tutorialButton.fontSize = 75
+        tutorialButton.fontName = "Bebas Neue"
+        tutorialButton.fontColor = SKColor(red: 21/255.0, green: 31/255.0, blue: 56/255.0, alpha: 1)
+        tutorialButton.name = "tutorial"
+        self.addChild(tutorialButton)
+        
+        
+        
         homeShip = SKSpriteNode(imageNamed: "Group 133")
         homeShip.setScale(2)
         homeShip.position = CGPoint(x: -135, y: 90)
@@ -416,6 +428,17 @@ class LevelSelectScene: SKScene {
                     }]))
             }
             
+            if name == "tutorial" {
+                let sound = SKAction.run({
+                    self.playSound(s: "click1.mp3", wait: true)
+                })
+                self.run(SKAction.sequence([sound, SKAction.run {
+                    if let scene = SKScene(fileNamed: "Tutorial") as? TutorialScene {
+                        scene.menuManager = self.menuManager
+                        self.view?.presentScene(scene, transition: SKTransition.fade(with: UIColor.lightGray, duration: 0.2))
+                    }
+                    }]))
+            }
         }
     }
 
