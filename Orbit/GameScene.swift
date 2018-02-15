@@ -188,14 +188,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         endQuit = SKSpriteNode(imageNamed: "Group 545")
         endQuit.setScale(0)
         endQuit.name = "endquit"
-        endQuit.position = CGPoint(x: 0, y: -200)
+        endQuit.position = CGPoint(x: -60, y: -200)
         endQuit.zPosition = 900
         endBG.addChild(endQuit)
         
         endRestart = SKSpriteNode(imageNamed: "Group 544")
         endRestart.setScale(0)
         endRestart.name = "reatarLevel"
-        endRestart.position = CGPoint(x: -80, y: -200)
+        endRestart.position = CGPoint(x: 60, y: -200)
         endRestart.zPosition = 900
         endBG.addChild(endRestart)
         
@@ -204,7 +204,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         endstore.name = "endstore"
         endstore.position = CGPoint(x: 80, y: -200)
         endstore.zPosition = 900
-        endBG.addChild(endstore)
+        //endBG.addChild(endstore)
         
         
         
@@ -215,7 +215,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
     func createDiedScreen(yPos2: CGFloat){
-        //endBG = SKSpriteNode(imageNamed: "Rectangle 1806")
+        endBG = SKSpriteNode()
         endBG.setScale(2)
         endBG.position = CGPoint(x: 0, y: yPos2)
         endBG.zPosition = 850
@@ -245,16 +245,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         endSkip = SKSpriteNode(imageNamed: "Group 554")
         endSkip.setScale(0)
         endSkip.name = "skip"
-        endSkip.position = CGPoint(x: -80, y: -200)
+        endSkip.position = CGPoint(x: 60, y: -200)
         endSkip.zPosition = 900
-        endBG.addChild(endSkip)
+        //endBG.addChild(endSkip)
         
         endstore = SKSpriteNode(imageNamed: "Group 546")
         endstore.setScale(0)
         endstore.name = "endstore"
         endstore.position = CGPoint(x: 80, y: -200)
         endstore.zPosition = 900
-        endBG.addChild(endstore)
+        //endBG.addChild(endstore)
     }
     func createHelper() {
         moonHelper.position = CGPoint(x: 0, y: 0)
@@ -751,31 +751,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         continuebtn = SKSpriteNode(imageNamed: "Group 358")
         continuebtn.setScale(2)
-        continuebtn.position = CGPoint(x: 0, y: 120 + yOffset)
+        continuebtn.position = CGPoint(x: 0, y: 80 + yOffset)
         continuebtn.zPosition = 500
         continuebtn.name = "continue"
         self.addChild(continuebtn)
         
         restartbtn2 = SKSpriteNode(imageNamed: "Group 359")
         restartbtn2.setScale(2)
-        restartbtn2.position = CGPoint(x: -10, y: 40 + yOffset)
+        restartbtn2.position = CGPoint(x: -10, y: yOffset)
         restartbtn2.zPosition = 500
         restartbtn2.name = "restart2"
         self.addChild(restartbtn2)
         
         quitbtn = SKSpriteNode(imageNamed: "Group 360")
         quitbtn.setScale(2)
-        quitbtn.position = CGPoint(x: -50, y: -40 + yOffset)
+        quitbtn.position = CGPoint(x: -50, y: -80 + yOffset)
         quitbtn.zPosition = 500
         quitbtn.name = "quit"
         self.addChild(quitbtn)
+        
         
         settingsbtn2 = SKSpriteNode(imageNamed: "Group 366")
         settingsbtn2.setScale(2)
         settingsbtn2.position = CGPoint(x: 0, y: -120 + yOffset)
         settingsbtn2.zPosition = 50000001
         settingsbtn2.name = "settings2"
-        self.addChild(settingsbtn2)
+        //self.addChild(settingsbtn2)
         
     }
     
