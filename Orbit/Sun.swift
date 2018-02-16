@@ -44,7 +44,7 @@ class Sun: SKSpriteNode {
             physicsBodyRadius = self.size.width / 2 - 15
         }
         
-        self.zPosition = 80
+        self.zPosition = 40
         self.physicsBody = SKPhysicsBody(circleOfRadius: physicsBodyRadius)
         self.physicsBody?.categoryBitMask = physicsCatagory.sun
         self.physicsBody?.collisionBitMask = physicsCatagory.sun | physicsCatagory.usersShip | physicsCatagory.asteroid

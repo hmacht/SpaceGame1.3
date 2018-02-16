@@ -29,6 +29,10 @@
 		2142A7C120228D72004C47A7 /* Level9.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2142A7C020228D72004C47A7 /* Level9.sks */; };
 		21439211201BEDEA0019003A /* Level8.sks in Resources */ = {isa = PBXBuildFile; fileRef = 21439210201BEDEA0019003A /* Level8.sks */; };
 		21439213201BEE050019003A /* Level8Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21439212201BEE050019003A /* Level8Scene.swift */; };
+		214A07CB203652CE00FEA224 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 214A07C7203652CD00FEA224 /* FBSDKShareKit.framework */; };
+		214A07CC203652CE00FEA224 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 214A07C8203652CD00FEA224 /* FBSDKLoginKit.framework */; };
+		214A07CD203652CE00FEA224 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 214A07C9203652CE00FEA224 /* FBSDKCoreKit.framework */; };
+		214A07CE203652CE00FEA224 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 214A07CA203652CE00FEA224 /* Bolts.framework */; };
 		214D9E79202BE5F100C5BB4C /* Level19Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214D9E78202BE5F100C5BB4C /* Level19Scene.swift */; };
 		214D9E7B202BF84500C5BB4C /* Level19.sks in Resources */ = {isa = PBXBuildFile; fileRef = 214D9E7A202BF84500C5BB4C /* Level19.sks */; };
 		2158470220118A9E00891A44 /* LevelMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2158470120118A9E00891A44 /* LevelMenuScene.swift */; };
@@ -124,6 +128,10 @@
 		2142A7C020228D72004C47A7 /* Level9.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level9.sks; sourceTree = "<group>"; };
 		21439210201BEDEA0019003A /* Level8.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level8.sks; sourceTree = "<group>"; };
 		21439212201BEE050019003A /* Level8Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level8Scene.swift; sourceTree = "<group>"; };
+		214A07C7203652CD00FEA224 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		214A07C8203652CD00FEA224 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		214A07C9203652CE00FEA224 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		214A07CA203652CE00FEA224 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		214D9E78202BE5F100C5BB4C /* Level19Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level19Scene.swift; sourceTree = "<group>"; };
 		214D9E7A202BF84500C5BB4C /* Level19.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level19.sks; sourceTree = "<group>"; };
 		2158470120118A9E00891A44 /* LevelMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelMenuScene.swift; sourceTree = "<group>"; };
@@ -203,6 +211,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				214A07CC203652CE00FEA224 /* FBSDKLoginKit.framework in Frameworks */,
+				214A07CD203652CE00FEA224 /* FBSDKCoreKit.framework in Frameworks */,
+				214A07CB203652CE00FEA224 /* FBSDKShareKit.framework in Frameworks */,
+				214A07CE203652CE00FEA224 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -353,6 +365,10 @@
 				21F0A5C82033B1B4007FAA1C /* TutorialScene.swift */,
 				D7A20194202F5FF300E9E3ED /* settings.sks */,
 				21F0A5CA2033B597007FAA1C /* Tutorial.sks */,
+				214A07CA203652CE00FEA224 /* Bolts.framework */,
+				214A07C9203652CE00FEA224 /* FBSDKCoreKit.framework */,
+				214A07C8203652CD00FEA224 /* FBSDKLoginKit.framework */,
+				214A07C7203652CD00FEA224 /* FBSDKShareKit.framework */,
 			);
 			path = Orbit;
 			sourceTree = "<group>";
@@ -655,7 +671,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 38ZEQFSP28;
+				DEVELOPMENT_TEAM = SWYGWFGR5M;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Orbit",
+				);
 				INFOPLIST_FILE = Orbit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -671,7 +691,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 38ZEQFSP28;
+				DEVELOPMENT_TEAM = SWYGWFGR5M;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Orbit",
+				);
 				INFOPLIST_FILE = Orbit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
