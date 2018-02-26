@@ -126,17 +126,11 @@ class LevelSelectScene: SKScene {
         settingsBtn.name = "settings"
         self.addChild(settingsBtn)
         
-        let tutorialButton = SKLabelNode(text: "Tutorial")
-        tutorialButton.position = CGPoint(x: -55 - settingsBtn.size.width/2, y: -220)
-        tutorialButton.verticalAlignmentMode = .center
-        tutorialButton.horizontalAlignmentMode = .left
-        tutorialButton.fontSize = 75
-        tutorialButton.fontName = "Bebas Neue"
-        tutorialButton.fontColor = SKColor(red: 21/255.0, green: 31/255.0, blue: 56/255.0, alpha: 1)
+        let tutorialButton = SKSpriteNode(imageNamed: "qmark")
+        tutorialButton.position = CGPoint(x: self.size.width / 2 - 130, y: self.size.height/2 - 75)
         tutorialButton.name = "tutorial"
+        tutorialButton.setScale(2)
         self.addChild(tutorialButton)
-        
-        
         
         homeShip = SKSpriteNode(imageNamed: "Group 133")
         homeShip.setScale(2)
@@ -186,12 +180,12 @@ class LevelSelectScene: SKScene {
         highScoreText.fontSize = 50
         highScoreText.verticalAlignmentMode = .center
         highScoreText.horizontalAlignmentMode = .left
-        highScoreText.position = CGPoint(x: self.size.width/2 - 130, y: self.size.height/2 - 75)
+        highScoreText.position = CGPoint(x: -self.size.width/2 + 138, y: self.size.height/2 - 130)
         self.addChild(highScoreText)
         
         let highScoreIcon = SKSpriteNode(imageNamed: "HighScore")
         highScoreIcon.position = CGPoint(x: -highScoreText.frame.size.width/2 - 20, y: 0)
-        highScoreIcon.setScale(0.2)
+        highScoreIcon.setScale(0.15)
         highScoreText.addChild(highScoreIcon)
         
         
