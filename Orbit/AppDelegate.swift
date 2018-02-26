@@ -8,6 +8,7 @@
 
 import UIKit
 import FBSDKCoreKit
+import GameAnalytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        
+        GameAnalytics.configureBuild("1.0.0")
+        GameAnalytics.configureAvailableResourceCurrencies(["gem"])
+        GameAnalytics.initialize(withGameKey: "1cfcc32a758e4fe4f9af5d5fe5399698", gameSecret: "386c09c5e3491a7ee3f2df17107a57a6f70d473a")
+        
+        
         return true
     }
 

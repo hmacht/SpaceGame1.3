@@ -9,6 +9,7 @@
 import SpriteKit
 import GameplayKit
 import AudioToolbox
+import GameAnalytics
 
 public struct physicsCatagory {
     static let sun: UInt32 = 0x1 << 1
@@ -155,6 +156,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gemPos = [CGPoint]()
     var gemSprites = [SKSpriteNode]()
     var currentGemProgress = [0, 0, 0]
+    var galaxyN = 0
     
     var selectedShip = "myShip"
     var shipTexture = SKTexture()
@@ -162,6 +164,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     func creatEndScrene(yPos: CGFloat){
+        
+        if inLevel {
+            GameAnalytics.addProgressionEvent(with: GAProgressionStatusComplete, progression01: "galaxy\(self.galaxyN)", progression02: "level\(self.level)", progression03: nil, score: self.gems.reduce(0, +))
+        }
         
         endBG = SKSpriteNode(imageNamed: "Rectangle 1806")
         endBG.setScale(2)
@@ -847,6 +853,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if inLevel {
             self.createBottomBoundary()
+            
+            galaxyN = self.level / 20 + 1
+            if self.level % 20 == 0 {
+                galaxyN -= 1
+            }
+            GameAnalytics.addProgressionEvent(with: GAProgressionStatusStart, progression01: "galaxy\(galaxyN)", progression02: "level\(self.level)", progression03: nil)
+        } else {
+            GameAnalytics.addProgressionEvent(with: GAProgressionStatusStart, progression01: "Endless", progression02: nil, progression03: nil)
         }
     }
     
@@ -957,13 +971,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     func levelDeathAnimation(){
         restartBtn.removeFromParent()
+        
+        
+        
         died = true
         if inLevel {
             let ypos2 = usersShip.position.y
             createDiedScreen(yPos2: ypos2)
+            GameAnalytics.addProgressionEvent(with: GAProgressionStatusFail, progression01: "galaxy\(self.galaxyN)", progression02: "level\(self.level)", progression03: nil)
         }else{
             let ypos2 = 0
             createDiedScreen(yPos2: CGFloat(Int(ypos2)))
+            GameAnalytics.addProgressionEvent(with: GAProgressionStatusComplete, progression01: "Endless", progression02: nil, progression03: nil, score: self.score)
         }
         
         

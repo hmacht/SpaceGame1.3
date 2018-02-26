@@ -74,6 +74,12 @@
 		21F39C5D20095FC70008B32B /* gold.wav in Resources */ = {isa = PBXBuildFile; fileRef = 21F39C5C20095FC60008B32B /* gold.wav */; };
 		21F39C60200963960008B32B /* orbit_music.wav in Resources */ = {isa = PBXBuildFile; fileRef = 21F39C5F200963950008B32B /* orbit_music.wav */; };
 		21F39C6320096A410008B32B /* orbit_music2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 21F39C6220096A410008B32B /* orbit_music2.wav */; };
+		21F97E542044C30D005EAA26 /* GameAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F97E532044C30C005EAA26 /* GameAnalytics.framework */; };
+		21F97E562044C336005EAA26 /* libGameAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F97E552044C335005EAA26 /* libGameAnalytics.a */; };
+		21F97E592044C360005EAA26 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F97E582044C360005EAA26 /* AdSupport.framework */; };
+		21F97E5B2044C36C005EAA26 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F97E5A2044C36C005EAA26 /* SystemConfiguration.framework */; };
+		21F97E5D2044C384005EAA26 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F97E5C2044C384005EAA26 /* libsqlite3.tbd */; };
+		21F97E5F2044C390005EAA26 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F97E5E2044C390005EAA26 /* libz.tbd */; };
 		21FB8F14202B9487000A31A3 /* Level17Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21FB8F13202B9487000A31A3 /* Level17Scene.swift */; };
 		21FB8F16202B981D000A31A3 /* Level17.sks in Resources */ = {isa = PBXBuildFile; fileRef = 21FB8F15202B981D000A31A3 /* Level17.sks */; };
 		D11ED31C1FF5BA3400D74B7A /* planetToPos.sks in Resources */ = {isa = PBXBuildFile; fileRef = D11ED31B1FF5BA3400D74B7A /* planetToPos.sks */; };
@@ -173,6 +179,12 @@
 		21F39C5C20095FC60008B32B /* gold.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gold.wav; sourceTree = "<group>"; };
 		21F39C5F200963950008B32B /* orbit_music.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = orbit_music.wav; sourceTree = "<group>"; };
 		21F39C6220096A410008B32B /* orbit_music2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = orbit_music2.wav; sourceTree = "<group>"; };
+		21F97E532044C30C005EAA26 /* GameAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GameAnalytics.framework; sourceTree = "<group>"; };
+		21F97E552044C335005EAA26 /* libGameAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGameAnalytics.a; sourceTree = "<group>"; };
+		21F97E582044C360005EAA26 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		21F97E5A2044C36C005EAA26 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		21F97E5C2044C384005EAA26 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		21F97E5E2044C390005EAA26 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		21FB8F13202B9487000A31A3 /* Level17Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level17Scene.swift; sourceTree = "<group>"; };
 		21FB8F15202B981D000A31A3 /* Level17.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level17.sks; sourceTree = "<group>"; };
 		D11ED31B1FF5BA3400D74B7A /* planetToPos.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = planetToPos.sks; sourceTree = "<group>"; };
@@ -211,7 +223,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21F97E5F2044C390005EAA26 /* libz.tbd in Frameworks */,
+				21F97E5D2044C384005EAA26 /* libsqlite3.tbd in Frameworks */,
+				21F97E5B2044C36C005EAA26 /* SystemConfiguration.framework in Frameworks */,
+				21F97E592044C360005EAA26 /* AdSupport.framework in Frameworks */,
+				21F97E562044C336005EAA26 /* libGameAnalytics.a in Frameworks */,
 				214A07CC203652CE00FEA224 /* FBSDKLoginKit.framework in Frameworks */,
+				21F97E542044C30D005EAA26 /* GameAnalytics.framework in Frameworks */,
 				214A07CD203652CE00FEA224 /* FBSDKCoreKit.framework in Frameworks */,
 				214A07CB203652CE00FEA224 /* FBSDKShareKit.framework in Frameworks */,
 				214A07CE203652CE00FEA224 /* Bolts.framework in Frameworks */,
@@ -308,6 +326,17 @@
 			path = Particles;
 			sourceTree = "<group>";
 		};
+		21F97E572044C360005EAA26 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				21F97E5E2044C390005EAA26 /* libz.tbd */,
+				21F97E5C2044C384005EAA26 /* libsqlite3.tbd */,
+				21F97E5A2044C36C005EAA26 /* SystemConfiguration.framework */,
+				21F97E582044C360005EAA26 /* AdSupport.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D18A1AB5201133280052CF14 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -321,6 +350,7 @@
 				D1EAB1571FDB620300CDC186 /* Orbit */,
 				D1EAB1561FDB620300CDC186 /* Products */,
 				D18A1AB5201133280052CF14 /* Recovered References */,
+				21F97E572044C360005EAA26 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -365,6 +395,8 @@
 				21F0A5C82033B1B4007FAA1C /* TutorialScene.swift */,
 				D7A20194202F5FF300E9E3ED /* settings.sks */,
 				21F0A5CA2033B597007FAA1C /* Tutorial.sks */,
+				21F97E552044C335005EAA26 /* libGameAnalytics.a */,
+				21F97E532044C30C005EAA26 /* GameAnalytics.framework */,
 				214A07CA203652CE00FEA224 /* Bolts.framework */,
 				214A07C9203652CE00FEA224 /* FBSDKCoreKit.framework */,
 				214A07C8203652CD00FEA224 /* FBSDKLoginKit.framework */,
@@ -671,7 +703,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 38ZEQFSP28;
+				DEVELOPMENT_TEAM = SWYGWFGR5M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Orbit",
@@ -679,6 +711,10 @@
 				INFOPLIST_FILE = Orbit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Orbit",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = projects.henry.Orbit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -691,7 +727,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 38ZEQFSP28;
+				DEVELOPMENT_TEAM = SWYGWFGR5M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Orbit",
@@ -699,6 +735,10 @@
 				INFOPLIST_FILE = Orbit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Orbit",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = projects.henry.Orbit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

@@ -180,11 +180,11 @@ class LevelSelectScene: SKScene {
         highScoreText.fontSize = 50
         highScoreText.verticalAlignmentMode = .center
         highScoreText.horizontalAlignmentMode = .left
-        highScoreText.position = CGPoint(x: -self.size.width/2 + 138, y: self.size.height/2 - 130)
+        highScoreText.position = CGPoint(x: -self.size.width/2 + 130, y: self.size.height/2 - 130)
         self.addChild(highScoreText)
         
         let highScoreIcon = SKSpriteNode(imageNamed: "HighScore")
-        highScoreIcon.position = CGPoint(x: -highScoreText.frame.size.width/2 - 20, y: 0)
+        highScoreIcon.position = CGPoint(x: -highScoreText.frame.size.width/2 - 5, y: 0)
         highScoreIcon.setScale(0.15)
         highScoreText.addChild(highScoreIcon)
         
