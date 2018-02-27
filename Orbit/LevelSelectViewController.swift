@@ -9,6 +9,7 @@
 import UIKit
 import SpriteKit
 import AVFoundation
+import GameKit
 
 protocol MenuManager {
     func didPressPlay()
@@ -16,15 +17,21 @@ protocol MenuManager {
     func didReturnToMainMenu(scene: LevelSelectScene)
     func stopMusic()
     func startMusic()
+    func addHighscore(score: Int)
 }
 
-class LevelSelectViewController: UIViewController, MenuManager {
+class LevelSelectViewController: UIViewController, MenuManager, GKGameCenterControllerDelegate {
 
     var selectedLevel = 0
     var bgSoundPlayer: AVAudioPlayer?
+    var gcEnabled = Bool()
+    var gcDefaultLeaderBoard = String()
+    let LEADERBOARD_ID = "orbitleaderboardID"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        authenticateLocalPlayer()
         
         if let _ = UserDefaults.standard.string(forKey: "selectedShip") {
             
@@ -67,6 +74,31 @@ class LevelSelectViewController: UIViewController, MenuManager {
         bgSoundPlayer?.numberOfLoops = -1 // -1 makes the player loop forever
         bgSoundPlayer?.prepareToPlay() //prepare for playback by preloading its buffers.
         bgSoundPlayer?.play() //actually play
+    }
+    func authenticateLocalPlayer() {
+        let localPlayer: GKLocalPlayer = GKLocalPlayer.localPlayer()
+        
+        localPlayer.authenticateHandler = {(ViewController, error) -> Void in
+            if((ViewController) != nil) {
+                // 1. Show login if player is not logged in
+                self.present(ViewController!, animated: true, completion: nil)
+            } else if (localPlayer.isAuthenticated) {
+                // 2. Player is already authenticated & logged in, load game center
+                self.gcEnabled = true
+                
+                // Get the default leaderboard ID
+                localPlayer.loadDefaultLeaderboardIdentifier(completionHandler: { (leaderboardIdentifer, error) in
+                    if error != nil { print(error)
+                    } else { self.gcDefaultLeaderBoard = leaderboardIdentifer! }
+                })
+                
+            } else {
+                // 3. Game center is not enabled on the users device
+                self.gcEnabled = false
+                print("Local player could not be authenticated!")
+                print(error)
+            }
+        }
     }
     
     func stopMusic() {
@@ -144,6 +176,28 @@ class LevelSelectViewController: UIViewController, MenuManager {
     func didReturnToMainMenu(scene: LevelSelectScene) {
         scene.menuManager = self
     }
+    
+    func addHighscore(score: Int) {
+        let bestScoreInt = GKScore(leaderboardIdentifier: LEADERBOARD_ID)
+        bestScoreInt.value = Int64(score)
+        GKScore.report([bestScoreInt]) { (error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            } else {
+                print("Best Score submitted to your Leaderboard!")
+            }
+        }
+        let gcVC = GKGameCenterViewController()
+        gcVC.gameCenterDelegate = self
+        gcVC.viewState = .leaderboards
+        gcVC.leaderboardIdentifier = LEADERBOARD_ID
+        present(gcVC, animated: true, completion: nil)
+    }
+    
+    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController) {
+        gameCenterViewController.dismiss(animated: true, completion: nil)
+    }
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }

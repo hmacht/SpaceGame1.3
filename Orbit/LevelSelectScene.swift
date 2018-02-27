@@ -277,6 +277,11 @@ class LevelSelectScene: SKScene {
                     }
                 }]))
             }
+            
+            if name == "LB" {
+                self.menuManager?.addHighscore(score: UserDefaults.standard.integer(forKey: "highScore"))
+            }
+            
             if name == "settings"{
                 let sound = SKAction.run({
                     self.playSound(s: "click1.mp3", wait: true)
