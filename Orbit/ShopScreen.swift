@@ -346,7 +346,7 @@ class ShopScreen: SKScene {
                 }
             }*/
             if name.contains("locked") {
-                boxPrice = 100 * Int(name.components(separatedBy: "/")[2])!
+                boxPrice = 50 * Int(name.components(separatedBy: "/")[2])!
                 self.pendingShipBuy = name.components(separatedBy: "/")[0]
                 self.whatToBuy = Int(name.components(separatedBy: "/")[2])!
                 createPopUp()
