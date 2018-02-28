@@ -30,12 +30,12 @@ class Level6Scene: GameScene {
             }
             let p = Planet(imageName: pImage)
             self.addChild(p)
-            let orbit = UIBezierPath(center: sun.position, radius: 150 * CGFloat(i))
+            let orbit = UIBezierPath(center: sun.position, radius: 175 * CGFloat(i))
             p.orbit(path: orbit.cgPath, speed: 1.5 * Double(i))
             
             if i == 9 {
                 let finishLine = FinishLine(color: UIColor(red: 0, green: 222/255, blue: 0, alpha: 0.4), size: CGSize(width: self.size.width, height: 100))
-                finishLine.position = CGPoint(x: 0, y: 150 * CGFloat(i) + 300)
+                finishLine.position = CGPoint(x: 0, y: 170 * CGFloat(i) + 300)
                 self.addChild(finishLine)
             }
         }

@@ -30,7 +30,7 @@ class Level5Scene: GameScene {
         let planet2 = Planet(imageName: "planet")
         planet2.position = CGPoint(x: 0, y: 0)
         self.addChild(planet2)
-        let circle2 = UIBezierPath(center: sun.position, radius: 150)
+        let circle2 = UIBezierPath(center: sun.position, radius: 175)
         planet2.orbit(path: circle2.cgPath, speed: 2.5)
         
         // Second sun
