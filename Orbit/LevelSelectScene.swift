@@ -279,6 +279,7 @@ class LevelSelectScene: SKScene {
             }
             
             if name == "LB" {
+                self.playSound(s: "click1.mp3", wait: true)
                 self.menuManager?.addHighscore(score: UserDefaults.standard.integer(forKey: "highScore"))
             }
             
