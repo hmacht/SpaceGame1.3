@@ -712,7 +712,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 38ZEQFSP28;
+				DEVELOPMENT_TEAM = SWYGWFGR5M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Orbit",
@@ -724,7 +724,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Orbit",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.henry.Orbit;
+				PRODUCT_BUNDLE_IDENTIFIER = projects.henry.Orbit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -736,7 +736,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 38ZEQFSP28;
+				DEVELOPMENT_TEAM = SWYGWFGR5M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Orbit",
@@ -748,7 +748,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Orbit",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.henry.Orbit;
+				PRODUCT_BUNDLE_IDENTIFIER = projects.henry.Orbit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
