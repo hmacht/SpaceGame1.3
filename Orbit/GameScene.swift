@@ -1220,7 +1220,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let positionInScene = touch.location(in: self)
         let touchedNode = self.atPoint(positionInScene)
         
-        usersShip.position = positionInScene
+        
         
         
         
