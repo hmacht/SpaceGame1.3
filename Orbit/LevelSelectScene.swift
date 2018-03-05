@@ -214,8 +214,6 @@ class LevelSelectScene: SKScene {
     
     override func didMove(to view: SKView) {
         
-       
-        
         
         let musicAction = SKAction.repeatForever(SKAction.playSoundFileNamed("OrbitBGMusic.mp3", waitForCompletion: true))
         if self.playBgMusic {
