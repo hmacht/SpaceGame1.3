@@ -14,6 +14,7 @@ import GameKit
 protocol MenuManager {
     func didPressPlay()
     func didPressEndless(level: Int)
+    func didPressMode(mode: GameMode)
     func didReturnToMainMenu(scene: LevelSelectScene)
     func stopMusic()
     func startMusic()
@@ -27,6 +28,7 @@ class LevelSelectViewController: UIViewController, MenuManager, GKGameCenterCont
     var gcEnabled = Bool()
     var gcDefaultLeaderBoard = String()
     let LEADERBOARD_ID = "orbitleaderboardID"
+    var selectedMode = GameMode.normal
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -145,6 +147,7 @@ class LevelSelectViewController: UIViewController, MenuManager, GKGameCenterCont
         bgSoundPlayer?.stop()
         let destination = segue.destination as! GameViewController
         destination.selectedLevel = self.selectedLevel
+        destination.selectedMode = self.selectedMode
     }
  
     
@@ -170,6 +173,13 @@ class LevelSelectViewController: UIViewController, MenuManager, GKGameCenterCont
     
     func didPressEndless(level: Int) {
         self.selectedLevel = level
+        self.selectedMode = GameMode.normal
+        self.performSegue(withIdentifier: "toGameScene", sender: self)
+    }
+    
+    func didPressMode(mode: GameMode) {
+        self.selectedMode = mode
+        self.selectedLevel = 0
         self.performSegue(withIdentifier: "toGameScene", sender: self)
     }
     
