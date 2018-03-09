@@ -436,7 +436,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func createSun() {
         
-        self.sun = Sun(imageName: "newMoon")
+        self.sun = Sun(imageName: "newMoon", gravity: false)
         sun.position = CGPoint(x: 0, y: 0)
         self.addChild(sun)
     }

@@ -24,7 +24,7 @@ public struct SunNames {
 
 class Sun: SKSpriteNode {
     
-    convenience init(imageName: String) {
+    convenience init(imageName: String, gravity: Bool = true) {
         
         let imageN = SunNames.sunNames[Int(arc4random_uniform(UInt32(SunNames.sunNames.count)))]
         
@@ -54,6 +54,13 @@ class Sun: SKSpriteNode {
         
         let randRotation = Double(arc4random_uniform(360)) * Double.pi / 180
         self.zRotation = CGFloat(randRotation)
+        
+        if gravity {
+            self.physicsBody?.mass *= 0.001
+            let gravityField = SKFieldNode.radialGravityField()
+            gravityField.setScale(0.5)
+            self.addChild(gravityField)
+        }
     }
     
     override init(texture: SKTexture!, color: UIColor, size: CGSize) {

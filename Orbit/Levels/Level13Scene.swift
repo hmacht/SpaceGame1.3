@@ -21,7 +21,7 @@ class Level13Scene: GameScene {
         
         
         // First sun
-        let sun = Sun(imageName: "Ellipse 8950")
+        let sun = Sun(imageName: "Ellipse 8950", gravity: false)
         sun.position = CGPoint.zero
         self.addChild(sun)
         

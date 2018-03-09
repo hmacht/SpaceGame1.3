@@ -15,7 +15,7 @@ class Level6Scene: GameScene {
         super.didMove(to: view)
         self.enableCameraFollow()
         
-        let sun = Sun(imageName: "Group 287")
+        let sun = Sun(imageName: "Group 287", gravity: false)
         sun.position = CGPoint.zero
         self.addChild(sun)
         
