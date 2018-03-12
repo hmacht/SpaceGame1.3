@@ -45,6 +45,10 @@
 		216741D820534B180036974D /* Level21Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216741D720534B180036974D /* Level21Scene.swift */; };
 		216741DA20534B700036974D /* BlackHole.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216741D920534B700036974D /* BlackHole.swift */; };
 		216741DC20534D410036974D /* Level21.sks in Resources */ = {isa = PBXBuildFile; fileRef = 216741DB20534D410036974D /* Level21.sks */; };
+		216741DE205725310036974D /* Level22Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216741DD205725310036974D /* Level22Scene.swift */; };
+		216741E0205726560036974D /* Level22.sks in Resources */ = {isa = PBXBuildFile; fileRef = 216741DF205726560036974D /* Level22.sks */; };
+		216741E2205727B00036974D /* Level23Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 216741E1205727B00036974D /* Level23Scene.swift */; };
+		216741E4205728A70036974D /* Level23.sks in Resources */ = {isa = PBXBuildFile; fileRef = 216741E3205728A70036974D /* Level23.sks */; };
 		2167BCFF20141A690092544A /* Level6Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2167BCFE20141A690092544A /* Level6Scene.swift */; };
 		2167BD0120141BC10092544A /* Level6.sks in Resources */ = {isa = PBXBuildFile; fileRef = 2167BD0020141BC10092544A /* Level6.sks */; };
 		2168ACB120292CA600575706 /* Level14Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2168ACB020292CA600575706 /* Level14Scene.swift */; };
@@ -154,6 +158,10 @@
 		216741D720534B180036974D /* Level21Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level21Scene.swift; sourceTree = "<group>"; };
 		216741D920534B700036974D /* BlackHole.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackHole.swift; sourceTree = "<group>"; };
 		216741DB20534D410036974D /* Level21.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level21.sks; sourceTree = "<group>"; };
+		216741DD205725310036974D /* Level22Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level22Scene.swift; sourceTree = "<group>"; };
+		216741DF205726560036974D /* Level22.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level22.sks; sourceTree = "<group>"; };
+		216741E1205727B00036974D /* Level23Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level23Scene.swift; sourceTree = "<group>"; };
+		216741E3205728A70036974D /* Level23.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level23.sks; sourceTree = "<group>"; };
 		2167BCFE20141A690092544A /* Level6Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level6Scene.swift; sourceTree = "<group>"; };
 		2167BD0020141BC10092544A /* Level6.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Level6.sks; sourceTree = "<group>"; };
 		2168ACB020292CA600575706 /* Level14Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level14Scene.swift; sourceTree = "<group>"; };
@@ -293,6 +301,10 @@
 				21E6339B202CE707005983A4 /* Level20.sks */,
 				216741D720534B180036974D /* Level21Scene.swift */,
 				216741DB20534D410036974D /* Level21.sks */,
+				216741DD205725310036974D /* Level22Scene.swift */,
+				216741DF205726560036974D /* Level22.sks */,
+				216741E1205727B00036974D /* Level23Scene.swift */,
+				216741E3205728A70036974D /* Level23.sks */,
 			);
 			path = Levels;
 			sourceTree = "<group>";
@@ -486,6 +498,7 @@
 				2167BD0120141BC10092544A /* Level6.sks in Resources */,
 				D1959D3420278005006510E8 /* Level13.sks in Resources */,
 				D19B63581FE6D9D400577B0B /* RocketThrust.wav in Resources */,
+				216741E4205728A70036974D /* Level23.sks in Resources */,
 				211A65562012BCAE007F7786 /* wood-5.wav in Resources */,
 				211A65582012BF16007F7786 /* DeathSound.wav in Resources */,
 				21E25856202E579900654EA4 /* OrbitBGMusic.mp3 in Resources */,
@@ -494,6 +507,7 @@
 				212786D7201A6A8300AD7311 /* RockExplosion copy.sks in Resources */,
 				D1EAB1641FDB620300CDC186 /* Main.storyboard in Resources */,
 				211A655A2012EC4C007F7786 /* click2.mp3 in Resources */,
+				216741E0205726560036974D /* Level22.sks in Resources */,
 				D7A20195202F5FF300E9E3ED /* settings.sks in Resources */,
 				D18A1AC82011912D0052CF14 /* asteroidtrail.sks in Resources */,
 				D11ED31C1FF5BA3400D74B7A /* planetToPos.sks in Resources */,
@@ -557,6 +571,7 @@
 				2158470220118A9E00891A44 /* LevelMenuScene.swift in Sources */,
 				21C3E0DF202A8116001E76B2 /* Level15Scene.swift in Sources */,
 				2168ACB120292CA600575706 /* Level14Scene.swift in Sources */,
+				216741E2205727B00036974D /* Level23Scene.swift in Sources */,
 				D1EAB15F1FDB620300CDC186 /* GameScene.swift in Sources */,
 				217036172016A21B00270D17 /* Level7Scene.swift in Sources */,
 				D12171711FE770880056DDE3 /* HomeVC.swift in Sources */,
@@ -568,6 +583,7 @@
 				2174059D2023DDA900C3BECB /* Level11Scene.swift in Sources */,
 				21439213201BEE050019003A /* Level8Scene.swift in Sources */,
 				217405992023D7CF00C3BECB /* Level10Scene.swift in Sources */,
+				216741DE205725310036974D /* Level22Scene.swift in Sources */,
 				21080E70200CFFD500C89907 /* FinishLine.swift in Sources */,
 				21080E6E200CFD2100C89907 /* AsteroidSpawner.swift in Sources */,
 				D7A20193202F5F4400E9E3ED /* SettingsScreen.swift in Sources */,

@@ -31,8 +31,8 @@ class Asteroid: SKSpriteNode {
         self.physicsBody?.categoryBitMask = physicsCatagory.asteroid
         self.physicsBody?.collisionBitMask = physicsCatagory.asteroid | physicsCatagory.usersShip | physicsCatagory.planet | physicsCatagory.shockWave
         self.physicsBody?.contactTestBitMask = physicsCatagory.asteroid | physicsCatagory.usersShip | physicsCatagory.planet | physicsCatagory.planetPath | physicsCatagory.shockWave
-        self.physicsBody?.affectedByGravity = true
-        self.physicsBody?.isDynamic = true
+        self.physicsBody?.affectedByGravity = false
+        self.physicsBody?.isDynamic = false
         
         self.addChild(trail)
     }
@@ -52,6 +52,8 @@ class Asteroid: SKSpriteNode {
     }
     
     func spin() {
+        self.physicsBody?.affectedByGravity = true
+        self.physicsBody?.isDynamic = true
         self.physicsBody?.applyTorque(0.1)
     }
 }
