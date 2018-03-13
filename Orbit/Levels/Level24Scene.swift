@@ -1,14 +1,14 @@
 //
-//  Level23Scene.swift
+//  Level24Scene.swift
 //  Orbit
 //
-//  Created by Toby Kreiman on 3/12/18.
+//  Created by Toby Kreiman on 3/13/18.
 //  Copyright © 2018 10-12. All rights reserved.
 //
 
 import SpriteKit
 
-class Level23Scene: GameScene {
+class Level24Scene: GameScene {
     
     override func didMove(to view: SKView) {
         
@@ -31,24 +31,30 @@ class Level23Scene: GameScene {
         sun2.position = CGPoint(x: -self.size.width/2, y: 500)
         self.addChild(sun2)
         
-        _ = sun2.addOrbitingPlanet(radius: 200, planetImage: "planet", speed: 2.3)
+        _ = sun2.addOrbitingPlanet(radius: 250, planetImage: PlanetNames.yellowPlanet, speed: 1.8)
         
         let sun3 = Sun(imageName: "Group 419")
-        sun3.position = CGPoint(x: self.size.width/2, y: 400)
+        sun3.position = CGPoint(x: self.size.width/2, y: 500)
         self.addChild(sun3)
         
-        _ = sun3.addOrbitingPlanet(radius: 180, planetImage: PlanetNames.redPlanet, speed: 1.9)
+        _ = sun3.addOrbitingPlanet(radius: 225, planetImage: PlanetNames.whitePlanet, speed: 2.4)
         
         let bH = BlackHole(imageName: "Group 767")
-        bH.position = CGPoint(x: -200, y: sun2.position.y + 350)
+        bH.position = CGPoint(x: 0, y: sun2.position.y + 450)
         self.addChild(bH)
         
         let sun4 = Sun(imageName: "Group 419")
-        sun4.position = CGPoint(x: 0, y: bH.position.y + 550)
+        sun4.position = CGPoint(x: -self.size.width/2, y: bH.position.y + 550)
         self.addChild(sun4)
         
-        _ = sun4.addOrbitingPlanet(radius: 350, planetImage: "planet", speed: 2.6)
-        _ = sun4.addOrbitingPlanet(radius: 175, planetImage: PlanetNames.greenPlanet, speed: 1.9)
+        _ = sun4.addOrbitingPlanet(radius: 300, planetImage: PlanetNames.greenPlanet, speed: 2.6)
+        _ = sun4.addOrbitingPlanet(radius: 160, planetImage: "planet", speed: 1.9)
+        
+        let sun5 = Sun(imageName: "Group 419")
+        sun5.position = CGPoint(x: self.size.width/2, y: sun4.position.y)
+        self.addChild(sun5)
+        
+        _ = sun5.addOrbitingPlanet(radius: 160, planetImage: "planet", speed: 1.6)
         
         let bH2 = BlackHole(imageName: "Group 767")
         bH2.position = CGPoint(x: 0, y: sun4.position.y + 550)
@@ -58,7 +64,7 @@ class Level23Scene: GameScene {
         finish.position = CGPoint(x: 0, y: bH2.position.y + 250)
         self.addChild(finish)
         
-        self.gemPos = [CGPoint(x: 0, y: 250), CGPoint(x: 250, y: bH.position.y), CGPoint(x: 250, y: bH2.position.y - 100)]
+        self.gemPos = [CGPoint(x: sun2.position.x + 110, y: sun2.position.y), CGPoint(x: bH.position.x - 250, y: bH.position.y), CGPoint(x: sun5.position.x - 115, y: sun5.position.y - 100)]
         self.createGemsForLevel(scene: self)
     }
     
@@ -68,7 +74,7 @@ class Level23Scene: GameScene {
         self.timeSinceLastSpawn += CGFloat(deltaTime)
         
         if self.timeSinceLastSpawn > self.timeInBetweenSpawns && self.scene!.speed > CGFloat(0) {
-            for i in 0...4 {
+            for i in 0...5 {
                 let wait = SKAction.wait(forDuration: 4.0 / Double(arc4random_uniform(5) + 1))
                 
                 self.run(SKAction.sequence([wait, SKAction.run({
