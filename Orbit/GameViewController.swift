@@ -27,7 +27,7 @@ class GameViewController: UIViewController, GameManager {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        for i in 1...24 {
+        for i in 1...25 {
             sceneArray.append("Level\(i)")
         }
         

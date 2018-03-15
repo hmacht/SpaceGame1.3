@@ -19,6 +19,8 @@ class LevelMenuScene: SKScene {
     var allTheLevels = [SKSpriteNode()]
     var allTheLevelsLabs = [SKLabelNode()]
     var durationToOpen: TimeInterval = 1
+    var startTouchY: CGFloat = 0
+    var cam = SKCameraNode()
     
     func createBG(){
         background = SKSpriteNode(imageNamed: "Rectangle 1783")
@@ -26,10 +28,17 @@ class LevelMenuScene: SKScene {
         background.size.height = self.size.height
         background.zPosition = 0
         self.addChild(background)
+        
+        let background2 = SKSpriteNode(imageNamed: "Rectangle 1783")
+        background2.size.width = self.size.width
+        background2.size.height = self.size.height
+        background2.zPosition = 0
+        background2.position = CGPoint(x: 0, y: -self.size.height)
+        self.addChild(background2)
     }
     
     func createAllLevels(){
-        for j in 1...6 {
+        for j in 1...7 {
             for i in 1...4 {
                 var unlockedGems = [0, 0, 0]
                 if let g = UserDefaults.standard.array(forKey: "Level\(levelNum)") as? [Int] {
@@ -132,11 +141,16 @@ class LevelMenuScene: SKScene {
         backBtn.position = CGPoint(x: -self.size.width/2 + 50, y: self.size.height/2 - 50)
         backBtn.name = "back"
         self.addChild(backBtn)
+        
+        self.cam.position = CGPoint.zero
+        self.addChild(self.cam)
+        self.camera = self.cam
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch:UITouch = touches.first!
         let positionInScene = touch.location(in: self)
+        self.startTouchY = positionInScene.y
         let touchedNode = self.atPoint(positionInScene)
         
         if let name = touchedNode.name{
@@ -163,6 +177,26 @@ class LevelMenuScene: SKScene {
             
             
         }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first {
+            let pos = touch.location(in: self)
+            if self.startTouchY - pos.y > 150 {
+                // Swipe down
+                if self.cam.position.y < 0 {
+                    let moveAction = SKAction.move(to: CGPoint(x: 0, y: 0), duration: 0.35)
+                    self.cam.run(moveAction)
+                }
+            } else if self.startTouchY - pos.y < -150 {
+                // Swipe up
+                if self.cam.position.y > -self.size.height {
+                    let moveAction = SKAction.move(to: CGPoint(x: 0, y: -self.size.height), duration: 0.35)
+                    self.cam.run(moveAction)
+                }
+            }
+        }
+        
     }
     
     func playSound(s: String, wait: Bool) {

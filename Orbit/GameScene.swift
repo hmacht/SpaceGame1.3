@@ -818,18 +818,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         field.strength = 0.6
         self.addChild(field)
         
-        let BG = SKSpriteNode(imageNamed: "Rectangle 1783")
-        BG.setScale(2)
-        BG.position = CGPoint(x: 0, y: 0)
-        BG.size.width = self.size.width
-        BG.size.height = self.size.height
-        BG.zPosition = -10
-        if !inLevel == false {
-            BG.size.height = 200000
-        
-        }
-        self.addChild(BG)
-        
         
         if let selected = UserDefaults.standard.string(forKey: "selectedShip") {
             self.selectedShip = selected
@@ -868,10 +856,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if self.level % 20 == 0 {
                 galaxyN -= 1
             }
+            
             GameAnalytics.addProgressionEvent(with: GAProgressionStatusStart, progression01: "galaxy\(galaxyN)", progression02: "level\(self.level)", progression03: nil)
         } else {
             GameAnalytics.addProgressionEvent(with: GAProgressionStatusStart, progression01: "Endless", progression02: nil, progression03: nil)
         }
+        
+        let BG = SKSpriteNode(imageNamed: "Rectangle 1783")
+        BG.setScale(2)
+        BG.position = CGPoint(x: 0, y: 0)
+        BG.size.width = self.size.width
+        BG.size.height = self.size.height
+        BG.zPosition = -10
+        if !inLevel == false {
+            BG.size.height = 200000
+            
+        }
+        
+        if galaxyN == 2 {
+            let color = SKAction.colorize(with: UIColor(red: 56/255, green: 0/255, blue: 77/255, alpha: 1), colorBlendFactor: 1, duration: 0.0001)
+            BG.run(color)
+        }
+        
+        self.addChild(BG)
     }
     
     func createBottomBoundary() {
@@ -1054,9 +1061,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             var gem: Gem = Gem()
             if firstbody.categoryBitMask == physicsCatagory.theGem {
-                gem = firstbody.node! as! Gem
+                if let g = firstbody.node as? Gem {
+                    gem = g
+                }
             } else {
-                gem = secondbody.node! as! Gem
+                if let g = secondbody.node as? Gem {
+                    gem = g
+                }
             }
             if !gem.touched {
                 self.playSound(s: "gold.wav", waitForEnd: true)
