@@ -126,6 +126,15 @@ class LevelSelectScene: SKScene {
         settingsBtn.name = "settings"
         self.addChild(settingsBtn)
         
+        let easyBtn = SKLabelNode(text: "Easy ( Izzi ) Mode")
+        easyBtn.fontSize = 75
+        easyBtn.fontColor = .black
+        easyBtn.fontName = "Bebas Neue"
+        easyBtn.horizontalAlignmentMode = .left
+        easyBtn.position = CGPoint(x: -55 - settingsBtn.size.width/2, y: -220)
+        easyBtn.name = "easyMode"
+        self.addChild(easyBtn)
+        
         let tutorialButton = SKSpriteNode(imageNamed: "qmark")
         tutorialButton.position = CGPoint(x: self.size.width / 2 - 130, y: self.size.height/2 - 75)
         tutorialButton.name = "tutorial"
@@ -256,6 +265,10 @@ class LevelSelectScene: SKScene {
                 //self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))
                 self.playSound(s: "click1.mp3", wait: true)
                 self.menuManager?.didPressEndless(level: 0)
+            }
+            if name == "easyMode" {
+                self.playSound(s: "click1.mp3", wait: true)
+                self.menuManager?.didPressMode(mode: GameMode.easy)
             }
             if name == "play" {
                 //self.run(SKAction.playSoundFileNamed("click1.mp3", waitForCompletion: true))

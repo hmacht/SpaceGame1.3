@@ -28,7 +28,7 @@ class Level3Scene: GameScene {
         self.addChild(finish)
         
         // First sun
-        let sun = Sun(imageName: "Group 419")
+        let sun = Sun(imageName: "Group 419", gravity: false)
         sun.position = CGPoint.zero
         self.addChild(sun)
         

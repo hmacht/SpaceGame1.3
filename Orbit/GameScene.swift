@@ -25,12 +25,22 @@ public struct physicsCatagory {
     static let shockWave: UInt32 = 0x1 << 13
 }
 
+/*public struct GameMode {
+    static let normal = "normal"
+    static let easy = "easy"
+}*/
+
+public enum GameMode {
+    case normal, easy
+}
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var gameManager: GameManager?
     
     // Variables
-    
+    var gameMode = GameMode.normal
+    var touchPoint = CGPoint()
 
     
     //Graphics
@@ -426,7 +436,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func createSun() {
         
-        self.sun = Sun(imageName: "newMoon")
+        self.sun = Sun(imageName: "newMoon", gravity: false)
         sun.position = CGPoint(x: 0, y: 0)
         self.addChild(sun)
     }
@@ -808,18 +818,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         field.strength = 0.6
         self.addChild(field)
         
-        let BG = SKSpriteNode(imageNamed: "Rectangle 1783")
-        BG.setScale(2)
-        BG.position = CGPoint(x: 0, y: 0)
-        BG.size.width = self.size.width
-        BG.size.height = self.size.height
-        BG.zPosition = -10
-        if !inLevel == false {
-            BG.size.height = 200000
-        
-        }
-        self.addChild(BG)
-        
         
         if let selected = UserDefaults.standard.string(forKey: "selectedShip") {
             self.selectedShip = selected
@@ -858,10 +856,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if self.level % 20 == 0 {
                 galaxyN -= 1
             }
+            
             GameAnalytics.addProgressionEvent(with: GAProgressionStatusStart, progression01: "galaxy\(galaxyN)", progression02: "level\(self.level)", progression03: nil)
         } else {
             GameAnalytics.addProgressionEvent(with: GAProgressionStatusStart, progression01: "Endless", progression02: nil, progression03: nil)
         }
+        
+        let BG = SKSpriteNode(imageNamed: "Rectangle 1783")
+        BG.setScale(2)
+        BG.position = CGPoint(x: 0, y: 0)
+        BG.size.width = self.size.width
+        BG.size.height = self.size.height
+        BG.zPosition = -10
+        if !inLevel == false {
+            BG.size.height = 200000
+            
+        }
+        
+        if galaxyN == 2 {
+            let color = SKAction.colorize(with: UIColor(red: 56/255, green: 0/255, blue: 77/255, alpha: 1), colorBlendFactor: 1, duration: 0.0001)
+            BG.run(color)
+        }
+        
+        self.addChild(BG)
     }
     
     func createBottomBoundary() {
@@ -883,12 +900,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         newRotationRadians = newRotationDegrees * radianFactor;
         dx = r * cos(newRotationRadians)
         dy = r * sin(newRotationRadians)
-        if touchingScreen {
-            if launch{
-                usersShip.physicsBody?.applyImpulse(CGVector(dx: dx * 3, dy: dy * 3))
-            }else{
-                usersShip.run(SKAction.rotate(byAngle: rotationDirection, duration: 0.3))
-                usersShip.physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
+        if gameMode == GameMode.normal {
+            if touchingScreen {
+                if launch{
+                    usersShip.physicsBody?.applyImpulse(CGVector(dx: dx * 3, dy: dy * 3))
+                }else{
+                    usersShip.run(SKAction.rotate(byAngle: rotationDirection, duration: 0.3))
+                    usersShip.physicsBody?.applyImpulse(CGVector(dx: dx, dy: dy))
+                }
+            }
+        } else if gameMode == GameMode.easy {
+            if touchingScreen {
+                let dampningFactor: CGFloat = 0.002
+                let dx = touchPoint.x - usersShip.position.x
+                let dy = touchPoint.y - usersShip.position.y
+                var angle = atan(dy / dx)
+                
+                if dx > 0 && dy < 0 {
+                    angle = CGFloat.pi * 2 + angle
+                } else if dx < 0 && dy > 0 {
+                    angle = CGFloat.pi + angle
+                } else if dx < 0 && dy < 0 {
+                    angle = CGFloat.pi + angle
+                }
+                angle -= CGFloat.pi / 2
+                
+                usersShip.physicsBody?.applyImpulse(CGVector(dx: (touchPoint.x - usersShip.position.x) * dampningFactor, dy: (touchPoint.y - usersShip.position.y) * dampningFactor))
+                usersShip.run(SKAction.rotate(toAngle: angle, duration: 0.3))
             }
         }
     }
@@ -1023,9 +1061,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             var gem: Gem = Gem()
             if firstbody.categoryBitMask == physicsCatagory.theGem {
-                gem = firstbody.node! as! Gem
+                if let g = firstbody.node as? Gem {
+                    gem = g
+                }
             } else {
-                gem = secondbody.node! as! Gem
+                if let g = secondbody.node as? Gem {
+                    gem = g
+                }
             }
             if !gem.touched {
                 self.playSound(s: "gold.wav", waitForEnd: true)
@@ -1184,7 +1226,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var countTouch:[Int] = []
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        countTouch.append((event?.allTouches?.count)!)
         
         if let smoke = usersShip.childNode(withName: "Smoke") as? SKEmitterNode {
             smoke.isHidden = false
@@ -1199,6 +1240,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             smoke.numParticlesToEmit = 0
         }
         
+        countTouch.append((event?.allTouches?.count)!)
         touchingScreen = true
         
         if gameOver == false {
@@ -1320,7 +1362,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if let name = touchedNode.name{
             if name == "about"{
-                print("hi")
                 whenAboutIsClickedOpp2()
             }
         }
@@ -1331,12 +1372,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
-        if positionInScene.x > 0{
-            right = true
-            rotationDirection = CGFloat(-M_PI/8)
-        }else{
-            right = false
-            rotationDirection = CGFloat(M_PI/8)
+        if self.gameMode == GameMode.normal {
+            if positionInScene.x > 0{
+                right = true
+                rotationDirection = CGFloat(-M_PI/8)
+            } else {
+                right = false
+                rotationDirection = CGFloat(M_PI/8)
+            }
+        } else if self.gameMode == GameMode.easy {
+            
         }
         
         if let name = touchedNode.name{
@@ -1384,10 +1429,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         countTouch.append((event?.allTouches?.count)!)
         //print(countTouch[countTouch.count - 1])let sun5 = Sun(imageName: "Group 419")
         
-        if countTouch[countTouch.count - 1] == 2{
-            launch = true
-        }else{
-            launch = false
+        if self.gameMode == GameMode.normal {
+            if countTouch[countTouch.count - 1] == 2{
+                launch = true
+            } else{
+                launch = false
+            }
+        } else if self.gameMode == GameMode.easy {
+            let positionInScene = touches.first!.location(in: self)
+            let dx = positionInScene.x - usersShip.position.x
+            let dy = positionInScene.y - usersShip.position.y
+            var angle = atan(dx/dy)
+            
+            
+            /*if dx < 0 && {
+                if dy > 0 {
+                    angle = CGFloat(Double.pi) - angle
+                } else {
+                    // both neg
+                    angle = CGFloat(Double.pi) + angle
+                }
+            }*/
+            print("ANGLE:", angle)
+            
+            rotationDirection = angle
+            
+            touchPoint = positionInScene
         }
     }
     
