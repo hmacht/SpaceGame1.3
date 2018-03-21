@@ -38,7 +38,7 @@ class LevelMenuScene: SKScene {
     }
     
     func createAllLevels(){
-        for j in 1...7 {
+        for j in 1...8 {
             for i in 1...4 {
                 var unlockedGems = [0, 0, 0]
                 if let g = UserDefaults.standard.array(forKey: "Level\(levelNum)") as? [Int] {

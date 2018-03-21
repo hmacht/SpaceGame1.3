@@ -191,7 +191,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         endNext.name = "endNext"
         endNext.position = CGPoint(x: 0, y: 0)
         endNext.zPosition = 900
-        if self.level % 20 != 0 {
+        if self.level % 20 != 0 && self.level != 32 {
             endBG.addChild(endNext)
         }
         
