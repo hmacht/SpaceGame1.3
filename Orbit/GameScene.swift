@@ -876,7 +876,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if galaxyN == 2 {
-            let color = SKAction.colorize(with: UIColor(red: 56/255, green: 0/255, blue: 77/255, alpha: 1), colorBlendFactor: 1, duration: 0.0001)
+            let color = SKAction.colorize(with: UIColor(red: 221/255, green: 235/255, blue: 255/255, alpha: 1), colorBlendFactor: 1, duration: 0.0001)
             BG.run(color)
         }
         
