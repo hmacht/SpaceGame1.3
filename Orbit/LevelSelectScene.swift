@@ -133,7 +133,7 @@ class LevelSelectScene: SKScene {
         easyBtn.horizontalAlignmentMode = .left
         easyBtn.position = CGPoint(x: -55 - settingsBtn.size.width/2, y: -220)
         easyBtn.name = "easyMode"
-        self.addChild(easyBtn)
+        //self.addChild(easyBtn)
         
         let tutorialButton = SKSpriteNode(imageNamed: "qmark")
         tutorialButton.position = CGPoint(x: self.size.width / 2 - 130, y: self.size.height/2 - 75)

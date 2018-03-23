@@ -803,6 +803,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Get rid of camera
         
+        print("Mode", self.gameMode)
+        
         self.camera = nil
         self.backgroundColor = UIColor(red: 237/255, green: 248/255, blue: 255/255, alpha: 1)
         

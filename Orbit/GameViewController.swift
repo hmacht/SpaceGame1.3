@@ -87,6 +87,7 @@ class GameViewController: UIViewController, GameManager {
                 // Set the scale mode to scale to fit the window
                 scene.gameManager = self
                 scene.level = self.selectedLevel
+                scene.gameMode = self.selectedMode
                 scene.scaleMode = .aspectFill
                 // Present the scene
                 view.presentScene(scene)
