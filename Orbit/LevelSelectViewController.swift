@@ -19,6 +19,7 @@ protocol MenuManager {
     func stopMusic()
     func startMusic()
     func addHighscore(score: Int)
+    func setMode(mode: GameMode)
 }
 
 class LevelSelectViewController: UIViewController, MenuManager, GKGameCenterControllerDelegate {
@@ -173,7 +174,6 @@ class LevelSelectViewController: UIViewController, MenuManager, GKGameCenterCont
     
     func didPressEndless(level: Int) {
         self.selectedLevel = level
-        self.selectedMode = GameMode.normal
         self.performSegue(withIdentifier: "toGameScene", sender: self)
     }
     
@@ -185,6 +185,10 @@ class LevelSelectViewController: UIViewController, MenuManager, GKGameCenterCont
     
     func didReturnToMainMenu(scene: LevelSelectScene) {
         scene.menuManager = self
+    }
+    
+    func setMode(mode: GameMode) {
+        self.selectedMode = mode
     }
     
     func addHighscore(score: Int) {

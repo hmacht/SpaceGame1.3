@@ -191,7 +191,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         endNext.name = "endNext"
         endNext.position = CGPoint(x: 0, y: 0)
         endNext.zPosition = 900
-        if self.level % 20 != 0 {
+        if self.level % 20 != 0 && self.level != 32 {
             endBG.addChild(endNext)
         }
         
@@ -802,6 +802,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         
         // Get rid of camera
+        
+        print("Mode", self.gameMode)
         
         self.camera = nil
         self.backgroundColor = UIColor(red: 237/255, green: 248/255, blue: 255/255, alpha: 1)
